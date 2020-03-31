@@ -1,0 +1,22 @@
+[
+ {
+  "type": "STRING",
+  "name": "name"
+ },
+ {
+  "type": "STRING",
+  "name": "id"
+ },
+ {
+  "type": "STRING",
+  "name": "email"
+ },
+ {
+  "type": "STRING",
+  "name": "country"
+ },
+ {
+  "type": "STRING",
+  "name": "country_code"
+ }
+]

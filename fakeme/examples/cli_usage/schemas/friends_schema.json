@@ -1,0 +1,17 @@
+[
+ {
+  "type": "STRING",
+  "name": "name",
+  "mode": "NULLABLE"
+ },
+ {
+  "type": "STRING",
+  "name": "id",
+  "mode": "NULLABLE"
+ },
+ {
+  "type": "STRING",
+  "name": "user_id",
+  "mode": "NULLABLE"
+ }
+]

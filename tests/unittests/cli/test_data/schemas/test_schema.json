@@ -1,0 +1,22 @@
+[
+ {
+  "type": "STRING",
+  "name": "name",
+  "mode": "NULLABLE"
+ },
+ {
+  "type": "STRING",
+  "name": "id",
+  "mode": "NULLABLE"
+ },
+ {
+  "type": "STRING",
+  "name": "city",
+  "mode": "NULLABLE"
+ },
+ {
+  "type": "STRING",
+  "name": "profession",
+  "mode": "NULLABLE"
+ }
+]

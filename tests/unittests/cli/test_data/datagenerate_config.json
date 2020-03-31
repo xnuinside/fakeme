@@ -1,0 +1,4 @@
+{
+  "tables": [
+    ["dataset_name", "test_table", "schemas/test_schema.json"]]
+}

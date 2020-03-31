@@ -1,0 +1,3 @@
+[{"type": "STRING", "name": "part_id", "mode": "NULLABLE"},
+  {"type": "STRING", "name": "count", "mode": "NULLABLE"},
+  {"type": "STRING", "name": "warehouse_id", "mode": "NULLABLE"}]

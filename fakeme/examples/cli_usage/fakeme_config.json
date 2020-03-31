@@ -1,0 +1,12 @@
+{
+  "tables": [
+    ["dataset_name_1", "friends", "schemas/friends_schema.json"],
+    ["dataset_name_1", "users", "schemas/users_schema.json"]
+  ],
+  "rls":
+    {"friends":
+      {"user_id": {"alias": "id", "matches": 1, "table": "users"}}
+
+    }
+
+}

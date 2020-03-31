@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "fakeme"
+version = "0.0.0dev2"
+description = "Relative Dataframes Generator: generate tables with data, that depend each other"
+authors = ["xnuinside <xnuinside@gmail.com>"]
+homepage = "https://github.com/xnuinside/fakeme"
+repository = "https://github.com/xnuinside/fakeme"
+license = "MIT"
+readme = "README.rst"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+ply = "^3.11"
+pandas = "^1.0"
+mimesis = "^4.0"
+
+[tool.poetry.scripts]
+fakeme = 'fakeme.cli:cli'
+
+[tool.poetry.dev-dependencies]
+sphinx = "^2.4"
+tox = "^3.14"
+tox-travis = "^0.12.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
