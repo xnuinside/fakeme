@@ -48,8 +48,8 @@ Fakeme(tables=list_of_tables,
        # rls stands for  relationship - defining relationship between tables,
        # that field depend on that
        rls={'warehouse': {'part_id': {'alias': 'part_identification',
-                                            'matches': 1,
-                                            'table': 'parts'}}
+                                      'matches': 1,
+                                      'table': 'parts'}}
             }).run()
 
 # now just run `python space_ship_warehouse_tables.py`

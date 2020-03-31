@@ -28,5 +28,3 @@ Fakeme(tables=[
 # nullable/not nullable column and type.
 # so usually schema looks like a list of dicts - one dict per column and inside each dict
 # keys 'name', 'type' and 'mode' that contains information nullabe
-
-
