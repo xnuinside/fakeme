@@ -26,7 +26,7 @@ class FieldRulesExtractor(object):
         field_rules = []
         for field in self.fields:
             for key in default_rules:
-                if key in field:
+                if key in field.lower():
                     field_rule = copy(default_rules[key])
                     break
             else:

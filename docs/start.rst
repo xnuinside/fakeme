@@ -16,9 +16,9 @@ You can use Fakeme with 2 ways. More flexible is to use from python script with 
 
 .. code-block:: python
 
-    from fakeme import RunGenerator
+    from fakeme import Fakeme
 
-RunGenerator - main class that you need to call to run data generation.
+Fakeme - main class that you need to call to run data generation.
 
 Minimal that you need to provide to Generator is a **tables_list** argument.
 

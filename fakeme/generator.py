@@ -86,7 +86,7 @@ class DataGenerator:
 
     def schema_validation(self, schema):
         for item in schema:
-            self.type_validation(item['type'])
+            self.type_validation(item.get('type', 'STRING'))
         return schema
 
     @staticmethod

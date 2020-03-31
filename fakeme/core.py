@@ -55,8 +55,6 @@ class Fakeme:
         :param rls:
         :type rls:
         """
-        print("Fake me starts at", datetime.now())
-
         self.tables = tables
         self.cfg = Config(params).get_config()
         self.rls = self.resolve_aliases_tuples(rls) if rls else None or {}
@@ -64,6 +62,7 @@ class Fakeme:
         self.path_prefix = path_prefix
         self.appends = appends or []
         self.cli_path = cli_path
+        self.schemas = None
 
     def resolve_aliases_tuples(self, rls: dict):
         """
@@ -102,18 +101,17 @@ class Fakeme:
     def run(self):
         """
             call method to run data generation
-
-            priority 0 - tables what target for chains
-            priority 1 - tables what target for chains and in chains
+            # todo: rewrite priority description
+            priority 0 - tables that target for relations (
+            priority 1 - tables that target for relations and in relations
             priority 2 - tables what not in self.append
             priority 3 - tables in self.append
 
         """
-
-        print("Run Generation with settings: {}".format(self.cfg))
+        print("Fakeme starts at", datetime.now())
         # get all fields and schemas for tables
-        self.schemas, fields = MultiTableRunner(
-            self.tables, prefix=self.path_prefix, settings=self.cfg).\
+
+        self.schemas, fields = MultiTableRunner(self.tables, prefix=self.path_prefix, settings=self.cfg).\
             get_fields_and_schemas(dump_schema=self.dump_schema)
 
         priority_dict = self.create_priority_table_dict()
@@ -165,8 +163,10 @@ class Fakeme:
 
         chains_tables = set([k for k in self.rls if k != "all"])
 
-        priority_dict[0] = set([x[1] for x in self.tables if x[1] not in chains_tables])
-
+        if self.rls:
+            priority_dict[0] = set([x[1] for x in self.tables if x[1] not in chains_tables])
+        else:
+            priority_dict[0] = set(self.schemas.keys())
         link_dict = {}
         tables_list = [x[1] for x in self.tables]
         for table in chains_tables:

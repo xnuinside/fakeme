@@ -32,14 +32,18 @@ Example:
 
 If you don't provide a type, like this:
 
+.. code-block:: json
     {
       "name": "some_field_that_we_have_no_ide_how_to_generate",
       "mode": "NULLABLE"
     }
 
+
 And Fakeme does not have base rule for generating columns with such name - output will be random string.
 
 But if we have generator for field. For example, with name "price":
+
+.. code-block:: json
 
     {
       "name": "price",

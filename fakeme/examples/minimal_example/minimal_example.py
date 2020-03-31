@@ -9,7 +9,7 @@ from fakeme import Fakeme
 # if you provide tables as a tuple with 2 values, system decide,
 # that first value is table name and second is a schema
 
-# If you provide only table_id and schema order does not matter: library check type of elements in tuple.
+# Order always must be dataset_id, table_id, schema. If you provide only table_id and schema.
 # But if you provide tuple with 3 args: dataset_id, table_id and schema,
 # table_id always must have index after dataset_id
 # this is correct:
@@ -22,9 +22,9 @@ from fakeme import Fakeme
 Fakeme(tables=[
     ('dogs', [{'name': 'name'}, {'name': 'breed'}, {'name': 'id'}]),
     ('amazing_animals', 'cats', [{'name': 'Id'}, {'name': 'breed'}, {'name': 'Name'}])
-])
+]).run()
 
-# schema: we use schema style of BigQuery, because it provide information about
+# schema: library use schema style of BigQuery, because it provide information about
 # nullable/not nullable column and type.
 # so usually schema looks like a list of dicts - one dict per column and inside each dict
-# keys 'name', 'type' and 'mode' that contains information nullabe
+# keys 'name', 'type' and 'mode' that contains information nullabe /required

@@ -30,6 +30,50 @@ Use under the hood at current time:
      - Pandas (like main instrument to combain data in tables (frames)
      - Standart Python Library
 
+How to use
+----------
+
+   pip install fakeme
+
+
+.. code-block:: python
+
+      from fakeme import Fakeme
+
+      Fakeme(
+      # tables - list of tables defenitions that you want to generate
+      # must be provided table_id and schema in object or as path to schema file
+      tables=[
+          ('dogs', [{'name': 'name'}, {'name': 'breed'}, {'name': 'id'}]),
+          ('amazing_animals', 'cats', [{'name': 'Id'}, {'name': 'breed'}, {'name': 'Name'}])
+      ]
+      ).run()
+
+To define relationships between tables use 'rls' param.
+
+.. code-block:: python
+
+   ...
+   Fakeme(tables=list_of_tables,
+       dump_schema=True,
+       params={'row_numbers': 15},  # how much rows we want to generate
+       # rls stands for  relationship - defining relationship between tables,
+       # that field depend on that
+       rls={'warehouse': {'part_id': {'alias': 'part_identification',
+                                      'matches': 1,
+                                      'table': 'parts'}}
+            }).run()
+
+Full example in:
+
+   https://github.com/xnuinside/fakeme/tree/master/fakeme/examples/space_ship_parts/space_ship_warehouse_tables.py
+
+
+A lot of different examples available in:
+
+   https://github.com/xnuinside/fakeme/tree/master/fakeme/examples
+
+
 Basic terminology
 -----------------
 

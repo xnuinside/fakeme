@@ -47,26 +47,16 @@ class TableRunner(object):
 
     """
     def __init__(self,
-                 dataset_id: Text,
                  table_id: Text,
                  settings: Dict,
-                 schema_path: Text = None,
-                 dump_schema: bool = False,
-                 schema_in_obj: List = None):
+                 schema: List,
+                 dataset_id: Text = None,
+                 dump_schema: bool = False
+                 ):
         self.dataset_id = dataset_id
         self.table_id = table_id
         self.settings = settings
-        if not schema_in_obj and not schema_path:
-            raise ValueError("Impossible to create a table without a schema")
-        if not schema_in_obj:
-            self.schema = SchemaExtractor(schema_path=schema_path,
-                                          folder=dataset_id,
-                                          table_id=table_id,
-                                          dump_schema=dump_schema).get_schema()
-        else:
-            if not isinstance(schema_in_obj, list):
-                raise ValueError('`list_schema` must be list with fields dicts')
-            self.schema = schema_in_obj
+        self.schema = schema
 
     def create_data(self,
                     file_path: Text,
@@ -109,22 +99,22 @@ class TableRunner(object):
 
 class MultiTableRunner(object):
 
-    def __init__(self, tables_list: List, settings: Dict, prefix="."):
+    def __init__(self, tables: List, settings: Dict, prefix="."):
         """
 
-        :param tables_list:
-        :type tables_list: list
+        :param tables:
+        :type tables: list
         :param settings:
         :type settings: dict
         :param prefix:
         :type prefix: str
         """
-        self.tables = tables_list
+        self.tables = tables
         self.prefix = prefix
         self.settings = settings
 
-    def _validate_path(self, path):
-        """ check path exist, try to get correct path """
+    def _validate_path(self, path: Text):
+        """ check schema path exists, try to get correct path """
         path = os.path.expanduser(path)
         if not os.path.isfile(path):
             os.chdir(self.prefix)
@@ -135,19 +125,40 @@ class MultiTableRunner(object):
             raise ValueError("File with schema does not exist {}".format(path))
         return target_path
 
-    def get_fields_and_schemas(self, dump_schema=False):
+    def get_fields_and_schemas(self, dump_schema: bool = False):
         """ return list of schemas and tables fields """
         schemas = {}
         fields = []
-        for dataset_id, table_id, schema in self.tables:
+
+        for dataset_id, table_id, schema in self.get_values_from_tables_list():
             if isinstance(schema, str):
-                schema = self._validate_path(schema)
-                tg = TableRunner(dataset_id, table_id, schema_path=schema,
-                                 settings=self.settings, dump_schema=dump_schema)
-            else:
-                tg = TableRunner(dataset_id, table_id, settings=self.settings,
-                                 schema_in_obj=schema, dump_schema=dump_schema)
+                # validate path
+                schema_path = self._validate_path(schema)
+                # get schema object
+                schema = SchemaExtractor(schema_path=schema_path,
+                                         folder=dataset_id,
+                                         table_id=table_id,
+                                         dump_schema=dump_schema).get_schema()
+
+            tg = TableRunner(table_id, dataset_id=dataset_id, settings=self.settings,
+                             schema=schema, dump_schema=dump_schema)
             schemas[table_id] = (tg.schema, tg)
+
         for table_id in schemas:
             fields.append((table_id, [item['name'] for item in schemas[table_id][0]]))
         return schemas, fields
+
+    def get_values_from_tables_list(self):
+        for table_definition in self.tables:
+            if len(table_definition) == 3:
+                dataset_id, table_id, schema = table_definition
+            elif len(table_definition) == 2:
+                dataset_id = None
+                table_id, schema = table_definition
+            elif len(table_definition) == 1:
+                dataset_id, table_id = None, 'undefined'
+                schema = table_definition[0]
+            else:
+                raise Exception(f'Invalid table definition in table list, it must contains max 3 values. '
+                                f'You provided: {table_definition}')
+            yield dataset_id, table_id, schema

@@ -2,7 +2,7 @@
 #   like {'field': 'languages', 'generator': '[choice(languages), choice(languages)]'}
 
 default_rules = {'id': {'generator': 'uuid4().hex', 'len': 12},
-                 'default': {'generator': None, 'len': 6},
+                 'default': {'generator': 'uuid4().hex', 'len': 6},
                  'price': {'generator': 'round(random(), 2)'},
                  'ts': {'generator': 'current_time'},
                  'flag': {'generator': 'choice([\'Y\', \'N\'])'},
