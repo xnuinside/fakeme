@@ -24,6 +24,7 @@ q = Queue()
 class DataGenerator:
     def __init__(self,
                  schema: List,
+                 with_data: List = None,
                  settings: Dict = None,
                  chained: Dict = None,
                  table_id: Text = None,
@@ -42,6 +43,7 @@ class DataGenerator:
         self.file_format = self.settings['output']['file_format']
         self.appends = appends
         self.current_dir = os.path.dirname(sys.argv[0]) if not cli_path else cli_path
+        self.with_data = with_data
 
     def get_depend_on_file(self):
         """ find depends on other tables (data files)
@@ -51,8 +53,9 @@ class DataGenerator:
         if self.chains and self.table_id in self.chains:
             table_chain = self.chains[self.table_id]
             key = list(table_chain.keys())[0]
-            src_file = os.path.join(self.current_dir, "{}.{}".format(
-                table_chain[key]['table'], self.file_format))
+            file_name = "{}.{}".format(table_chain[key]['table'], self.file_format) if '.' not in table_chain[
+                key]['table'] else table_chain[key]['table']
+            src_file = os.path.join(self.current_dir, file_name)
             if not os.path.isfile(src_file):
                 current_dir = os.getcwd()
                 if current_dir in src_file:

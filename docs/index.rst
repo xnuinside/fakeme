@@ -43,10 +43,10 @@ How to use
       Fakeme(
       # tables - list of tables defenitions that you want to generate
       # must be provided table_id and schema in object or as path to schema file
-      tables=[
-          ('dogs', [{'name': 'name'}, {'name': 'breed'}, {'name': 'id'}]),
-          ('amazing_animals', 'cats', [{'name': 'Id'}, {'name': 'breed'}, {'name': 'Name'}])
-      ]
+         tables=[
+             ('dogs', [{'name': 'name'}, {'name': 'breed'}, {'name': 'id'}]),
+             ('amazing_animals', 'cats', [{'name': 'Id'}, {'name': 'breed'}, {'name': 'Name'}])
+         ]
       ).run()
 
 To define relationships between tables use 'rls' param.
@@ -54,15 +54,16 @@ To define relationships between tables use 'rls' param.
 .. code-block:: python
 
    ...
-   Fakeme(tables=list_of_tables,
-       dump_schema=True,
-       params={'row_numbers': 15},  # how much rows we want to generate
-       # rls stands for  relationship - defining relationship between tables,
-       # that field depend on that
-       rls={'warehouse': {'part_id': {'alias': 'part_identification',
+   Fakeme(
+      tables=list_of_tables,
+      dump_schema=True,
+      params={'row_numbers': 15},  # how much rows we want to generate, default value = 100
+      # rls stands for  relationship - defining relationship between tables,
+      # that field depend on that
+      rls={'warehouse': {'part_id': {'alias': 'part_identification',
                                       'matches': 1,
                                       'table': 'parts'}}
-            }).run()
+          }).run()
 
 Full example in:
 

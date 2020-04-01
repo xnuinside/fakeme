@@ -1,7 +1,8 @@
 """ main module that contains RunGenerator class that used to init data generation """
+import os
 
 from collections import defaultdict
-
+from typing import List, Dict, Text
 from fakeme.config import Config
 from fakeme.tables import MultiTableRunner
 from fakeme.fields import FieldRulesExtractor
@@ -16,13 +17,14 @@ break_point = None
 class Fakeme:
 
     def __init__(self,
-                 tables,
-                 params=None,
-                 dump_schema=True,
-                 rls=None,
-                 path_prefix=".",
-                 appends=None,
-                 cli_path=None):
+                 tables: List,
+                 with_data: List = None,
+                 params: Dict = None,
+                 dump_schema: bool = True,
+                 rls: Dict = None,
+                 path_prefix: Text = ".",
+                 appends: List = None,
+                 cli_path: Text = None):
         """
         Main Class to start data generation
 
@@ -57,46 +59,22 @@ class Fakeme:
         """
         self.tables = tables
         self.cfg = Config(params).get_config()
-        self.rls = self.resolve_aliases_tuples(rls) if rls else None or {}
+        self.rls = rls if rls else None or {}
         self.dump_schema = dump_schema
         self.path_prefix = path_prefix
         self.appends = appends or []
         self.cli_path = cli_path
+        self.with_data = self.validate_data_source(with_data)
         self.schemas = None
 
-    def resolve_aliases_tuples(self, rls: dict):
-        """
-            resolve fields aliases (situation when one table depend on second)
-            or need to contain same value as in second table
-
-            rls example:
-
-                {'warehouse': {'part_id': {'alias': 'part_name',
-                                                'matches': 1,
-                                                'table': 'parts'}}}
-        """
-
-        for table in rls:
-            new_dict = {}
-            to_delete = []
-            for key in rls[table]:
-                if isinstance(key, tuple):
-                    if isinstance(rls[table][key]["alias"], tuple):
-                        for num, item in enumerate(key):
-                            if len(rls[table][key]["alias"]) > num:
-                                alias = rls[table][key]["alias"][num]
-                            else:
-                                alias = item
-                            new_dict.update({item: {
-                                "alias": alias,
-                                "table": rls[table][key]["table"],
-                                "matches": rls[table][key].get("matches")
-                                            or self.cfg['matches']}})
-                    to_delete.append(key)
-            rls[table].update(new_dict)
-            for item in to_delete:
-                del rls[table][item]
-        return rls
+    @staticmethod
+    def validate_data_source(paths_list):
+        if not paths_list:
+            paths_list = []
+        for path in paths_list:
+            if not os.path.isfile(path):
+                raise Exception(f'Could not find the path {path} from "with_data" parameter')
+        return set(paths_list)
 
     def run(self):
         """
@@ -124,7 +102,7 @@ class Fakeme:
 
         for level in priority_dict:
             for table in priority_dict[level]:
-                if table not in created and table not in priority_dict.get(level+1, []):
+                if table not in created and table not in self.with_data and table not in priority_dict.get(level+1, []):
                     self.create_table(table)
         if self.cfg['output'].get('line_start'):
             for target_file_path in target_paths:
@@ -149,10 +127,15 @@ class Fakeme:
     def create_table(self, table):
         """ run table creation """
         target_path = "{}.{}".format(table, self.cfg['output']['file_format'])
+
         self.schemas[table][1].create_data(
-            file_path=target_path, chained=self.linked_fields,
-            alias_chain=self.rls, appends=self.appends,
+            file_path=target_path,
+            with_data=self.with_data,
+            chained=self.linked_fields,
+            alias_chain=self.rls,
+            appends=self.appends,
             cli_path=self.cli_path)
+
         target_paths.append(target_path)
         created.append(table)
 
@@ -164,16 +147,20 @@ class Fakeme:
         chains_tables = set([k for k in self.rls if k != "all"])
 
         if self.rls:
-            priority_dict[0] = set([x[1] for x in self.tables if x[1] not in chains_tables])
+            priority_dict[0] = set([table_name for table_name in self.schemas if table_name not in chains_tables])
         else:
             priority_dict[0] = set(self.schemas.keys())
+
+        if self.with_data:
+            for data_file in self.with_data:
+                priority_dict[0].add(data_file)
         link_dict = {}
         tables_list = [x[1] for x in self.tables]
         for table in chains_tables:
             self_table = self.rls[table]
             for field in self_table:
                 field_dict = self_table[field]
-                if field_dict['table'] in tables_list:
+                if field_dict['table'] in tables_list or field_dict['table'] in self.with_data:
                     if not link_dict.get(field_dict['table']):
                         link_dict[field_dict['table']] = set([])
                     link_dict[field_dict['table']].add(table)

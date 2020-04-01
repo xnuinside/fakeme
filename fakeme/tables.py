@@ -20,10 +20,13 @@ class SchemaExtractor(object):
         self.dump_schema = dump_schema
 
     def extract_folder(self):
-        splited = self.schema_path.split('/')
-        folder, _ = splited[(len(splited) - 2):]
-        if folder == 'schemas':
-            folder = ''
+        if '/' in self.schema_path:
+            splited = self.schema_path.split('/')
+            folder, _ = splited[(len(splited) - 2):]
+            if folder == 'schemas':
+                folder = ''
+        else:
+            folder = '.'
         return folder
 
     def get_schema(self):
@@ -60,6 +63,7 @@ class TableRunner(object):
 
     def create_data(self,
                     file_path: Text,
+                    with_data: List = None,
                     chained: Dict = None,
                     alias_chain: Dict = None,
                     appends: Dict = None,
@@ -68,7 +72,7 @@ class TableRunner(object):
                     ):
         """ generate data and save to the file """
         table_data = DataGenerator(
-            schema=self.schema, settings=self.settings, chained=chained,
+            schema=self.schema, with_data=with_data, settings=self.settings, chained=chained,
             table_id=self.table_id, alias_chain=alias_chain, appends=appends,
             cli_path=cli_path).get_data_frame()
 
@@ -149,6 +153,7 @@ class MultiTableRunner(object):
         return schemas, fields
 
     def get_values_from_tables_list(self):
+        """ this method try to understand that we have in table definition tuple """
         for table_definition in self.tables:
             if len(table_definition) == 3:
                 dataset_id, table_id, schema = table_definition
