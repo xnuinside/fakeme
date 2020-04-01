@@ -36,9 +36,7 @@ def run_cli():
     with open(config_path, 'r') as config:
         conf = json.load(config)
         validate_config(conf)
-        Fakeme(path_prefix=os.path.dirname(config_path),
-               cli_path=os.path.dirname(config_path),
-               **conf).run()
+        Fakeme(cli_path=os.path.dirname(config_path), **conf).run()
 
 
 def validate_config(conf):

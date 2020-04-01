@@ -1,5 +1,6 @@
 """ main module that contains RunGenerator class that used to init data generation """
 import os
+import inspect
 
 from collections import defaultdict
 from typing import List, Dict, Text
@@ -19,10 +20,9 @@ class Fakeme:
     def __init__(self,
                  tables: List,
                  with_data: List = None,
-                 params: Dict = None,
+                 settings: Dict = None,
                  dump_schema: bool = True,
                  rls: Dict = None,
-                 path_prefix: Text = ".",
                  appends: List = None,
                  cli_path: Text = None):
         """
@@ -50,31 +50,48 @@ class Fakeme:
                                   "name": "field2"
                                  }]
         :type tables: list
-        :param params:
-        :type params: dict
+        :param settings:
+            Example:
+                    settings = {
+                        'table_id' : {
+                            'field': {
+                                'unique_values': count_of_unique_values_in_column,
+                                'unique': True
+                            }
+                        }
+                    }
+        :type settings: dict
         :param dump_schema:
         :type dump_schema:
         :param rls:
         :type rls:
         """
+
         self.tables = tables
-        self.cfg = Config(params).get_config()
+        self.cfg = Config(settings).get_config()
         self.rls = rls if rls else None or {}
         self.dump_schema = dump_schema
-        self.path_prefix = path_prefix
+        self.path_prefix = cli_path or os.path.dirname(inspect.stack()[1][1])
+        if not cli_path and os.getcwd() not in self.path_prefix:
+            self.path_prefix = os.path.join(os.getcwd(), self.path_prefix)
+
         self.appends = appends or []
         self.cli_path = cli_path
         self.with_data = self.validate_data_source(with_data)
         self.schemas = None
 
-    @staticmethod
-    def validate_data_source(paths_list):
+    def validate_data_source(self, paths_list):
         if not paths_list:
             paths_list = []
+        validated_list = []
         for path in paths_list:
             if not os.path.isfile(path):
-                raise Exception(f'Could not find the path {path} from "with_data" parameter')
-        return set(paths_list)
+                if self.path_prefix not in path:
+                    path = os.path.join(self.path_prefix, path)
+                    if not os.path.isfile(path):
+                        raise Exception(f'Could not find the path {path} from "with_data" parameter')
+            validated_list.append(path)
+        return set(validated_list)
 
     def run(self):
         """
@@ -127,13 +144,14 @@ class Fakeme:
     def create_table(self, table):
         """ run table creation """
         target_path = "{}.{}".format(table, self.cfg['output']['file_format'])
-
+        print(self.path_prefix)
         self.schemas[table][1].create_data(
             file_path=target_path,
             with_data=self.with_data,
             chained=self.linked_fields,
             alias_chain=self.rls,
             appends=self.appends,
+            prefix=self.path_prefix,
             cli_path=self.cli_path)
 
         target_paths.append(target_path)

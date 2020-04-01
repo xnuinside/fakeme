@@ -1,8 +1,4 @@
-"""  half of imports are used in step of field generation, so this is why imports looks like unused.
-
-    TODO: need  to add lazy evaluation only if import required in generation rule field """
 import os
-import sys
 import copy
 import multiprocessing as mp
 from multiprocessing import Queue
@@ -30,7 +26,8 @@ class DataGenerator:
                  table_id: Text = None,
                  alias_chain: Dict = None,
                  appends: Dict = None,
-                 cli_path=None
+                 cli_path=None,
+                 prefix=None
                  ):
         self.schema = self.schema_validation(schema)
         self.settings = settings or {}
@@ -42,8 +39,10 @@ class DataGenerator:
         self.column_df = None
         self.file_format = self.settings['output']['file_format']
         self.appends = appends
-        self.current_dir = os.path.dirname(sys.argv[0]) if not cli_path else cli_path
         self.with_data = with_data
+        self.prefix = prefix if not cli_path else cli_path
+        self.table_settings = self.settings.get('tables', {}).get(self.table_id, {})
+        self.row_numbers = self.table_settings.get('row_numbers') or self.settings['row_numbers']
 
     def get_depend_on_file(self):
         """ find depends on other tables (data files)
@@ -55,13 +54,11 @@ class DataGenerator:
             key = list(table_chain.keys())[0]
             file_name = "{}.{}".format(table_chain[key]['table'], self.file_format) if '.' not in table_chain[
                 key]['table'] else table_chain[key]['table']
-            src_file = os.path.join(self.current_dir, file_name)
-            if not os.path.isfile(src_file):
-                current_dir = os.getcwd()
-                if current_dir in src_file:
-                    src_file = os.path.join(current_dir, src_file)
-                    if not os.path.isfile(src_file):
-                        raise ValueError(f'{src_file} is not a file. Current dir {os.getcwd()}')
+            src_file = os.path.join(self.prefix, file_name)
+            if not os.path.isfile(src_file) and self.prefix not in src_file:
+                src_file = os.path.join(self.prefix, src_file)
+                if not os.path.isfile(src_file):
+                    raise ValueError(f'{src_file} is not a file. Current dir {os.getcwd()}')
             dir_files.append(src_file)
         else:
             for item in self.schema:
@@ -71,19 +68,19 @@ class DataGenerator:
                             item['name']] if table != self.table_id]
                     [dir_files.append(file_name) if file_name.startswith(table) else None
                      for table in chained_tables for file_name in os.listdir(
-                        self.current_dir)]
-                elif 'all' in self.chains and item['name'] in self.chains['all']:
+                        self.prefix)]
+                elif 'all' in self.prefix and item['name'] in self.chains['all']:
                     table_chain = self.chains['all']
                     key = table_chain.keys()[0]
                     if table_chain[key]['table'] != self.table_id:
-                        src_file = os.path.join(self.current_dir, "{}.{}".format(
+                        src_file = os.path.join(self.prefix, "{}.{}".format(
                             table_chain[key]['table'], self.file_format))
                         if not os.path.isfile(src_file):
                             raise ValueError
                         dir_files.append(src_file)
         if dir_files:
             print("Depend on: {}".format(dir_files))
-            return os.path.join(self.current_dir, dir_files[0])
+            return os.path.join(self.prefix, dir_files[0])
         else:
             return []
 
@@ -104,7 +101,7 @@ class DataGenerator:
         """ find dependencies on different ways and prepare self.chained_df"""
         depend_on_file = None
         if self.appends and self.table_id in self.appends:
-            depend_on_file = [os.path.join(self.current_dir, "{}.{}".format(
+            depend_on_file = [os.path.join(self.prefix, "{}.{}".format(
                 name, self.file_format)) for name in self.appends[self.table_id]]
         elif self.chained or self.chains:
             depend_on_file = self.get_depend_on_file()
@@ -126,6 +123,7 @@ class DataGenerator:
         return result
 
     def init_timestamps_values(self):
+        # TODO: need to refactor this
         global current_time, last_time
 
         timezone = pytz.timezone(self.settings.get('timezone', 'UTC'))
@@ -176,18 +174,9 @@ class DataGenerator:
         return field_rule
 
     def get_values_from_chained_column(self, _field_name, _matches_k):
-        """ get aliased column name and settings for chains:
-        reversed and matches_k """
-        src_column, revers = _field_name, False
-        if self.chains and self.table_id in self.chains:
-            for key in self.chains[self.table_id]:
-                if key == _field_name:
-                    src_column = self.chains[self.table_id][key]['alias']
-                    if 'matches' in self.chains[self.table_id][key]:
-                        _matches_k = self.chains[self.table_id][key]['matches']
-                    if 'revers' in self.chains[self.table_id][key]:
-                        revers = self.chains[self.table_id][key]['revers']
-        return src_column, _matches_k, revers
+        """ get params reversed and matches_k """
+        return self.chains.get(self.table_id, {}).get(_field_name, {}).get(
+            'matches'), self.chains.get(self.table_id, {}).get('revers', False)
 
     def get_dataframe_column(self, _src_column, _matches_k, _revers):
         """ get column for field from chained dataframe """
@@ -200,13 +189,15 @@ class DataGenerator:
         return df_column
 
     def get_column_from_chained(self, field_name, matches_k):
-        alias = self.chains[self.table_id].get(field_name, {}).get('alias')
-        field_name = alias or field_name
+        field_chain = self.chains[self.table_id].get(field_name, {})
+        if not field_chain:
+            return None
+        alias = field_chain.get('alias', None)
+        src_column = alias or field_name
         df_column = None
         self.chained_df = self.resolve_dependencies()
         if self.chained_df is not None:
-            src_column, matches_k, revers = self.get_values_from_chained_column(
-                field_name, matches_k)
+            matches_k, revers = self.get_values_from_chained_column(field_name, matches_k)
             if src_column in self.chained_df.columns:
                 df_column = self.get_dataframe_column(src_column, matches_k, revers)
         return df_column
@@ -214,42 +205,42 @@ class DataGenerator:
     def column_generator(self, field_name):
         """ create column with values """
         print("Generate column {}".format(field_name))
-        column, unique = [], None
-        table_fields_settings = self.settings.get('fields', {}).get(
-            self.table_id, {})
+        column, unique_values = [], None
+        # get field rule
         field_rule = self.get_field_rule(field_name)
-        range_rows = self.settings.get('tables', {}).get(
-            self.table_id, {}).get(
-            'row_numbers') or self.settings['row_numbers']
 
+        # get settings
         matches_k = self.settings['matches']
+
         if self.table_id in self.chains:
             df_column = self.get_column_from_chained(field_name, matches_k)
         else:
             df_column = None
-        if table_fields_settings:
-            if field_name in table_fields_settings:
-                unique = table_fields_settings[field_name].get('unique') or range_rows
+        if self.table_settings:
+            if field_name in self.table_settings:
+                unique_values = self.table_settings[field_name].get('unique_values') or self.row_numbers
             elif (isinstance(
-                    list(table_fields_settings.keys())[0], tuple)) and field_name \
-                    in list(table_fields_settings.keys())[0]:
-                unique = table_fields_settings[list(table_fields_settings.keys())[0]].get('unique') or range_rows
-        if not unique:
-            unique = range_rows
-        print(unique)
+                    list(self.table_settings.keys())[0], tuple)) and field_name \
+                    in list(self.table_settings.keys())[0]:
+                unique_values = self.table_settings[list(self.table_settings.keys())[0]].get(
+                    'unique_values') or self.row_numbers
+        if not unique_values:
+            unique_values = self.row_numbers
         if df_column:
-            [column.insert(0, elem) for elem in df_column]
+            append_times = int(unique_values / len(df_column)) + 1
+            column = list(df_column) * append_times
+            column = column[:unique_values]
 
-        if len(column) < unique:
-            unique = unique - len(column)
+        if len(column) < unique_values:
+            unique_values = unique_values - len(column)
         else:
-            column = column[:unique]
-            unique = 0
-        while unique:
+            column = column[:unique_values]
+            unique_values = 0
+        while unique_values:
             value = values_generator(field_rule)
             column.append(value)
-            unique -= 1
-        total_rows = range_rows - len(column)
+            unique_values -= 1
+        total_rows = self.row_numbers - len(column)
         rel_size = total_rows / len(column)
         num_copy = int(rel_size)
         base_column = copy.deepcopy(column)

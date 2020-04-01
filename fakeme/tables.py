@@ -68,13 +68,14 @@ class TableRunner(object):
                     alias_chain: Dict = None,
                     appends: Dict = None,
                     cli_path: Text = None,
+                    prefix: Text = None,
                     remove_old: bool = True
                     ):
         """ generate data and save to the file """
         table_data = DataGenerator(
             schema=self.schema, with_data=with_data, settings=self.settings, chained=chained,
             table_id=self.table_id, alias_chain=alias_chain, appends=appends,
-            cli_path=cli_path).get_data_frame()
+            cli_path=cli_path, prefix=prefix).get_data_frame()
 
         if table_data is None:
             raise Exception("Data Generator failed")

@@ -44,7 +44,7 @@ list_of_tables = [
 # STEP 3: define dependencies and generation rules
 Fakeme(tables=list_of_tables,
        dump_schema=True,
-       params={'row_numbers': 15},  # how much rows we want to generate
+       settings={'row_numbers': 15},  # how much rows we want to generate
        # rls stands for  relationship - defining relationship between tables,
        # that field depend on that
        rls={'warehouse': {'part_id': {'alias': 'part_identification',

@@ -36,7 +36,9 @@ Fakeme(
             'alias': 'id',  # with alias name 'id'
             'matches': 1  # and I want all values in country_id must be from countries.id column, all.
         }
-    }}
+    }},
+    settings={'row_numbers': 1300}  # we want to have several cities for each country,
+                                    # so we need to have more rows,
 ).run()
 
 # run and you will see a list of cities, that generated with same ids as in countries.json
