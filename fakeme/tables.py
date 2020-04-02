@@ -1,42 +1,10 @@
 """ classes to work with tables """
 
 import os
-import json
 from typing import List, Dict, Text
 from fakeme.generator import DataGenerator
 from fakeme.output import get_writer
-
-
-class SchemaExtractor(object):
-
-    def __init__(self,
-                 schema_path: Text,
-                 folder: Text = None,
-                 table_id: Text = "",
-                 dump_schema: bool = True):
-        self.schema_path = schema_path
-        self.folder = folder or self.extract_folder()
-        self.table_id = table_id
-        self.dump_schema = dump_schema
-
-    def extract_folder(self):
-        if '/' in self.schema_path:
-            splited = self.schema_path.split('/')
-            folder, _ = splited[(len(splited) - 2):]
-            if folder == 'schemas':
-                folder = ''
-        else:
-            folder = '.'
-        return folder
-
-    def get_schema(self):
-        """ get schema in BQ format """
-        if self.schema_path.endswith('.json'):
-            with open(self.schema_path, 'r') as schema_file:
-                schema = json.load(schema_file)
-        else:
-            raise NotImplementedError('Supports only `.json` format')
-        return schema
+from fakeme.schemas import SchemaExtractor
 
 
 class TableRunner(object):
@@ -53,8 +21,7 @@ class TableRunner(object):
                  table_id: Text,
                  settings: Dict,
                  schema: List,
-                 dataset_id: Text = None,
-                 dump_schema: bool = False
+                 dataset_id: Text = None
                  ):
         self.dataset_id = dataset_id
         self.table_id = table_id
@@ -81,6 +48,7 @@ class TableRunner(object):
             raise Exception("Data Generator failed")
         else:
             target_file_path = self._prepare_path(file_path, remove_old)
+            print(target_file_path)
             writer = get_writer(self.settings['output']['file_format'])
             writer(table_data, target_file_path, self.settings['output']['config'])
 
@@ -146,7 +114,7 @@ class MultiTableRunner(object):
                                          dump_schema=dump_schema).get_schema()
 
             tg = TableRunner(table_id, dataset_id=dataset_id, settings=self.settings,
-                             schema=schema, dump_schema=dump_schema)
+                             schema=schema)
             schemas[table_id] = (tg.schema, tg)
 
         for table_id in schemas:

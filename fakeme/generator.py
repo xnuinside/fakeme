@@ -205,31 +205,34 @@ class DataGenerator:
     def column_generator(self, field_name):
         """ create column with values """
         print("Generate column {}".format(field_name))
+        # unique_values - count of unique values in column in this table
+        # unique - flag, must be all values unique in this table or not
         column, unique_values = [], None
+        column_settings = self.table_settings.get('columns', {}).get(field_name, {})
+        unique_values = column_settings.get('unique_values') or column_settings.get(
+            'row_numbers') or self.row_numbers
+
+        unique = column_settings.get('unique', False)
+        matches_k = column_settings.get('matches') or self.settings['matches']
+
         # get field rule
         field_rule = self.get_field_rule(field_name)
 
         # get settings
-        matches_k = self.settings['matches']
 
         if self.table_id in self.chains:
             df_column = self.get_column_from_chained(field_name, matches_k)
         else:
             df_column = None
-        if self.table_settings:
-            if field_name in self.table_settings:
-                unique_values = self.table_settings[field_name].get('unique_values') or self.row_numbers
-            elif (isinstance(
-                    list(self.table_settings.keys())[0], tuple)) and field_name \
-                    in list(self.table_settings.keys())[0]:
-                unique_values = self.table_settings[list(self.table_settings.keys())[0]].get(
-                    'unique_values') or self.row_numbers
+
         if not unique_values:
             unique_values = self.row_numbers
         if df_column:
             append_times = int(unique_values / len(df_column)) + 1
             column = list(df_column) * append_times
             column = column[:unique_values]
+            if unique:
+                column = self.filter_on_unique(column)
 
         if len(column) < unique_values:
             unique_values = unique_values - len(column)
@@ -237,7 +240,7 @@ class DataGenerator:
             column = column[:unique_values]
             unique_values = 0
         while unique_values:
-            value = values_generator(field_rule)
+            value = values_generator(field_rule, unique)
             column.append(value)
             unique_values -= 1
         total_rows = self.row_numbers - len(column)
@@ -250,6 +253,9 @@ class DataGenerator:
         column += base_column[:int(len(base_column) * float_adding)]
 
         return column
+
+    def filter_on_unique(self, column):
+        return list(set(column))
 
 
 def column_generation(current_obj: DataGenerator,

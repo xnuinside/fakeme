@@ -52,7 +52,7 @@ def random_char(_len):
     return ''.join([choice(string.ascii_letters) for x in range(_len)]).upper()
 
 
-def values_generator(rule=None):
+def values_generator(rule=None, unique=False):
     """ values generator, that eval rules what was defined in 'generator' key  """
 
     value = None
@@ -60,4 +60,11 @@ def values_generator(rule=None):
         value = eval(rule['generator'])
         if rule.get('len', '') and isinstance(rule['len'], int):
             value = value[0:rule['len']]
+        if unique:
+            if isinstance(value, str):
+                value = value + ' ' + text.word().capitalize()
+            elif isinstance(value, int):
+                value = value + randint(1000, 10000)
+            elif isinstance(value, float):
+                value = value + round(random(), 4)
     return value

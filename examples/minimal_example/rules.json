@@ -1,0 +1,25 @@
+[
+  {
+    "generator": "uuid4().hex",
+    "len": 12,
+    "field": "Id"
+  },
+  {
+    "generator": "uuid4().hex",
+    "len": 12,
+    "field": "id"
+  },
+  {
+    "generator": "person.name().split()[0]",
+    "field": "Name"
+  },
+  {
+    "generator": "uuid4().hex",
+    "len": 6,
+    "field": "breed"
+  },
+  {
+    "generator": "person.name().split()[0]",
+    "field": "name"
+  }
+]

@@ -10,9 +10,7 @@ from fakeme.fields import FieldRulesExtractor
 
 from datetime import datetime
 
-target_paths = []
 created = []
-break_point = None
 
 
 class Fakeme:
@@ -74,7 +72,6 @@ class Fakeme:
         self.path_prefix = cli_path or os.path.dirname(inspect.stack()[1][1])
         if not cli_path and os.getcwd() not in self.path_prefix:
             self.path_prefix = os.path.join(os.getcwd(), self.path_prefix)
-
         self.appends = appends or []
         self.cli_path = cli_path
         self.with_data = self.validate_data_source(with_data)
@@ -119,31 +116,15 @@ class Fakeme:
 
         for level in priority_dict:
             for table in priority_dict[level]:
-                if table not in created and table not in self.with_data and table not in priority_dict.get(level+1, []):
+                if table not in created and table not in self.with_data \
+                        and table not in priority_dict.get(level+1, []):
                     self.create_table(table)
-        if self.cfg['output'].get('line_start'):
-            for target_file_path in target_paths:
-                self._add_symbol_at_line_start(target_file_path)
 
         print("Data Generation ended successful \n", datetime.now())
 
-    def _add_symbol_at_line_start(self, target_file_path):
-        file_buf = []
-        with open(target_file_path, "r") as csv_file:
-            for num, line in enumerate(csv_file.readlines()):
-                if num == 0:
-                    if self.cfg["header"].get("no_quotes"):
-                        line = line.replace('\"', "")
-                    if self.cfg["header"].get("case"):
-                        line = eval("line.{}()".format(self.cfg['header'].get(
-                            "case")))
-                file_buf.append(self.cfg['line_start'] + line)
-        with open(target_file_path, "w+") as csv_file:
-            csv_file.writelines(file_buf)
-
     def create_table(self, table):
         """ run table creation """
-        target_path = "{}.{}".format(table, self.cfg['output']['file_format'])
+        target_path = os.path.join(self.path_prefix, "{}.{}".format(table, self.cfg['output']['file_format']))
         print(self.path_prefix)
         self.schemas[table][1].create_data(
             file_path=target_path,
@@ -154,7 +135,6 @@ class Fakeme:
             prefix=self.path_prefix,
             cli_path=self.cli_path)
 
-        target_paths.append(target_path)
         created.append(table)
 
     def create_priority_table_dict(self):

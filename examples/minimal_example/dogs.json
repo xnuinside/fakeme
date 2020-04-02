@@ -1,0 +1,502 @@
+[
+ {
+  "id": "6306cd85193e436fa7c2f366e3255398",
+  "breed": "9615cab146264b4c97eb17e3f3fe4086",
+  "name": "Julee"
+ },
+ {
+  "id": "b800f5c413d0430981348ac36f893523",
+  "breed": "2784780620104df2af8157be7ee675bc",
+  "name": "Miss"
+ },
+ {
+  "id": "ba74977cc0634501a766be753687dcbb",
+  "breed": "3c5aafc6e99e41c5a3edc4245600888b",
+  "name": "Emmett"
+ },
+ {
+  "id": "e4732af704764449990401052f83b21b",
+  "breed": "05ad0d388f014d2486598b551ffcbdc5",
+  "name": "Anderson"
+ },
+ {
+  "id": "8051ecf220d4411bace8d424512e323c",
+  "breed": "0715717c16a44e00a3a246a0e663daac",
+  "name": "Walker"
+ },
+ {
+  "id": "eca3a50c7ba542599a9c28db3f9460ad",
+  "breed": "c0e5e711ff33434b8964a9c9b62e0129",
+  "name": "Raina"
+ },
+ {
+  "id": "cb39049f165e40279aaea0eb15c033f6",
+  "breed": "929dec211719455dad02976af9a9ddd3",
+  "name": "Rigoberto"
+ },
+ {
+  "id": "be74201a793d4bdfbaa9eeb380fd274b",
+  "breed": "622a6c0cba69451081876883cefeee38",
+  "name": "Sammie"
+ },
+ {
+  "id": "0ad003a3a1de49f4859511ff30d38016",
+  "breed": "aab590a71e3a45f9b49ae2ababbb397f",
+  "name": "Frank"
+ },
+ {
+  "id": "c93b5daacbfe4ab18010722aed03aca8",
+  "breed": "08af4a4798bc45ef891af9c0f2c4105d",
+  "name": "Lucio"
+ },
+ {
+  "id": "00820dbde4eb4b5ab875b2d65fad8c9b",
+  "breed": "618375702cc6439b88678e128d5283ba",
+  "name": "Eddie"
+ },
+ {
+  "id": "c89ba7219ef54af89a4477c16c3f078a",
+  "breed": "1a8abbd97faa41cf8ac2bbd0273b5ce8",
+  "name": "Isaiah"
+ },
+ {
+  "id": "a4e720b2a48c4612a92a640ad1013b76",
+  "breed": "6f9e2f6cb79d451d8baa472e4f98cb85",
+  "name": "Freeman"
+ },
+ {
+  "id": "601f4eb08cf143208a4530f5ac9994cd",
+  "breed": "afed4e0756634631859a011f27ae0773",
+  "name": "Senaida"
+ },
+ {
+  "id": "3f441cf27304417aa202a67ea71898d2",
+  "breed": "3c37d5e0449f42adaffab191db3bc56a",
+  "name": "Thi"
+ },
+ {
+  "id": "0cb70acaac4d47f3a6707f81aa91f6e8",
+  "breed": "c8823fe197834f5f85328d687830cca0",
+  "name": "Robbyn"
+ },
+ {
+  "id": "1b8d5d2530e64f9882278fe0a922fce5",
+  "breed": "0a035e6b4f424789b670d15c4492f133",
+  "name": "Roscoe"
+ },
+ {
+  "id": "34af5cf4ebc64be0be1761c9ea295100",
+  "breed": "8e3ee2d8a49a49a7b9ddb6d0963df2c8",
+  "name": "Morton"
+ },
+ {
+  "id": "3c423987e1e84bb58213ca9d35fde608",
+  "breed": "ec7fde1e2c954a3898ef967c2ba5b680",
+  "name": "Jasper"
+ },
+ {
+  "id": "af366000b48a4a0fbc1b7577c47277d0",
+  "breed": "e295272cfd7347d1a5ec463a380a96e9",
+  "name": "Dusti"
+ },
+ {
+  "id": "4ba09f9d786a4780a951462a6e437680",
+  "breed": "777c94a6831f44bb8ffe6789686d8dcb",
+  "name": "Margarite"
+ },
+ {
+  "id": "4a99b74f46ea4f09b556d8b7e88590db",
+  "breed": "1fe2821f641b494fa95896e8178d521d",
+  "name": "Jessenia"
+ },
+ {
+  "id": "9a08abf85fc64e5a920c152eba1fffae",
+  "breed": "7b22a46144684746b95249656ef8df42",
+  "name": "Quinn"
+ },
+ {
+  "id": "271725c82a5e4d90ad8caf32dddc8410",
+  "breed": "104df7e490e240729188055d7af2dd66",
+  "name": "Donte"
+ },
+ {
+  "id": "69f44bd3338e4101a261e7562820601b",
+  "breed": "f30b2b62b7104df7a5dbe7ad42714395",
+  "name": "Tony"
+ },
+ {
+  "id": "8a4f33f341894332adeda7148c6428ce",
+  "breed": "4b57cd4306ac4ec497c525a02e6a5870",
+  "name": "Jess"
+ },
+ {
+  "id": "9db837ffcade40cfb37912eec3eab0a4",
+  "breed": "52d52e4c81f94835bbfc14c390c0d89e",
+  "name": "Avery"
+ },
+ {
+  "id": "a4434b9027064dadbe3b44c0e54b6600",
+  "breed": "2da12aecee964d02849242e12a853d86",
+  "name": "Santos"
+ },
+ {
+  "id": "cf25debd57f84dab9a27168bb1ce0fdf",
+  "breed": "7941eca18a43460f83368a83afd04944",
+  "name": "Catarina"
+ },
+ {
+  "id": "ca5af4e32fca492abc18b669a2bddcca",
+  "breed": "6bce0e8dbdfb4b70a4e452d15f8c814c",
+  "name": "Birgit"
+ },
+ {
+  "id": "f5c7367b93354d8cb15af63b833de585",
+  "breed": "feadc93040b449dc81082193fbb1c10e",
+  "name": "Santos"
+ },
+ {
+  "id": "c2750b0c01a4419388ed3b4fff96b017",
+  "breed": "308f0a7cfc9343348b7e747b97436ce0",
+  "name": "Jarod"
+ },
+ {
+  "id": "138b21d2196d45159036f57763f8ee2e",
+  "breed": "a90d5ce687d14ac49c52dce6c687151c",
+  "name": "Seth"
+ },
+ {
+  "id": "742c53bf68e44442942eb230d0e4ae88",
+  "breed": "51cbd7c971f04f4fa151a4aaf43a870c",
+  "name": "Maryland"
+ },
+ {
+  "id": "6449d05081c74ca7b96a5061eddb4923",
+  "breed": "7441105c7e6643ef9cb8d6b45f767573",
+  "name": "Brian"
+ },
+ {
+  "id": "884e93e2851e472c8645d6a4cfca68d4",
+  "breed": "fb28b5e0813047cc8cb93473e294e9f1",
+  "name": "Walter"
+ },
+ {
+  "id": "465686c41b3d47afbad67cde83917e27",
+  "breed": "ccb46e06259348209f431a446566fafc",
+  "name": "Sherril"
+ },
+ {
+  "id": "db6cacb2de4e48f390b9d13c775b00a0",
+  "breed": "2ef2929b232f484fa8f3b9d7b4e7193a",
+  "name": "Willard"
+ },
+ {
+  "id": "0142c57fb17d490690f396ff40e36bc9",
+  "breed": "24812bb86ba34fb59a067f369974ea2d",
+  "name": "Benny"
+ },
+ {
+  "id": "72e65b0ef71749bea0d4cdbd46487a14",
+  "breed": "3d2c77c918bc471fb150916a97262ae3",
+  "name": "Zackary"
+ },
+ {
+  "id": "5cd178a26e3e4f3fb5171d960040865f",
+  "breed": "03f4232b36c441158a505caf59efe007",
+  "name": "Yoshie"
+ },
+ {
+  "id": "94de30e419aa4f1fa4bb93a2a63a42df",
+  "breed": "8ac28579fe30485c8d00b6f88cc2c782",
+  "name": "Agnus"
+ },
+ {
+  "id": "4a043fabd0ab402fb6cb785a3a56479b",
+  "breed": "64d616bd2ff94d2b856fd5bb385d76e4",
+  "name": "Reynaldo"
+ },
+ {
+  "id": "62b6496ff3fd43c182b78d6181d3c9b9",
+  "breed": "b5e70ae4abbe4e53b96be036ff936f69",
+  "name": "Willian"
+ },
+ {
+  "id": "e1a3a92bb4d7457a8de4dc49a899f26d",
+  "breed": "9811e6322c1a4cbb97aa5829d81539b4",
+  "name": "Shirley"
+ },
+ {
+  "id": "3b0db0216348462a8a737f3f2dcd1eef",
+  "breed": "0afca7937e764f619c7f0afd090f7e29",
+  "name": "Aleen"
+ },
+ {
+  "id": "4b0e0501dd4d41258a558f96e3c9b788",
+  "breed": "5e7badd4bc3b4e63b69d35f304ed70c7",
+  "name": "Eleonore"
+ },
+ {
+  "id": "076df185d1a04117888404ec92b82c2b",
+  "breed": "d5d24787c7eb484585caddc147b8816e",
+  "name": "Annelle"
+ },
+ {
+  "id": "f3682943a5bb4874ae8f29b18cef11b9",
+  "breed": "f523cf811068406580cfcc23bee95962",
+  "name": "Dannie"
+ },
+ {
+  "id": "b281801724674bf6bac51fd4b91318e0",
+  "breed": "a5808c9dbe2d4b718d8e20dbecb2d132",
+  "name": "Leonie"
+ },
+ {
+  "id": "c32318e76bda40e8a5edbcb0d197a051",
+  "breed": "39e7153130a84857a697266be472423d",
+  "name": "Makeda"
+ },
+ {
+  "id": "d7beb59e62cb4510abb01589d5789e39",
+  "breed": "3c0dbfa7841248f0ab4e79e0ab3087fa",
+  "name": "Wendell"
+ },
+ {
+  "id": "4a1a19ad05ee4207b19d451404fb0667",
+  "breed": "96126881ca8b47329123b3d4e1601464",
+  "name": "Leonardo"
+ },
+ {
+  "id": "bc61e2e0160e4623bf4f18de93acb9b2",
+  "breed": "303e215061db42f398203e8d0888135b",
+  "name": "Tuan"
+ },
+ {
+  "id": "a122a6425b0742268ee8cdd951230cd7",
+  "breed": "4729980e27544cda9b477178d50bd11e",
+  "name": "Vance"
+ },
+ {
+  "id": "776bde673c654b0f9a237cf793f528e9",
+  "breed": "1b658f43e5a74b12865608b07fdb3963",
+  "name": "Ailene"
+ },
+ {
+  "id": "bd69d656109b497c8b14120c72c13bd3",
+  "breed": "9f4a8d26a28049fa9eb0e8901655adcd",
+  "name": "Irving"
+ },
+ {
+  "id": "d3f15bdfb4f04a5d9a25f17812534348",
+  "breed": "9a8c7d23eed94660ba3cd9c73674f478",
+  "name": "Kristofer"
+ },
+ {
+  "id": "1088db00645441449b954315775f154e",
+  "breed": "c353524f4bc14d59aa1e4fc7fb3865f3",
+  "name": "Tameika"
+ },
+ {
+  "id": "c63ac00955ae4c82992542d7016ec388",
+  "breed": "1fd1e7d4c935497b849c99d9e1a45887",
+  "name": "Trenton"
+ },
+ {
+  "id": "e36872905e3145749637757b509ea371",
+  "breed": "3ed820512b5e49a18f760ae8026884b8",
+  "name": "Margurite"
+ },
+ {
+  "id": "1cb1afbcc52540fb89f283eafaa189b6",
+  "breed": "c0303ffccc3149078bc892c4beaccd67",
+  "name": "Setsuko"
+ },
+ {
+  "id": "456c7361ea6d446db53d9ab8a12f6816",
+  "breed": "cdc4250e6de84c74a47f017113f71e16",
+  "name": "Tristan"
+ },
+ {
+  "id": "0290c708892544c1af67b7da53a61ac3",
+  "breed": "c6deb7b4b5ac4998a5d4bb2af545b067",
+  "name": "Ben"
+ },
+ {
+  "id": "695f06e21c884ab8bec77c33792a133c",
+  "breed": "846b94f022ad4cfe8034c485df22f743",
+  "name": "Fransisca"
+ },
+ {
+  "id": "8b052691e29e4b15b76d98b5aceb5155",
+  "breed": "3219b88929b949efa8727a234bb83d45",
+  "name": "Sommer"
+ },
+ {
+  "id": "d18bd677b9f144179cc80c1d01695503",
+  "breed": "bbd23068a70b4716889c4d3dc77c61f7",
+  "name": "Magdalen"
+ },
+ {
+  "id": "34e5e298371b40419c903b526ee3d7fb",
+  "breed": "d223ffb6dfa74b899302cfb436ca6443",
+  "name": "Ernesto"
+ },
+ {
+  "id": "87fcfb97efcb4b66b2009038a9673bfd",
+  "breed": "b024b225fa2a4d81a58f32df184b5762",
+  "name": "Ettie"
+ },
+ {
+  "id": "171aa73b9edb42fbab0fca65e9c97c9a",
+  "breed": "49ef261fa1f945feb450fec9c49f9903",
+  "name": "Rory"
+ },
+ {
+  "id": "2f12902eb74b40c288545927ec13f88d",
+  "breed": "2bbf68c60191418a959711a625fcebe8",
+  "name": "Wilbert"
+ },
+ {
+  "id": "1df98ecf659e44d7b72147404978d50a",
+  "breed": "d40709981c3f42b696a52b5739fdc3a1",
+  "name": "Colin"
+ },
+ {
+  "id": "03574b84e0554b94a10e495c0ece7fed",
+  "breed": "cc1d262c8ccc4fb09a1a69fc54eddbf6",
+  "name": "Jamaal"
+ },
+ {
+  "id": "0f9ef4d0818a4827a7db084efb2e9f23",
+  "breed": "67c35ee17e2f408daf950dfcb53b52ea",
+  "name": "Shan"
+ },
+ {
+  "id": "4bcfae5181c340af802a58a218f3a157",
+  "breed": "bf9cdd2148be42348c956dfff2e8d6f4",
+  "name": "Naida"
+ },
+ {
+  "id": "7b2fb229d50a43609e4c816365703d9a",
+  "breed": "08bae59390b4492598e4ea3799a796e3",
+  "name": "Dominica"
+ },
+ {
+  "id": "003e1a1e682947eab78cccb07ef20f9f",
+  "breed": "df86ad84ba55407e8a8ff5072f4a9910",
+  "name": "Sau"
+ },
+ {
+  "id": "f3f00f80b4144824bb907d6964c3012c",
+  "breed": "17a691561f7440eebae2a06c3973bc4d",
+  "name": "Royal"
+ },
+ {
+  "id": "5420902762954d35805c8bb20b643c81",
+  "breed": "8c47020dc55a48bbb43fcf857cd307b8",
+  "name": "Justa"
+ },
+ {
+  "id": "d32e2df1c5f3461b95f6d731b14fa4aa",
+  "breed": "872bdbc7f02144eeac82bb9620282ea6",
+  "name": "Weston"
+ },
+ {
+  "id": "51e3139e1570483eb555b5db7a66b829",
+  "breed": "0a69bd51b2a7460cabe8dadd6610ab2e",
+  "name": "Rupert"
+ },
+ {
+  "id": "db0b3e17d0044f8da41cdf0ac90d7507",
+  "breed": "bde2b8ca9f914b5aba46f3be11c89b55",
+  "name": "Brent"
+ },
+ {
+  "id": "ea6db08db96642018501e45bcb68bdf6",
+  "breed": "4d99fb3d7a704bd49cd4a9b94ea99cc2",
+  "name": "Titus"
+ },
+ {
+  "id": "c692cf844e5743098abfd2d6a8022bda",
+  "breed": "785fd3a20e494066b9853a56f3b9ba9f",
+  "name": "Sidney"
+ },
+ {
+  "id": "1b8408d09f894b9c88d12b9c889194b8",
+  "breed": "a42d1c2fd5f94ffaa7daf9056fed9382",
+  "name": "Elina"
+ },
+ {
+  "id": "52c855169ef64e83ba8c63bb73d86765",
+  "breed": "c67ef527aa474577bc3bfbdc2c43b2e3",
+  "name": "Lashaunda"
+ },
+ {
+  "id": "17427d5c4b7d4b81b3b4fcf66e97ce15",
+  "breed": "fc526c1fe998432f8538420688c1072b",
+  "name": "Dirk"
+ },
+ {
+  "id": "e925582b94c1439f80f565a53c5dfa96",
+  "breed": "8881e6d6413a4809a7a0f1374438e46f",
+  "name": "Shay"
+ },
+ {
+  "id": "b68a840a47264fb388e5e3bafc562f06",
+  "breed": "0b9145323db5474285cd3739b926c8d5",
+  "name": "Leonore"
+ },
+ {
+  "id": "b0a4a61029e14c11a5f4dd9fd0c7b4a5",
+  "breed": "ddd260a0c2004a718d477d6dde68880b",
+  "name": "Sherley"
+ },
+ {
+  "id": "0e0f9442bd43487a8fe29fc1c3674951",
+  "breed": "712926a015f64ae39955212b40fbb510",
+  "name": "Kaycee"
+ },
+ {
+  "id": "eb7c41c4580f4a7b986ac20ff650ff8b",
+  "breed": "dead61e1f0e24474a13845cb2c002495",
+  "name": "Colton"
+ },
+ {
+  "id": "019c36a013f44d20bbab49b2a8262a30",
+  "breed": "0f653db8a11049f993e124ed6c9489d5",
+  "name": "Shaquita"
+ },
+ {
+  "id": "ed49f4df7a29400da6cdf8d0559807a5",
+  "breed": "c02dd96be3d346e698313d3b46f566ef",
+  "name": "Basil"
+ },
+ {
+  "id": "d72b44c5195b486abf36f748a51c1f29",
+  "breed": "d01faf4b415440c984286bc537b8684e",
+  "name": "Jenice"
+ },
+ {
+  "id": "10d1227947c845e59936b95881d4fbb9",
+  "breed": "0402fa130e9c42039da4b0e524e74098",
+  "name": "Sharell"
+ },
+ {
+  "id": "6a117412dd4f4d9ca20e65467e061e2d",
+  "breed": "6fe613fe148c4b1bb6408aee632fcf7e",
+  "name": "Lindsey"
+ },
+ {
+  "id": "42b50ad406824621a2a51aa63c4b2312",
+  "breed": "2b69ddd8e2124e79ae186108b23d742f",
+  "name": "Rodger"
+ },
+ {
+  "id": "b0befb7b977b42e691304f899361e404",
+  "breed": "d30ec25dca61439aa0eb234edd867328",
+  "name": "Lizeth"
+ },
+ {
+  "id": "37efaf6afd2d4e7786f3cd7f7b16253c",
+  "breed": "197ce460a1da4d7fbba632e68887115e",
+  "name": "Yong"
+ }
+]

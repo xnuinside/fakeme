@@ -1,0 +1,16 @@
+[
+  {
+    "generator": "uuid4().hex",
+    "len": 12,
+    "field": "country_id"
+  },
+  {
+    "generator": "person.name().split()[0]",
+    "field": "name"
+  },
+  {
+    "generator": "uuid4().hex",
+    "len": 12,
+    "field": "id"
+  }
+]

@@ -3,6 +3,8 @@
 
 default_rules = {'id': {'generator': 'uuid4().hex', 'len': 12},
                  'default': {'generator': 'uuid4().hex', 'len': 6},
+                 'login': {'generator': 'text.word()'},
+                 'nickname': {'generator': 'text.word()'},
                  'price': {'generator': 'round(random(), 2)'},
                  'ts': {'generator': 'current_time'},
                  'flag': {'generator': 'choice([\'Y\', \'N\'])'},
