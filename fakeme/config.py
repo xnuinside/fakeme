@@ -13,6 +13,7 @@ class Config(object):
         "auto_alias": False,  # use function of auto aliasing between tables or not
         "max_list_values": 4,  # maximum count elements for fields of type list
         "min_list_values": 0,  # minimum count elements for fields of type list
+        "percent_of_nulls": 0.05  # if field is nullable - how much rows we need to fill with nulls
     }
 
     cfg = None

@@ -4,6 +4,7 @@ import multiprocessing as mp
 from multiprocessing import Queue
 from datetime import datetime, timedelta
 import pytz
+from random import randint
 from collections.abc import Iterable
 import logging
 from typing import Text, List, Dict
@@ -164,7 +165,7 @@ class DataGenerator:
         while not q.empty():
             file_name = q.get()
             with open(file_name, 'r') as column_file:
-                column = [line.split('\n')[0] for line in column_file.readlines()]
+                column = [line.split('\n')[0] if line != 'None\n' else None for line in column_file.readlines()]
                 data_frame.insert(num, column=file_name.split(tmp_prefix)[1],
                                   value=Series(column))
                 num += 1
@@ -272,7 +273,14 @@ class DataGenerator:
             column += base_column
         float_adding = rel_size - num_copy
         column += base_column[:int(len(base_column) * float_adding)]
-
+        if field.get('mode'):
+            nullable = field['mode'].lower() == 'nullable'
+            if nullable:
+                percent_of_nulls = self.settings.get('percent_of_nulls')
+                column_len = len(column)
+                count_of_nulls = int(column_len * percent_of_nulls)
+                for i in range(count_of_nulls):
+                    column[randint(0, column_len-1)] = None
         return column
 
     def filter_on_unique(self, column):
