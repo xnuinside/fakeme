@@ -13,7 +13,7 @@ default_rules = {'id': {'generator': 'uuid4().hex', 'len': 12},
                  'country_code': {'generator': 'choice(countries.codes)'},
                  'country': {'generator': 'choice(countries.names)'},
                  'language': {'generator': 'choice(languages)'},
-                 'title': {'generator': 'text.text()', 'len': 24},
+                 'title': {'generator': 'text.text()', 'len': 20},
                  'name': {'generator': 'person.name().split()[0]'},
                  'description': {'generator': 'text.text()'},
                  'email': {'generator': 'person.email()'}

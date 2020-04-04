@@ -3,7 +3,7 @@ import os
 import inspect
 
 from collections import defaultdict
-from typing import List, Dict, Text
+from typing import List, Dict, Text, Union
 from fakeme.config import Config
 from fakeme.tables import MultiTableRunner
 from fakeme.fields import FieldRulesExtractor
@@ -105,10 +105,10 @@ class Fakeme:
 
         self.schemas, fields = MultiTableRunner(self.tables, prefix=self.path_prefix, settings=self.cfg).\
             get_fields_and_schemas(dump_schema=self.dump_schema)
-
+        if self.cfg['auto_alias']:
+            self.resolve_auto_alises()
         priority_dict = self.create_priority_table_dict()
         field_extractor = FieldRulesExtractor(fields)
-
         # generate "value_rules.json" with rules for fields
         field_extractor.generate_rules()
 
@@ -119,13 +119,49 @@ class Fakeme:
                 if table not in created and table not in self.with_data \
                         and table not in priority_dict.get(level+1, []):
                     self.create_table(table)
+        print("Fakeme finished successful \n", datetime.now())
 
-        print("Data Generation ended successful \n", datetime.now())
+    def resolve_auto_alises(self):
+        for table in self.schemas:
+            for column in self.schemas[table][0]:
+                # column - dict with column description
+                alias_column_name = column.get('alias', None) or column['name']
+                relative_table = self.table_prefix_in_column_name(alias_column_name)
+
+                if relative_table:
+                    if table not in self.rls:
+                        self.rls[table] = {}
+
+                    self.rls[table].update({
+                        column['name']: {
+                            'alias': alias_column_name.split('_')[1],
+                            'table': relative_table,
+                            'matches': column.get('matches') or self.cfg['matches']
+                        }
+                    })
+
+    def table_prefix_in_column_name(self, column_name: Text) -> Union[Text, None]:
+        """ check do we have table name prefix in column name, to get possible auto aliasing """
+        table_names = list(self.schemas.keys())
+
+        column_name = column_name.split('_')[0]
+        if column_name.endswith('y'):
+            table_name = column_name.replace('y', 'ies')
+        elif column_name.endswith('s'):
+            table_name = column_name + 'es'
+        else:
+            table_name = column_name + 's'
+
+        if table_name in table_names:
+            print(f"Found alias with {table_name}")
+            return table_name
+
+        return
 
     def create_table(self, table):
         """ run table creation """
         target_path = os.path.join(self.path_prefix, "{}.{}".format(table, self.cfg['output']['file_format']))
-        print(self.path_prefix)
+
         self.schemas[table][1].create_data(
             file_path=target_path,
             with_data=self.with_data,
@@ -142,7 +178,7 @@ class Fakeme:
         # 3
         [priority_dict[3].add(k) for k in self.appends]
 
-        chains_tables = set([k for k in self.rls if k != "all"])
+        chains_tables = set([k for k in self.rls])
 
         if self.rls:
             priority_dict[0] = set([table_name for table_name in self.schemas if table_name not in chains_tables])
@@ -153,7 +189,7 @@ class Fakeme:
             for data_file in self.with_data:
                 priority_dict[0].add(data_file)
         link_dict = {}
-        tables_list = [x[1] for x in self.tables]
+        tables_list = [x for x in self.schemas]
         for table in chains_tables:
             self_table = self.rls[table]
             for field in self_table:

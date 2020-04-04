@@ -5,11 +5,14 @@ from copy import deepcopy
 class Config(object):
 
     default_settings = {
-        "row_numbers": 100,
-        "matches": 0.6,
-        "timezone": "UTC",
+        "row_numbers": 100,  # default number of rows in generated datasets
+        "matches": 1,  # matches for values in columns that in relations with other tables
+        "timezone": "UTC",  # default timezone for datetime data
         "output": {"file_format": "json",
-                   "config": {}},
+                   "config": {}},  # output format configuration
+        "auto_alias": False,  # use function of auto aliasing between tables or not
+        "max_list_values": 4,  # maximum count elements for fields of type list
+        "min_list_values": 0,  # minimum count elements for fields of type list
     }
 
     cfg = None

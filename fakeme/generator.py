@@ -10,11 +10,13 @@ from typing import Text, List, Dict
 from pandas import DataFrame, Series, read_csv, read_json  # noqa F401
 
 from fakeme.fields import FieldRules
-from fakeme.values import values_generator
+from fakeme.values import values_generator, list_generator
 
 supported_types = ['STRING', 'INTEGER', 'FLOAT', 'LIST']
 
 q = Queue()
+
+tmp_prefix = 'tmp_'
 
 
 class DataGenerator:
@@ -91,7 +93,7 @@ class DataGenerator:
 
     @staticmethod
     def type_validation(type_name):
-        if type_name not in supported_types:
+        if type_name.upper() not in supported_types:
             raise ValueError
 
     def _settings_validation(self, settings):
@@ -107,6 +109,8 @@ class DataGenerator:
             depend_on_file = self.get_depend_on_file()
         if depend_on_file:
             if isinstance(depend_on_file, str):
+                if self.table_id in os.path.basename(depend_on_file):
+                    return tmp_prefix
                 self.chained_df = self._read_df_from_file(depend_on_file)
             elif isinstance(depend_on_file, Iterable):
                 for file_name in depend_on_file:
@@ -121,6 +125,10 @@ class DataGenerator:
         """ return correct pandas export method depend on expected file format """
         result = eval(f"read_{self.file_format}(\'{depend_on_file}\')")
         return result
+
+    def _read_values_from_txt(self, path):
+        with open(path, 'r') as data_file:
+            return [x.replace('\n', '') for x in data_file.readlines()]
 
     def init_timestamps_values(self):
         # TODO: need to refactor this
@@ -157,7 +165,7 @@ class DataGenerator:
             file_name = q.get()
             with open(file_name, 'r') as column_file:
                 column = [line.split('\n')[0] for line in column_file.readlines()]
-                data_frame.insert(num, column=file_name.split('tmp_')[1],
+                data_frame.insert(num, column=file_name.split(tmp_prefix)[1],
                                   value=Series(column))
                 num += 1
             os.remove(file_name)
@@ -197,13 +205,17 @@ class DataGenerator:
         df_column = None
         self.chained_df = self.resolve_dependencies()
         if self.chained_df is not None:
-            matches_k, revers = self.get_values_from_chained_column(field_name, matches_k)
-            if src_column in self.chained_df.columns:
+            if isinstance(self.chained_df, str) and self.chained_df == tmp_prefix:
+                # mean we depend on column from current ds
+                df_column = self._read_values_from_txt(f'{tmp_prefix}{field_name}')
+            elif src_column in self.chained_df.columns:
+                matches_k, revers = self.get_values_from_chained_column(field_name, matches_k)
                 df_column = self.get_dataframe_column(src_column, matches_k, revers)
         return df_column
 
-    def column_generator(self, field_name):
+    def column_generator(self, field: Dict):
         """ create column with values """
+        field_name = field['name']
         print("Generate column {}".format(field_name))
         # unique_values - count of unique values in column in this table
         # unique - flag, must be all values unique in this table or not
@@ -228,9 +240,18 @@ class DataGenerator:
         if not unique_values:
             unique_values = self.row_numbers
         if df_column:
-            append_times = int(unique_values / len(df_column)) + 1
-            column = list(df_column) * append_times
-            column = column[:unique_values]
+            if field.get('type', '').upper() == 'LIST':
+                # mean we need to create as output lists with values from df_column
+                max_number_of_elements = field.get('max_number', self.settings['max_list_values'])
+
+                min_number_of_elements = field.get('min_number', self.settings['min_list_values'])
+                for _ in range(unique_values):
+                    value = list_generator(list(df_column), min_number_of_elements, max_number_of_elements)
+                    column.append(value)
+            else:
+                append_times = int(unique_values / len(df_column)) + 1
+                column = list(df_column) * append_times
+                column = column[:unique_values]
             if unique:
                 column = self.filter_on_unique(column)
 
@@ -260,9 +281,9 @@ class DataGenerator:
 
 def column_generation(current_obj: DataGenerator,
                       _item: dict) -> None:
-    file_name = 'tmp_{}'.format(_item['name'])
+    file_name = f'{tmp_prefix}{_item["name"]}'
     with open(file_name, 'w+') as column_tmp:
-        for line in current_obj.column_generator(_item['name']):
+        for line in current_obj.column_generator(_item):
             column_tmp.write(str(line))
             column_tmp.write(str('\n'))
     q.put(file_name)

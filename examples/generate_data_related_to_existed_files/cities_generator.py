@@ -42,3 +42,7 @@ Fakeme(
 ).run()
 
 # run and you will see a list of cities, that generated with same ids as in countries.json
+
+# Notice: this is sample how to use manual aliasing for fields, but you can use flag auto_alias = True
+# to use auto aliasing between tables, to know more, check and example:
+# examples/auto_alias/auto_alias.py
