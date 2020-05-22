@@ -12,8 +12,15 @@ class OutputFormat(BaseModel):
     config: dict = {}
 
 
+class ColumnConfig(BaseModel):
+    unique_values: bool = False
+    row_numbers: Optional[int] = None
+    matches: Optional[int] = None
+
+
 class TableConfig(BaseModel):
     row_numbers: Optional[int] = None
+    columns: Optional[Dict[str, ColumnConfig]] = {}
 
 
 class Config(BaseModel):

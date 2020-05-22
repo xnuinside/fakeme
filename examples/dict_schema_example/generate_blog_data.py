@@ -2,9 +2,9 @@ from fakeme import Fakeme
 
 # define schema as json
 posts_schema = {'title':
-                {'max_len': 110},
+                {'len': 110},
                 'description':
-                {'max_len': 300},
+                {'len': 300},
                 'body': {}
                 }
 

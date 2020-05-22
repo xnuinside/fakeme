@@ -33,7 +33,7 @@ class DataGenerator:
                  cli_path=None,
                  prefix=None
                  ):
-        self.schema = self.schema_validation(schema)
+        self.schema = schema
         self.chained = chained
         self.table_id = table_id
         self.chains = alias_chain
@@ -88,17 +88,6 @@ class DataGenerator:
         else:
             return []
 
-    def schema_validation(self, schema):
-        for item in schema:
-            _type = item.get('type', None) or 'STRING'
-            self.type_validation(_type)
-        return schema
-
-    @staticmethod
-    def type_validation(type_name):
-        if type_name.upper() not in supported_types:
-            raise ValueError
-
     def _settings_validation(self, settings):
         raise NotImplementedError
 
@@ -152,8 +141,10 @@ class DataGenerator:
         num_cores = mp.cpu_count()
         pool = mp.Pool(num_cores)
         jobs = []
-
+        print(self.schema)
+        print('self.schema')
         for num, item in enumerate(self.schema):
+            print(item)
             jobs.append(pool.apply_async(column_generation, (current_obj, item)))
 
             # wait for all jobs to finish
@@ -216,38 +207,41 @@ class DataGenerator:
                 df_column = self.get_dataframe_column(src_column, matches_k, revers)
         return df_column
 
-    def column_generator(self, field: Dict):
+    def column_generator(self, column_cfg: Dict):
         """ create column with values """
-        field_name = field['name']
-        print("Generate column {}".format(field_name))
+        print("Generate column {}".format(column_cfg.name))
         # unique_values - count of unique values in column in this table
         # unique - flag, must be all values unique in this table or not
         column, unique_values = [], None
-        column_settings = self.table_settings.get('columns', {}).get(field_name, {})
-        unique_values = column_settings.get('unique_values') or column_settings.get(
-            'row_numbers') or self.row_numbers
+        column_settings = self.table_settings.columns.get(column_cfg.name, {}) if self.table_settings else None
 
-        unique = column_settings.get('unique', False)
-        matches_k = column_settings.get('matches') or self.settings['matches']
-
+        if column_settings:
+            unique_values = column_settings.unique_values or column_settings.get('row_numbers')
+            unique = column_settings.unique
+            matches_k = column_settings.matches
+        else:
+            unique_values = self.row_numbers
+            matches_k = self.cfg.matches
+            unique = None
+        print(column)
         # get field rule
-        field_rule = self.get_field_rule(field_name)
+        field_rule = self.get_field_rule(column_cfg.name)
 
         # get settings
 
         if self.table_id in self.chains:
-            df_column = self.get_column_from_chained(field_name, matches_k)
+            df_column = self.get_column_from_chained(column_cfg.name, matches_k)
         else:
             df_column = None
 
         if not unique_values:
             unique_values = self.row_numbers
         if df_column:
-            if field.get('type', '').upper() == 'LIST':
+            if column_cfg.get('type', '').upper() == 'LIST':
                 # mean we need to create as output lists with values from df_column
-                max_number_of_elements = field.get('max_number', self.settings['max_list_values'])
+                max_number_of_elements = column_cfg.get('max_number', self.cfg.max_list_values)
 
-                min_number_of_elements = field.get('min_number', self.settings['min_list_values'])
+                min_number_of_elements = column_cfg.get('min_number', self.cfg.min_list_values)
                 for _ in range(unique_values):
                     value = list_generator(list(df_column), min_number_of_elements, max_number_of_elements)
                     column.append(value)
@@ -275,8 +269,8 @@ class DataGenerator:
             column += base_column
         float_adding = rel_size - num_copy
         column += base_column[:int(len(base_column) * float_adding)]
-        if field.get('mode'):
-            nullable = field['mode'].lower() == 'nullable'
+        if column_cfg.mode:
+            nullable = column_cfg.mode == 'nullable'
             if nullable:
                 percent_of_nulls = self.settings.get('percent_of_nulls')
                 column_len = len(column)
@@ -290,10 +284,11 @@ class DataGenerator:
 
 
 def column_generation(current_obj: DataGenerator,
-                      _item: dict) -> None:
-    file_name = f'{tmp_prefix}{_item["name"]}'
+                      column: dict) -> None:
+    file_name = f'{tmp_prefix}{column.name}'
+    print(column)
     with open(file_name, 'w+') as column_tmp:
-        for line in current_obj.column_generator(_item):
+        for line in current_obj.column_generator(column):
             column_tmp.write(str(line))
             column_tmp.write(str('\n'))
     q.put(file_name)

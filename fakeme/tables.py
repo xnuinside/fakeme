@@ -108,7 +108,7 @@ class MultiTableRunner(object):
 
         for table_id in schemas:
             print(schemas)
-            fields.append((table_id, [item['name'] for item in schemas[table_id][0]]))
+            fields.append((table_id, [column.name for column in schemas[table_id][0]]))
         return schemas, fields
 
     def get_values_from_tables_list(self):
