@@ -11,6 +11,7 @@ from random import randint, random, choice, choices  # noqa F401
 
 from mimesis import Generic, Datetime, Text, Address, Person
 
+from random import getrandbits # noqa F401
 # todo: need to add hook with preset data if
 #  in rules.json exists generators based on data from 'data' folder
 data_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')

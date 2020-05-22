@@ -1,9 +1,11 @@
 import os
 import copy
+
 import multiprocessing as mp
 from multiprocessing import Queue
 from datetime import datetime, timedelta
 import pytz
+import math
 from random import randint
 from collections.abc import Iterable
 import logging
@@ -12,8 +14,8 @@ from pandas import DataFrame, Series, read_csv, read_json  # noqa F401
 
 from fakeme.fields import FieldRules
 from fakeme.values import values_generator, list_generator
-
-supported_types = ['STRING', 'INTEGER', 'FLOAT', 'LIST']
+from fakeme import config
+from fakeme.utils import log
 
 q = Queue()
 
@@ -24,7 +26,6 @@ class DataGenerator:
     def __init__(self,
                  schema: List,
                  with_data: List = None,
-                 settings: Dict = None,
                  chained: Dict = None,
                  table_id: Text = None,
                  alias_chain: Dict = None,
@@ -32,20 +33,20 @@ class DataGenerator:
                  cli_path=None,
                  prefix=None
                  ):
-        self.schema = self.schema_validation(schema)
-        self.settings = settings or {}
+        self.schema = schema
         self.chained = chained
         self.table_id = table_id
         self.chains = alias_chain
         self.fr = FieldRules()
         self.chained_df = None
         self.column_df = None
-        self.file_format = self.settings['output']['file_format']
+        self.cfg = config.cfg
+        self.file_format = self.cfg.output.file_format
         self.appends = appends
         self.with_data = with_data
         self.prefix = prefix if not cli_path else cli_path
-        self.table_settings = self.settings.get('tables', {}).get(self.table_id, {})
-        self.row_numbers = self.table_settings.get('row_numbers') or self.settings['row_numbers']
+        self.table_settings = self.cfg.tables.get(self.table_id, None)
+        self.row_numbers = self.table_settings.row_numbers if self.table_settings else self.cfg.row_numbers
 
     def get_depend_on_file(self):
         """ find depends on other tables (data files)
@@ -82,20 +83,10 @@ class DataGenerator:
                             raise ValueError
                         dir_files.append(src_file)
         if dir_files:
-            print("Depend on: {}".format(dir_files))
+            log.info("Depend on: {}".format(dir_files))
             return os.path.join(self.prefix, dir_files[0])
         else:
             return []
-
-    def schema_validation(self, schema):
-        for item in schema:
-            self.type_validation(item.get('type', 'STRING'))
-        return schema
-
-    @staticmethod
-    def type_validation(type_name):
-        if type_name.upper() not in supported_types:
-            raise ValueError
 
     def _settings_validation(self, settings):
         raise NotImplementedError
@@ -135,7 +126,7 @@ class DataGenerator:
         # TODO: need to refactor this
         global current_time, last_time
 
-        timezone = pytz.timezone(self.settings.get('timezone', 'UTC'))
+        timezone = pytz.timezone(self.cfg.timezone)
         current_time = datetime.now(timezone).strftime("%Y-%m-%d-%H.%M.%S.%f")
         last_time = (datetime.now(timezone)
                      - timedelta(hours=48)).strftime("%Y-%m-%d-%H.%M.%S.%f")
@@ -150,10 +141,8 @@ class DataGenerator:
         num_cores = mp.cpu_count()
         pool = mp.Pool(num_cores)
         jobs = []
-
         for num, item in enumerate(self.schema):
             jobs.append(pool.apply_async(column_generation, (current_obj, item)))
-
             # wait for all jobs to finish
         for job in list(jobs):
             job.get()
@@ -172,7 +161,7 @@ class DataGenerator:
             os.remove(file_name)
         return data_frame
 
-    def get_field_rule(self, field_name):
+    def get_column_generating_rule(self, field_name):
         """ method to get field rule """
         field_rule = self.fr.rules.loc[self.fr.rules['field']
                                        == field_name].to_dict()
@@ -184,8 +173,10 @@ class DataGenerator:
 
     def get_values_from_chained_column(self, _field_name, _matches_k):
         """ get params reversed and matches_k """
-        return self.chains.get(self.table_id, {}).get(_field_name, {}).get(
-            'matches'), self.chains.get(self.table_id, {}).get('revers', False)
+        matches = self.chains.get(self.table_id, {}).get(_field_name, {}).get(
+            'matches')
+        revers = self.chains.get(self.table_id, {}).get('revers', False)
+        return matches, revers
 
     def get_dataframe_column(self, _src_column, _matches_k, _revers):
         """ get column for field from chained dataframe """
@@ -214,38 +205,44 @@ class DataGenerator:
                 df_column = self.get_dataframe_column(src_column, matches_k, revers)
         return df_column
 
-    def column_generator(self, field: Dict):
+    def column_generator(self, column_cfg: Dict):
         """ create column with values """
-        field_name = field['name']
-        print("Generate column {}".format(field_name))
+        log.info("Generate column {}".format(column_cfg.name))
         # unique_values - count of unique values in column in this table
         # unique - flag, must be all values unique in this table or not
-        column, unique_values = [], None
-        column_settings = self.table_settings.get('columns', {}).get(field_name, {})
-        unique_values = column_settings.get('unique_values') or column_settings.get(
-            'row_numbers') or self.row_numbers
+        column = []
+        unique_values = self.row_numbers
+        matches_k = self.cfg.matches
+        unique = None
+        percent_of_nulls = self.cfg.percent_of_nulls
 
-        unique = column_settings.get('unique', False)
-        matches_k = column_settings.get('matches') or self.settings['matches']
-
+        if self.table_settings:
+            column_settings = self.table_settings.columns.get(column_cfg.name, {})
+            if column_settings:
+                unique_values = column_settings.unique_values or column_settings.row_numbers
+                unique = column_settings.unique
+                matches_k = column_settings.matches
+                percent_of_nulls = column_settings.percent_of_nulls
+            else:
+                matches_k = self.table_settings.matches
+                percent_of_nulls = self.table_settings.percent_of_nulls
         # get field rule
-        field_rule = self.get_field_rule(field_name)
+        generating_rule = self.get_column_generating_rule(column_cfg.name)
 
         # get settings
 
         if self.table_id in self.chains:
-            df_column = self.get_column_from_chained(field_name, matches_k)
+            df_column = self.get_column_from_chained(column_cfg.name, matches_k)
         else:
             df_column = None
 
         if not unique_values:
             unique_values = self.row_numbers
         if df_column:
-            if field.get('type', '').upper() == 'LIST':
+            if column_cfg.type == 'LIST':
                 # mean we need to create as output lists with values from df_column
-                max_number_of_elements = field.get('max_number', self.settings['max_list_values'])
-
-                min_number_of_elements = field.get('min_number', self.settings['min_list_values'])
+                max_number_of_elements = column_cfg.max_number or self.cfg.max_list_values
+                min_number_of_elements = column_cfg.min_number or self.cfg.min_list_values
                 for _ in range(unique_values):
                     value = list_generator(list(df_column), min_number_of_elements, max_number_of_elements)
                     column.append(value)
@@ -261,8 +258,11 @@ class DataGenerator:
         else:
             column = column[:unique_values]
             unique_values = 0
+        if column_cfg.len and math.isnan(generating_rule['len']) or \
+                column_cfg.len and generating_rule['len'] > column_cfg.len:
+            generating_rule['len'] = column_cfg.len
         while unique_values:
-            value = values_generator(field_rule, unique)
+            value = values_generator(generating_rule, unique)
             column.append(value)
             unique_values -= 1
         total_rows = self.row_numbers - len(column)
@@ -273,10 +273,9 @@ class DataGenerator:
             column += base_column
         float_adding = rel_size - num_copy
         column += base_column[:int(len(base_column) * float_adding)]
-        if field.get('mode'):
-            nullable = field['mode'].lower() == 'nullable'
+        if column_cfg.mode:
+            nullable = column_cfg.mode == 'nullable'
             if nullable:
-                percent_of_nulls = self.settings.get('percent_of_nulls')
                 column_len = len(column)
                 count_of_nulls = int(column_len * percent_of_nulls)
                 for i in range(count_of_nulls):
@@ -288,10 +287,10 @@ class DataGenerator:
 
 
 def column_generation(current_obj: DataGenerator,
-                      _item: dict) -> None:
-    file_name = f'{tmp_prefix}{_item["name"]}'
+                      column: dict) -> None:
+    file_name = f'{tmp_prefix}{column.name}'
     with open(file_name, 'w+') as column_tmp:
-        for line in current_obj.column_generator(_item):
+        for line in current_obj.column_generator(column):
             column_tmp.write(str(line))
             column_tmp.write(str('\n'))
     q.put(file_name)

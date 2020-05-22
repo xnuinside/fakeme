@@ -26,7 +26,7 @@ What it does not do?
 This is not random value generated library - for this exist pretty cool lib Mimesis and another. 
 
 
-What it does?
+For what it
 =========================
 
 **Fakeme** oriented on generation data that depend on values in another tables/datasets.
