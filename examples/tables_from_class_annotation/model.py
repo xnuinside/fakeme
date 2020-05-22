@@ -27,4 +27,3 @@ class Event:
     city: str
     country: str
     date: datetime
-

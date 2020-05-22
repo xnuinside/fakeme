@@ -1,3 +1,4 @@
+# todo: this is not work example yet
 from fakeme import Fakeme
 from model import Event, Types, City, Country
 

@@ -5,6 +5,7 @@ from pandas import DataFrame
 from fakeme.rules import default_rules
 from fakeme.utils import log
 
+
 class FieldRulesExtractor(object):
 
     file_name = "rules.json"

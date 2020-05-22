@@ -13,4 +13,3 @@ def class_to_table_name(cls: Union[Text, Any]):
         base_name = cls.__name__.lower()
     table_name = endings.get(base_name[-1], lambda x: x + 's')(base_name)
     return table_name
-

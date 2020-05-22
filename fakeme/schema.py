@@ -41,7 +41,6 @@ class Column(BaseModel):
 
     # todo: add type validation
     """
-    
     def schema_validation(self, schema):
         for item in schema:
             _type = item.type
