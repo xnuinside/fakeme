@@ -24,12 +24,20 @@ class Column(BaseModel):
     name: str
     type: str = str
     len: Optional[int] = None
-    mode: Optional[int] = None
+    mode: Optional[str] = None
+    max_number: Optional[int] = None
+    min_number: Optional[int] = None
+    alias: Optional[str] = None
 
     @staticmethod
     @validator('mode')
-    def check_value_above_zero(value):
+    def set_mode_lower(value):
         return value.lower()
+
+    @staticmethod
+    @validator('type')
+    def set_type_upper(value):
+        return value.upper()
 
     # todo: add type validation
     """
@@ -46,6 +54,7 @@ class Column(BaseModel):
             raise ValueError
 
     """
+
 
 class SchemaExtractor(object):
 
@@ -65,7 +74,7 @@ class SchemaExtractor(object):
         """ check schema path exists, try to get correct path """
         path = os.path.expanduser(path)
         if not os.path.isfile(path):
-            os.chdir(config.cfg['path_prefix'])
+            os.chdir(config.cfg.path_prefix)
             target_path = os.path.abspath(path)
         else:
             target_path = path
@@ -74,12 +83,11 @@ class SchemaExtractor(object):
         return target_path
 
     def get_schema_from_file(self, schema_path: Text):
-        # validate path
         if isinstance(schema_path, str):
             schema_path = self._validate_path(schema_path)
-            if self.schema.endswith('.json'):
+            if schema_path.endswith('.json'):
                 with open(schema_path, 'r') as schema_file:
-                    schema = json.load(schema_file)
+                    schema = [Column(**column) for column in json.load(schema_file)]
             else:
                 raise NotImplementedError('Supports only `.json` format')
         return schema
@@ -104,50 +112,39 @@ class SchemaExtractor(object):
     def get_schema_from_python_obj(self, schema: Union[Dict, List]):
         """ get schema in BQ format """
         # we have a dict from class annotations
-        print(schema)
-        print('schema')
-        print(type(schema))
         if isinstance(schema, dict):
-            print('?')
             schema_fields = []
             for key in schema:
-                print(key)
-                print(key)
                 if isinstance(schema[key], str):
                     # mean we have type definition
                     _type = schema[key]
                     if _type and _type.__module__ == self.dataset:
                         # mean class defined in same module
                         # need to set dependency
-                        print(_type)
                         if not self.rls_founded.get(self.table_id):
                             self.rls_founded[self.table_id] = {}
                         self.rls_founded[self.table_id][class_to_table_name(key)] = {
                                 'alias': 'id',
                                 'table':  class_to_table_name(_type)
                             }
-
                         _type = None
                     else:
                         _type = self.map_type(_type)
-                    field = Column(**{'name': key, 'type': _type})
+                    field_details = {'name': key, 'type': _type}
                 else:
-                    print('Hi!')
-                    print(schema[key])
                     if not schema[key].get('name'):
                         schema[key]['name'] = key
-                    field = Column(**schema[key])
+                    field_details = schema[key]
+                field = Column(**field_details)
                 schema_fields.append(field)
-                print(schema_fields)
             schema = schema_fields
         elif isinstance(schema, list):
-            print('Hiiii')
+            schema = [Column(**field) for field in schema]
             return schema
-        print('Hiiiir')
-        print(schema)
         return schema
 
-    def map_type(self, _type):
+    @staticmethod
+    def map_type(_type):
         """ method to map input types to the types that understandable by generator"""
         # in any unknown situation - use string :D
         mapped_type = 'string'

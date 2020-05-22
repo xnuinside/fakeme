@@ -1,4 +1,7 @@
 from typing import Text, Union, Any
+from logging import getLogger
+
+log = getLogger('_FakeMe_')
 
 
 def class_to_table_name(cls: Union[Text, Any]):

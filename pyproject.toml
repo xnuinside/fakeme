@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "fakeme"
-version = "0.0.2"
-description = "Relative Data Generator: generate tables with data, that depend each other"
+version = "0.0.3"
+description = "Relative Data Generator: generate tables with data, that depend on each other"
 authors = ["xnuinside <xnuinside@gmail.com>"]
 homepage = "https://github.com/xnuinside/fakeme"
 repository = "https://github.com/xnuinside/fakeme"
@@ -13,6 +13,7 @@ python = "^3.7"
 ply = "^3.11"
 pandas = "^1.0"
 mimesis = "^4.0"
+pydantic = "^1.5.1"
 
 [tool.poetry.scripts]
 fakeme = 'fakeme.cli:cli'

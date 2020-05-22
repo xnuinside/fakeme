@@ -1,8 +1,30 @@
 # TODO: if included in field_name as part and multiple values by 's', 'es' at the end
 #   like {'field': 'languages', 'generator': '[choice(languages), choice(languages)]'}
+from typing import Optional, List
+from pydantic import BaseModel
+
+
+class Rule(BaseModel):
+    field: str
+    generator: str
+    len: Optional[int] = None
+
+
+class RuleSet(BaseModel):
+    name: str
+    rules: List[Rule]
+
+# todo: move rules to pydantic models & define sets
+
+
+person_rules = [
+    {'field': 'user_id', 'generator': 'choice(["stone", "crosher", "valensia", "sun56", "bigmommy"]).lower()'}]
+
+
+person_rules = RuleSet(name='person', rules=[Rule(**rule) for rule in person_rules])
 
 default_rules = {
-                 'user_id': {'generator': 'choice(["stone", "crosher", "valensia", "sun56", "bigmommy"]).lower()'},
+                 'user_id': {'generator': 'text.word().lower() + str(randint(10, 99))'},
                  'id': {'generator': 'uuid4().hex', 'len': 12},
                  'family_name': {'generator': 'person.surname()'},
                  'balance': {'generator': 'randint(350, 5500)'},
@@ -11,6 +33,7 @@ default_rules = {
                  'default': {'generator': 'uuid4().hex', 'len': 6},
                  'rate': {'generator': 'randint(1, 5)/10'},
                  'login': {'generator': 'text.word()'},
+                 'text': {'generator': 'text.text()'},
                  'nickname': {'generator': 'text.word()'},
                  'phone': {'generator': 'person.telephone()'},
                  'price': {'generator': 'round(random(), 2)'},
@@ -21,13 +44,7 @@ default_rules = {
                  'country_code': {'generator': 'choice(countries.codes)'},
                  'country': {'generator': 'choice(countries.names)'},
                  'language': {'generator': 'choice(languages)'},
-                    'title_actions': {'generator': 'choice(["Monthly payment", '
-                                                   '"Transfer between accounts", '
-                                                   '"Account dividends"])'},
-                 'title': {'generator': 'choice(["Shopping", "Vacation", '
-                                        '"Study Expenses", '
-                                        '"Mom\'s Expenses", "Grocery", '
-                                        '"Christmas", "Presents"])', 'len': 20},
+                 'title': {'generator': 'text.text()', 'len': 20},
                  'surname': {'generator': 'person.surname()'},
                  'name': {'generator': 'person.name().split()[0]'},
                  'description': {'generator': 'text.text()'},

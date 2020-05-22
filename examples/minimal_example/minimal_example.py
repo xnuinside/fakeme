@@ -24,7 +24,7 @@ Fakeme(tables=[
     ('amazing_animals', 'cats', [{'name': 'Id'}, {'name': 'breed'}, {'name': 'Name'}])
 ]).run()
 
-# schema: library use schema style of BigQuery, because it provide information about
+# schema: this example use schema style of BigQuery, because it provide information about
 # nullable/not nullable column and type.
 # so usually schema looks like a list of dicts - one dict per column and inside each dict
 # keys 'name', 'type' and 'mode' that contains information nullabe /required

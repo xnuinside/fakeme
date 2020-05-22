@@ -2,10 +2,11 @@
 import os
 import inspect
 from collections import defaultdict
-from typing import List, Dict, Text, Union, Tuple
+from typing import List, Dict, Text, Union, Tuple, Optional
 from fakeme.tables import MultiTableRunner
-from fakeme.fields import FieldRulesExtractor
+from fakeme.fields import FieldRulesExtractor, FieldRules
 from fakeme.config import Config
+from fakeme.utils import log
 from fakeme import config
 from datetime import datetime
 
@@ -24,7 +25,8 @@ class Fakeme:
                  dump_schema: bool = True,
                  rls: Dict = None,
                  appends: List = None,
-                 cli_path: Text = None):
+                 cli_path: Text = None,
+                 field_rules: Optional[List] = None):
         """
         Main Class to start data generation
 
@@ -66,6 +68,9 @@ class Fakeme:
         :param rls:
         :type rls:
         """
+        if not field_rules:
+            field_rules = []
+        FieldRules.user_rules = field_rules
         self.tables = self.normalise_tables(tables)
         if not settings:
             settings = {}
@@ -80,7 +85,6 @@ class Fakeme:
         self.appends = appends or []
         self.cli_path = cli_path
         self.with_data = self.validate_data_source(with_data)
-        self.schemas = None
 
     @staticmethod
     def normalise_tables(tables):
@@ -94,6 +98,7 @@ class Fakeme:
                     raise FakemeException(
                         f"Tables definitions must be presented like a tuple ('table_name', schema). "
                         f"You provided: {table}")
+            return tables
 
     def validate_data_source(self, paths_list):
         if not paths_list:
@@ -101,8 +106,8 @@ class Fakeme:
         validated_list = []
         for path in paths_list:
             if not os.path.isfile(path):
-                if self.path_prefix not in path:
-                    path = os.path.join(self.path_prefix, path)
+                if self.cfg.path_prefix not in path:
+                    path = os.path.join(self.cfg.path_prefix, path)
                     if not os.path.isfile(path):
                         raise Exception(f'Could not find the path {path} from "with_data" parameter')
             validated_list.append(path)
@@ -118,15 +123,14 @@ class Fakeme:
             priority 3 - tables in self.append
 
         """
-        print("Fakeme starts at", datetime.now())
+        log.info("Fakeme starts at", datetime.now())
         # get all fields and schemas for tables
         self.schemas, fields = MultiTableRunner(
             self.tables, rls=self.rls).\
             get_fields_and_schemas(dump_schema=self.dump_schema)
-        print(self.rls)
         if self.cfg.auto_alias:
             self.resolve_auto_alises()
-        priority_dict = self.create_priority_table_dict()
+        priority_dict = self.create_tables_priority_graph()
         field_extractor = FieldRulesExtractor(fields)
         # generate "value_rules.json" with rules for fields
         field_extractor.generate_rules()
@@ -138,24 +142,29 @@ class Fakeme:
                 if table not in created and table not in self.with_data \
                         and table not in priority_dict.get(level+1, []):
                     self.create_table(table)
-        print("Fakeme finished successful \n", datetime.now())
+        log.info("Fakeme finished successful \n", datetime.now())
 
     def resolve_auto_alises(self):
         for table in self.schemas:
             for column in self.schemas[table][0]:
                 # column - dict with column description
-                alias_column_name = column.get('alias', None) or column['name']
+                alias_column_name = column.alias or column.name
                 relative_table = self.table_prefix_in_column_name(alias_column_name)
-
                 if relative_table:
+                    matches = self.cfg.matches
+                    if self.cfg.tables.get(table):
+                        column_settings = self.cfg.tables.get(table).columns.get(column.name, {})
+                        if column_settings:
+                            matches = column_settings.matches
+                        else:
+                            matches = self.cfg.tables.get(table).matches
                     if table not in self.rls:
                         self.rls[table] = {}
-
                     self.rls[table].update({
-                        column['name']: {
+                        column.name: {
                             'alias': alias_column_name.split('_')[1],
                             'table': relative_table,
-                            'matches': column.get('matches') or self.cfg.matches
+                            'matches': matches
                         }
                     })
 
@@ -172,7 +181,7 @@ class Fakeme:
             table_name = column_name + 's'
 
         if table_name in table_names:
-            print(f"Found alias with {table_name}")
+            log.info(f"Found alias with {table_name}")
             return table_name
 
         return
@@ -192,7 +201,7 @@ class Fakeme:
 
         created.append(table)
 
-    def create_priority_table_dict(self):
+    def create_tables_priority_graph(self):
         priority_dict = defaultdict(set)
         # 3
         [priority_dict[3].add(k) for k in self.appends]

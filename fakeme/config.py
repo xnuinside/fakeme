@@ -14,13 +14,16 @@ class OutputFormat(BaseModel):
 
 class ColumnConfig(BaseModel):
     unique_values: bool = False
-    row_numbers: Optional[int] = None
-    matches: Optional[int] = None
+    row_numbers: Optional[int] = 100
+    matches: Optional[int] = 1
+    percent_of_nulls: Optional[float] = 0.05
 
 
 class TableConfig(BaseModel):
-    row_numbers: Optional[int] = None
+    row_numbers: Optional[int] = 100
     columns: Optional[Dict[str, ColumnConfig]] = {}
+    percent_of_nulls: Optional[float] = 0.05
+    matches: Optional[int] = 1
 
 
 class Config(BaseModel):

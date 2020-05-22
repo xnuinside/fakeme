@@ -3,13 +3,14 @@ import json
 from copy import copy
 from pandas import DataFrame
 from fakeme.rules import default_rules
-
+from fakeme.utils import log
 
 class FieldRulesExtractor(object):
 
     file_name = "rules.json"
 
     def __init__(self, fields):
+
         self.fields = self.extract_fields(fields)
 
     @staticmethod
@@ -33,19 +34,17 @@ class FieldRulesExtractor(object):
                 field_rule = copy(default_rules['default'])
             field_rule['field'] = field
             field_rules.append(field_rule)
-        print('fields_rules')
-        print(field_rules)
         [field_rules.append(x) for x in FieldRules.user_rules]
         return field_rules
 
     def generate_rules(self, remove_existed=True):
         if not remove_existed and os.path.isfile(self.file_name):
-            print("{} with rules founded in {}".format(self.file_name, os.getcwd()))
+            log.info("{} with rules founded in {}".format(self.file_name, os.getcwd()))
         else:
             values_rules_dict = self.rules_extracts()
             with open(self.file_name, 'w+') as outfile:
                 json.dump(values_rules_dict, outfile, indent=2)
-            print("{} with rules for fields was created".format(self.file_name))
+            log.info("{} with rules for fields was created".format(self.file_name))
         return True
 
     def get_chains(self, schemas, chains=None):

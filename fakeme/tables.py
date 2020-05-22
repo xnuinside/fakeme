@@ -4,8 +4,9 @@ import os
 from typing import List, Dict, Text
 from fakeme.generator import DataGenerator
 from fakeme.output import get_writer
-from fakeme.schemas import SchemaExtractor
+from fakeme.schema import SchemaExtractor
 from fakeme import config
+from fakeme.utils import log
 
 
 class TableRunner(object):
@@ -50,7 +51,6 @@ class TableRunner(object):
             raise Exception("Data Generator failed")
         else:
             target_file_path = self._prepare_path(file_path, remove_old)
-            print(target_file_path)
             writer = get_writer(cfg.output.file_format)
             writer(table_data, target_file_path, cfg.output.config)
 
@@ -58,10 +58,10 @@ class TableRunner(object):
     def _prepare_path(file_path, remove_old):
         """ prepare folder and check target file """
         if os.path.isfile(file_path):
-            print("Founded old file {}".format(file_path))
+            log.info("Founded old file {}".format(file_path))
             if remove_old:
                 os.remove(file_path)
-                print("File {} was removed".format(file_path))
+                log.info("File {} was removed".format(file_path))
             else:
                 raise Exception("Impossible to generate data into file {}. "
                                 "File already exist. Please delete file or set "
@@ -91,7 +91,6 @@ class MultiTableRunner(object):
         """ return list of schemas and tables fields """
         schemas = {}
         fields = []
-
         for dataset_id, table_id, schema in self.get_values_from_tables_list():
 
             se = SchemaExtractor(schema=schema,
@@ -107,15 +106,15 @@ class MultiTableRunner(object):
             schemas[table_id] = (tg.schema, tg)
 
         for table_id in schemas:
-            print(schemas)
             fields.append((table_id, [column.name for column in schemas[table_id][0]]))
         return schemas, fields
 
     def get_values_from_tables_list(self):
         """ this method try to understand that we have in table definition tuple """
+
         for table_definition in self.tables:
-            print(type(self.tables))
-            if isinstance(table_definition, tuple):
+
+            if isinstance(table_definition, tuple) or isinstance(table_definition, list):
                 # we have tuple with table definition
                 if len(table_definition) == 3:
                     dataset_id, table_id, schema = table_definition
@@ -129,12 +128,11 @@ class MultiTableRunner(object):
                     raise Exception(f'Invalid table definition in table list, it must contains max 3 values. '
                                     f'You provided: {table_definition}')
             else:
-                # we have class defenition
+                # we have class definition
                 if not getattr(table_definition, '__dict__', None):
                     raise Exception('Table Definition must be the tuple with table properties or class')
                 else:
                     dataset_id = table_definition.__module__
                     table_id = table_definition.__name__.lower()
-                    print(table_definition.__dict__)
                     schema = table_definition.__annotations__
             yield dataset_id, table_id, schema
