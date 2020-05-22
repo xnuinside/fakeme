@@ -53,3 +53,18 @@ But if we have generator for field. For example, with name "price":
 Result will be of float type based on existed Rule for Generating (check rules in fakeme/rules.py).
 
 
+Schemas from DDL
+
+Supported Databases
+
+- MSSql
+- MySql
+- PostgreSql
+- Oracle DB
+- Hive (HQL)
+- SQLite
+
+
+How to fix errors in process of DDL parsing?
+
+How to add new DDL-notation/custom implementation/database ?

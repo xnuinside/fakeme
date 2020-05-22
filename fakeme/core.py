@@ -1,22 +1,24 @@
 """ main module that contains RunGenerator class that used to init data generation """
 import os
 import inspect
-
 from collections import defaultdict
-from typing import List, Dict, Text, Union
-from fakeme.config import Config
+from typing import List, Dict, Text, Union, Tuple
 from fakeme.tables import MultiTableRunner
 from fakeme.fields import FieldRulesExtractor
-
+from fakeme.config import Config
+from fakeme import config
 from datetime import datetime
 
 created = []
 
 
-class Fakeme:
+class FakemeException(Exception):
+    pass
 
+
+class Fakeme:
     def __init__(self,
-                 tables: List,
+                 tables: Union[List, Tuple[str, Union[str, dict, list]]],
                  with_data: List = None,
                  settings: Dict = None,
                  dump_schema: bool = True,
@@ -64,18 +66,34 @@ class Fakeme:
         :param rls:
         :type rls:
         """
-
-        self.tables = tables
-        self.cfg = Config(settings).get_config()
+        self.tables = self.normalise_tables(tables)
+        if not settings:
+            settings = {}
+        config.cfg = Config(**settings)
+        self.cfg = config.cfg
+        self.cfg.path_prefix = cli_path or os.path.dirname(inspect.stack()[1][1])
         self.rls = rls if rls else None or {}
         self.dump_schema = dump_schema
-        self.path_prefix = cli_path or os.path.dirname(inspect.stack()[1][1])
-        if not cli_path and os.getcwd() not in self.path_prefix:
-            self.path_prefix = os.path.join(os.getcwd(), self.path_prefix)
+        # todo: remove this things with paths
+        if not cli_path and os.getcwd() not in self.cfg.path_prefix:
+            self.cfg.path_prefix = os.path.join(os.getcwd(), self.cfg.path_prefix)
         self.appends = appends or []
         self.cli_path = cli_path
         self.with_data = self.validate_data_source(with_data)
         self.schemas = None
+
+    @staticmethod
+    def normalise_tables(tables):
+        if (isinstance(tables, Tuple) or isinstance(tables, List)) and isinstance(tables[0], str):
+            # mean we have only one table definition
+            tables = tuple(tables,)
+            return [tables]
+        elif isinstance(tables, List):
+            for table in tables:
+                if not isinstance(table[0], str):
+                    raise FakemeException(
+                        f"Tables definitions must be presented like a tuple ('table_name', schema). "
+                        f"You provided: {table}")
 
     def validate_data_source(self, paths_list):
         if not paths_list:
@@ -102,10 +120,11 @@ class Fakeme:
         """
         print("Fakeme starts at", datetime.now())
         # get all fields and schemas for tables
-
-        self.schemas, fields = MultiTableRunner(self.tables, prefix=self.path_prefix, settings=self.cfg).\
+        self.schemas, fields = MultiTableRunner(
+            self.tables, rls=self.rls).\
             get_fields_and_schemas(dump_schema=self.dump_schema)
-        if self.cfg['auto_alias']:
+        print(self.rls)
+        if self.cfg.auto_alias:
             self.resolve_auto_alises()
         priority_dict = self.create_priority_table_dict()
         field_extractor = FieldRulesExtractor(fields)
@@ -136,7 +155,7 @@ class Fakeme:
                         column['name']: {
                             'alias': alias_column_name.split('_')[1],
                             'table': relative_table,
-                            'matches': column.get('matches') or self.cfg['matches']
+                            'matches': column.get('matches') or self.cfg.matches
                         }
                     })
 
@@ -160,7 +179,7 @@ class Fakeme:
 
     def create_table(self, table):
         """ run table creation """
-        target_path = os.path.join(self.path_prefix, "{}.{}".format(table, self.cfg['output']['file_format']))
+        target_path = os.path.join(self.cfg.path_prefix, "{}.{}".format(table, self.cfg.output.file_format))
 
         self.schemas[table][1].create_data(
             file_path=target_path,
@@ -168,7 +187,7 @@ class Fakeme:
             chained=self.linked_fields,
             alias_chain=self.rls,
             appends=self.appends,
-            prefix=self.path_prefix,
+            prefix=self.cfg.path_prefix,
             cli_path=self.cli_path)
 
         created.append(table)

@@ -1,5 +1,6 @@
 import os
 import copy
+
 import multiprocessing as mp
 from multiprocessing import Queue
 from datetime import datetime, timedelta
@@ -12,8 +13,9 @@ from pandas import DataFrame, Series, read_csv, read_json  # noqa F401
 
 from fakeme.fields import FieldRules
 from fakeme.values import values_generator, list_generator
+from fakeme.schemas import supported_types
+from fakeme import config
 
-supported_types = ['STRING', 'INTEGER', 'FLOAT', 'LIST']
 
 q = Queue()
 
@@ -24,7 +26,6 @@ class DataGenerator:
     def __init__(self,
                  schema: List,
                  with_data: List = None,
-                 settings: Dict = None,
                  chained: Dict = None,
                  table_id: Text = None,
                  alias_chain: Dict = None,
@@ -33,19 +34,19 @@ class DataGenerator:
                  prefix=None
                  ):
         self.schema = self.schema_validation(schema)
-        self.settings = settings or {}
         self.chained = chained
         self.table_id = table_id
         self.chains = alias_chain
         self.fr = FieldRules()
         self.chained_df = None
         self.column_df = None
-        self.file_format = self.settings['output']['file_format']
+        self.cfg = config.cfg
+        self.file_format = self.cfg.output.file_format
         self.appends = appends
         self.with_data = with_data
         self.prefix = prefix if not cli_path else cli_path
-        self.table_settings = self.settings.get('tables', {}).get(self.table_id, {})
-        self.row_numbers = self.table_settings.get('row_numbers') or self.settings['row_numbers']
+        self.table_settings = self.cfg.tables.get(self.table_id, None)
+        self.row_numbers = self.table_settings.row_numbers if self.table_settings else self.cfg.row_numbers
 
     def get_depend_on_file(self):
         """ find depends on other tables (data files)
@@ -89,7 +90,8 @@ class DataGenerator:
 
     def schema_validation(self, schema):
         for item in schema:
-            self.type_validation(item.get('type', 'STRING'))
+            _type = item.get('type', None) or 'STRING'
+            self.type_validation(_type)
         return schema
 
     @staticmethod
@@ -135,7 +137,7 @@ class DataGenerator:
         # TODO: need to refactor this
         global current_time, last_time
 
-        timezone = pytz.timezone(self.settings.get('timezone', 'UTC'))
+        timezone = pytz.timezone(self.cfg.timezone)
         current_time = datetime.now(timezone).strftime("%Y-%m-%d-%H.%M.%S.%f")
         last_time = (datetime.now(timezone)
                      - timedelta(hours=48)).strftime("%Y-%m-%d-%H.%M.%S.%f")

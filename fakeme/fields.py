@@ -33,6 +33,9 @@ class FieldRulesExtractor(object):
                 field_rule = copy(default_rules['default'])
             field_rule['field'] = field
             field_rules.append(field_rule)
+        print('fields_rules')
+        print(field_rules)
+        [field_rules.append(x) for x in FieldRules.user_rules]
         return field_rules
 
     def generate_rules(self, remove_existed=True):
