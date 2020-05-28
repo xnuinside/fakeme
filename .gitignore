@@ -1,8 +1,8 @@
 /.tox/
-
+fakeme/parsers/__pycache__/
 /fakeme.egg-info/
 /dist/
-
+__pycache__/
 /docs/_build
 /docs/_static
 /docs/_templates
@@ -17,6 +17,5 @@
 .DS_Store
 
 .idea/
-
-value_rules.json
-/**/value_rules.json
+rules.json
+/**/rules.json

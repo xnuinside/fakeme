@@ -16,7 +16,7 @@ How to use
 
 .. code-block:: console
 
-    $ pip install fakeme==0.0.4a1
+    $ pip install fakeme==0.0.4a2
 
 Check a lot of examples in `examples/`_ folder
 
