@@ -22,24 +22,24 @@ from fakeme import Fakeme
 cities_schema = [{"name": "name"},
                  {"name": "country_id"},
                  {"name": "id"}]
-
+# I have a list of countries and I need to define cities dataset for them
 # all fields are strings - so I don't define type, because String will be used as default type for the column
 
 tables_list = [('cities', cities_schema)]
-
+# I define how they relative
 Fakeme(
     tables=tables_list,
     with_data=['countries.json'],
     rls={'cities': {  # this mean: for table 'cities'
         'country_id': {  # and column 'country_id' in table 'cities'
             'table': 'countries.json',   # please take data from data  in countries.json
-            'alias': 'id',  # with alias name 'id'
-            'matches': 1  # and I want all values in country_id must be from countries.id column, all.
+            'alias': 'id'
         }
     }},
     settings={'row_numbers': 1300}  # we want to have several cities for each country,
-                                    # so we need to have more rows,
+                                    # so we need to have more rows, by default 100
 ).run()
+# and just run
 
 # run and you will see a list of cities, that generated with same ids as in countries.json
 

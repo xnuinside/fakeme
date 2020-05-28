@@ -11,23 +11,24 @@ Data Generator for Chained and Relative Data
 
 Documentation in process: https://fakeme.readthedocs.io/en/latest/ 
 
-Use under the hood at current time:
+How to use
+----------
 
-     - Mimesis (like one of the generators for fields values)
-     - Pandas (like main instrument to combain data in tables (frames) 
-     - Standart Python Library
+.. code-block:: console
+
+    $ pip install fakeme==0.0.4a1
+
+Check a lot of examples in `examples/`_ folder
+
+.. _examples/: https://github.com/xnuinside/fakeme/tree/master/examples
 
 
-Support Python 3.7
-
-What it does not do?
+What is Fakeme?
 =========================
 
-This is not random value generated library - for this exist pretty cool lib Mimesis and another. 
+Fakeme is a tools that try to understand your data based on schemas & fields name and generate data relative to expected.
 
-
-For what it
-=========================
+It create dependencies graph and generate relative data.
 
 **Fakeme** oriented on generation data that depend on values in another tables/datasets.
 Data, that knitted together as real. 

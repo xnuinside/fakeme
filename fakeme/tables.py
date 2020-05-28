@@ -92,7 +92,6 @@ class MultiTableRunner(object):
         schemas = {}
         fields = []
         for dataset_id, table_id, schema in self.get_values_from_tables_list():
-
             se = SchemaExtractor(schema=schema,
                                  dataset=dataset_id,
                                  table_id=table_id,
