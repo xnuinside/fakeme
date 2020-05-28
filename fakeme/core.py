@@ -2,6 +2,7 @@
 import os
 import inspect
 
+from copy import deepcopy
 from collections import defaultdict
 from typing import List, Dict, Text, Union, Tuple, Optional
 from fakeme.tables import MultiTableRunner
@@ -138,11 +139,14 @@ class Fakeme:
         field_extractor.generate_rules()
         # to do: remove and just use rls dict
         self.rls = field_extractor.get_chains(self.schemas, self.rls)
+
         priority_dict = self.create_tables_priority_graph()
-        for level in priority_dict:
-            for table in priority_dict[level]:
-                if table not in created and table not in self.with_data \
-                        and table not in priority_dict.get(level+1, []):
+        print(priority_dict)
+        print('priority_dict')
+        for level, tables in priority_dict.items():
+            print(level)
+            for table in tables:
+                if table not in created and table not in self.with_data:
                     self.create_table(table)
         log.info("Fakeme finished successful \n", datetime.now())
 
@@ -190,11 +194,8 @@ class Fakeme:
 
     def create_table(self, table):
         """ run table creation """
-        if self.cfg.output.file_name_style:
-            file_name = eval(f"\'{table}\'.{self.cfg.output.file_name_style}()")
-        else:
-            file_name = table
-        target_path = os.path.join(self.cfg.path_prefix, "{}.{}".format(file_name, self.cfg.output.file_format))
+
+        target_path = os.path.join(self.cfg.path_prefix, "{}.{}".format(table, self.cfg.output.file_format))
 
         self.schemas[table][1].create_data(
             file_path=target_path,
@@ -208,64 +209,66 @@ class Fakeme:
         created.append(table)
 
     def create_tables_priority_graph(self):
-
         priority_dict = defaultdict(set)
-        # 3
-        [priority_dict[3].add(k) for k in self.appends]
+        priority_dict_temp = defaultdict(int)
+        clean_up_rls = defaultdict(set)
+        rls_copy = deepcopy(self.rls)
+        """
+        {table: prior}
+        """
+        upstream = defaultdict(set)
 
-        chains_tables = set([k for k in self.rls])
-        already_in_dicts = []
-        already_in_dicts += priority_dict[3]
-        if self.rls:
-            priority_dict[0] = set([table_name for table_name
-                                    in self.schemas if table_name
-                                    not in chains_tables and table_name not in already_in_dicts])
-        else:
-            priority_dict[0] = set(self.schemas.keys())
-        if self.with_data:
-            for data_file in self.with_data:
-                priority_dict[0].add(data_file)
+        def get_table_level(_table, level=0):
+            # todo: cover that with tests
+            if not level:
+                if _table in priority_dict_temp:
+                    level = priority_dict_temp[_table]
+                else:
+                    level = 0
+            dependency = self.rls[_table]
 
-        already_in_dicts += priority_dict[0]
+            for field, alias_data in dependency.items():
+                # iter on dependencies of each table
+                alias_table = alias_data['table']
+                alias_field = alias_data['alias']
+                if field in clean_up_rls and alias_table in clean_up_rls[field]:
+                    # mean we already added similar field
+                    continue
+                elif alias_field == field:
+                    # mean this is a auto chain
+                    clean_up_rls[alias_field].add(alias_table)
+                    # get alias table dependencies ()
+                if priority_dict_temp.get(alias_table):
+                    level = priority_dict_temp[alias_table] + 1
+                else:
+                    level += 1
+                _level = get_table_level(alias_table, level-1)
+                level = _level +1
+                priority_dict_temp[alias_table] = _level
+                upstream[alias_table].add(table)
+            return level
+        for table in rls_copy:
+            # iter on each table
+            if table not in priority_dict_temp:
+                priority_dict_temp[table] = get_table_level(table)
 
-        link_dict = {}
-        tables_list = [x for x in self.schemas if x not in already_in_dicts]
-        for table in chains_tables:
-            self_table = self.rls[table]
-            for field in self_table:
-                field_dict = self_table[field]
-                if field_dict['table'] in tables_list or field_dict['table'] in self.with_data:
-                    if not link_dict.get(field_dict['table']):
-                        link_dict[field_dict['table']] = set([])
-                    link_dict[field_dict['table']].add(table)
-        # hack
-        clean_up_recursion = True
-        new_cycle = True
-        while clean_up_recursion is False and new_cycle is False:
-            remove_keys = set()
-            clean_up_recursion = False
-            new_cycle = False
-            for key, values_set in link_dict.items():
-                for value in list(values_set):
-                    if value in link_dict and value not in remove_keys:
-                        [link_dict[key].add(value_) for value_ in link_dict[value] if value_ != value]
-                        remove_keys.add(value)
-                        new_cycle = True
-                        clean_up_recursion = True
+        def increment_upstream(upstreamed):
+            for table_ in upstreamed:
+                if priority_dict_temp.get(table) >= priority_dict_temp.get(table_):
+                    priority_dict_temp[table_] = priority_dict_temp[table] + 1
+                    if table_ in upstream:
+                        increment_upstream(upstream[table_])
 
-            for key in remove_keys:
-                del link_dict[key]
-        while link_dict:
-            for n in range(0, 6):
-                table_moved = []
-                for table in link_dict:
-                    if table in priority_dict[n]:
-                        [priority_dict[n+1].add(tb_name) for tb_name in link_dict[table]]
-                        table_moved.append(table)
-                    else:
-                        priority_dict[n].add(table)
+        for table, upstreamed in upstream.items():
+            increment_upstream(upstreamed)
 
-                if table_moved:
-                    for table in table_moved:
-                        del link_dict[table]
-        return priority_dict
+        for table, level in priority_dict_temp.items():
+            priority_dict[level].add(table)
+        [priority_dict[len(priority_dict)].add(k) for k in self.appends]
+        for table in priority_dict[0]:
+            for field in self.rls[table]:
+                alias_table_name = self.rls[table][field]['table']
+                alias_field = self.rls[table][field]['alias']
+                if alias_field == field and self.rls[alias_table_name].get(alias_field):
+                    del self.rls[alias_table_name][field]
+        return dict(sorted(priority_dict.items()))

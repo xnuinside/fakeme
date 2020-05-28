@@ -41,7 +41,6 @@ class TableRunner(object):
         """ generate data and save to the file """
 
         cfg = config.cfg
-
         table_data = DataGenerator(
             schema=self.schema, with_data=with_data, chained=chained,
             table_id=self.table_id, alias_chain=alias_chain, appends=appends,
@@ -52,6 +51,8 @@ class TableRunner(object):
         else:
             target_file_path = self._prepare_path(file_path, remove_old)
             writer = get_writer(cfg.output.file_format)
+            print('print(target_file_path)')
+            print(target_file_path)
             writer(table_data, target_file_path, cfg.output.config)
 
     @staticmethod
@@ -86,12 +87,18 @@ class MultiTableRunner(object):
         """
         self.tables = tables
         self.rls = rls
+        self.cfg = config.cfg
 
     def get_fields_and_schemas(self, dump_schema: bool = False):
         """ return list of schemas and tables fields """
         schemas = {}
         fields = []
         for dataset_id, table_id, schema in self.get_values_from_tables_list():
+
+            if self.cfg.output.file_name_style:
+                table_id = eval(f"\'{table_id}\'.{self.cfg.output.file_name_style}()")
+            else:
+                table_id = table_id
             se = SchemaExtractor(schema=schema,
                                  dataset=dataset_id,
                                  table_id=table_id,

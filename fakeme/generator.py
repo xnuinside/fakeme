@@ -1,6 +1,6 @@
 import os
 import copy
-
+import pandas
 import multiprocessing as mp
 from multiprocessing import Queue
 from datetime import datetime, timedelta
@@ -37,6 +37,7 @@ class DataGenerator:
         self.chained = chained
         self.table_id = table_id
         self.chains = alias_chain
+        print(alias_chain)
         self.fr = FieldRules()
         self.chained_df = None
         self.column_df = None
@@ -54,21 +55,24 @@ class DataGenerator:
         """
         dir_files = []
         if self.chains and self.table_id in self.chains:
+            print('CHAINS')
+            print(self.table_id)
             table_chain = self.chains[self.table_id]
-            key = list(table_chain.keys())[0]
-            if self.cfg.output.file_name_style:
-                # todo: move to method, or store file_name highlevel
-                file_name = eval(f"\'{table_chain[key]['table']}\'.{self.cfg.output.file_name_style}()")
-            else:
-                file_name = table_chain[key]['table']
-            file_name = "{}.{}".format(file_name, self.file_format) if '.' not in table_chain[
-                key]['table'] else table_chain[key]['table']
-            src_file = os.path.join(self.prefix, file_name)
-            if not os.path.isfile(src_file) and self.prefix not in src_file:
-                src_file = os.path.join(self.prefix, src_file)
-                if not os.path.isfile(src_file):
-                    raise ValueError(f'{src_file} is not a file. Current dir {os.getcwd()}')
-            dir_files.append(src_file)
+            keys = list(table_chain.keys())
+            for key in keys:
+                if self.cfg.output.file_name_style:
+                    # todo: move to method, or store file_name highlevel
+                    file_name = eval(f"\'{table_chain[key]['table']}\'.{self.cfg.output.file_name_style}()")
+                else:
+                    file_name = table_chain[key]['table']
+                file_name = "{}.{}".format(file_name, self.file_format) if '.' not in table_chain[
+                    key]['table'] else table_chain[key]['table']
+                src_file = os.path.join(self.prefix, file_name)
+                if not os.path.isfile(src_file) and self.prefix not in src_file:
+                    src_file = os.path.join(self.prefix, src_file)
+                    if not os.path.isfile(src_file):
+                        raise ValueError(f'{src_file} is not a file. Current dir {os.getcwd()}')
+                dir_files.append(src_file)
         else:
             for item in self.schema:
                 if item['name'] in self.chained:
@@ -89,7 +93,7 @@ class DataGenerator:
                         dir_files.append(src_file)
         if dir_files:
             log.info("Depend on: {}".format(dir_files))
-            return os.path.join(self.prefix, dir_files[0])
+            return [os.path.join(self.prefix, file_name) for file_name in dir_files]
         else:
             return []
 
@@ -104,6 +108,9 @@ class DataGenerator:
                 name, self.file_format)) for name in self.appends[self.table_id]]
         elif self.chained or self.chains:
             depend_on_file = self.get_depend_on_file()
+            print(depend_on_file)
+            print('depend_on_file')
+        print()
         if depend_on_file:
             if isinstance(depend_on_file, str):
                 if self.table_id in os.path.basename(depend_on_file):
@@ -115,15 +122,18 @@ class DataGenerator:
                         self.chained_df = self._read_df_from_file(file_name)
                     else:
                         self.chained_df = self.chained_df.merge(
-                            how='outer', right=self._read_df_from_file(file_name))
+                            how='outer', right=self._read_df_from_file(file_name),
+                            left_index=True, right_index=True)
         return self.chained_df
 
     def _read_df_from_file(self, depend_on_file):
         """ return correct pandas export method depend on expected file format """
+        print(f"read_{self.file_format}(\'{depend_on_file}\')")
+        print(self.table_id)
         try:
             result = eval(f"read_{self.file_format}(\'{depend_on_file}\')")
         except ValueError:
-            result = eval(f"read_{self.file_format}(\'{depend_on_file}\',  lines=True)")
+            result = eval(f"read_{self.file_format}(\'{depend_on_file}\', lines=True)")
         return result
 
     def _read_values_from_txt(self, path):
@@ -203,6 +213,7 @@ class DataGenerator:
         alias = field_chain.get('alias', None)
         src_column = alias or field_name
         df_column = None
+        print(field_name, alias, 'aliassss')
         self.chained_df = self.resolve_dependencies()
         if self.chained_df is not None:
             if isinstance(self.chained_df, str) and self.chained_df == tmp_prefix:
@@ -239,7 +250,10 @@ class DataGenerator:
         generating_rule = self.get_column_generating_rule(column_cfg.name)
 
         # get settings
-
+        print(self.table_id)
+        print(self.chains)
+        ('column')
+        print(column_cfg.name)
         if self.table_id in self.chains:
             df_column = self.get_column_from_chained(column_cfg.name, matches_k)
         else:

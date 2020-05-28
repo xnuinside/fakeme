@@ -73,6 +73,7 @@ class FieldRulesExtractor(object):
 
     @staticmethod
     def get_chains(schemas, chains=None):
+        print(chains)
         if not chains:
             chains = {}
         chained = defaultdict(dict)
@@ -93,7 +94,14 @@ class FieldRulesExtractor(object):
                                 'alias': field
                             }
                             table_field_added[field] = table_name
-        chains.update(chained)
+        for table in chained:
+            if chains.get(table):
+                print('table')
+                print(table)
+                chained[table].update(chains[table])
+        for table in chains:
+            if table not in chained:
+                chained[table] = chains[table]
         return chained
 
 
