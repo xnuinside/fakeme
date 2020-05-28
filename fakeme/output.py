@@ -51,8 +51,12 @@ def json_with_indent() -> Callable:
             params = {}
         combined_params = deepcopy(default_format_setting['to_json'])
         combined_params.update(params)
+
         with open(path, 'w+') as file_to_write:
-            json.dump(json.loads(df.to_json(**combined_params)), file_to_write, indent=1)
+            if combined_params['lines']:
+                df.to_json(path_or_buf=file_to_write, **combined_params)
+            else:
+                json.dump(json.loads(df.to_json(**combined_params)), file_to_write, indent=1)
     return json_with_indent_inner
 
 

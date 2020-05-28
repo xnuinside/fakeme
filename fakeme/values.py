@@ -5,10 +5,12 @@ import string
 import json
 import random  # noqa F401
 import math
+import pytz
+import datetime
 import re  # noqa F401
 from uuid import uuid1, uuid4  # noqa F401
 from random import randint, random, choice, choices  # noqa F401
-
+from fakeme import config
 from mimesis import Generic, Datetime, Text, Address, Person
 
 from random import getrandbits # noqa F401
@@ -29,7 +31,12 @@ person = Person()
 date = Datetime()
 address = Address()
 
-current_time = None
+
+def current_time():
+    tz = pytz.timezone(config.cfg.timezone)
+    return datetime.datetime.now(tz)
+
+
 last_time = None
 countries = DataObject()
 

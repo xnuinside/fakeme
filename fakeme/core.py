@@ -1,6 +1,7 @@
 """ main module that contains RunGenerator class that used to init data generation """
 import os
 import inspect
+
 from collections import defaultdict
 from typing import List, Dict, Text, Union, Tuple, Optional
 from fakeme.tables import MultiTableRunner
@@ -8,6 +9,9 @@ from fakeme.fields import FieldRulesExtractor, FieldRules
 from fakeme.config import Config
 from fakeme.utils import log
 from fakeme import config
+from fakeme.walker import Walker
+
+
 from datetime import datetime
 
 created = []
@@ -26,7 +30,8 @@ class Fakeme:
                  rls: Dict = None,
                  appends: List = None,
                  cli_path: Text = None,
-                 field_rules: Optional[List] = None):
+                 field_rules: Optional[List] = None,
+                 paths_with_scripts: Optional[List] = None):
         """
         Main Class to start data generation
 
@@ -75,6 +80,7 @@ class Fakeme:
         if not settings:
             settings = {}
         config.cfg = Config(**settings)
+        self.paths_with_scripts = paths_with_scripts if paths_with_scripts else []
         self.cfg = config.cfg
         self.cfg.path_prefix = cli_path or os.path.dirname(inspect.stack()[1][1])
         self.rls = rls if rls else None or {}
@@ -114,29 +120,25 @@ class Fakeme:
         return set(validated_list)
 
     def run(self):
-        """
-            call method to run data generation
-            # todo: rewrite priority description
-            priority 0 - tables that target for relations (
-            priority 1 - tables that target for relations and in relations
-            priority 2 - tables what not in self.append
-            priority 3 - tables in self.append
-
-        """
         log.info("Fakeme starts at", datetime.now())
         # get all fields and schemas for tables
         self.schemas, fields = MultiTableRunner(
             self.tables, rls=self.rls).\
             get_fields_and_schemas(dump_schema=self.dump_schema)
+
         if self.cfg.auto_alias:
             self.resolve_auto_alises()
-        priority_dict = self.create_tables_priority_graph()
-        field_extractor = FieldRulesExtractor(fields)
+        walk_list = []
+        for path in self.paths_with_scripts:
+            walker = Walker(path_to_dir=path, extension="hql", recursive=True)
+            [walk_list.append(path) for path in walker.walk()]
+
+        field_extractor = FieldRulesExtractor(fields, walk_list)
         # generate "value_rules.json" with rules for fields
         field_extractor.generate_rules()
-
-        self.linked_fields = field_extractor.get_chains(self.schemas, self.rls)
-
+        # to do: remove and just use rls dict
+        self.rls = field_extractor.get_chains(self.schemas, self.rls)
+        priority_dict = self.create_tables_priority_graph()
         for level in priority_dict:
             for table in priority_dict[level]:
                 if table not in created and table not in self.with_data \
@@ -188,12 +190,16 @@ class Fakeme:
 
     def create_table(self, table):
         """ run table creation """
-        target_path = os.path.join(self.cfg.path_prefix, "{}.{}".format(table, self.cfg.output.file_format))
+        if self.cfg.output.file_name_style:
+            file_name = eval(f"\'{table}\'.{self.cfg.output.file_name_style}()")
+        else:
+            file_name = table
+        target_path = os.path.join(self.cfg.path_prefix, "{}.{}".format(file_name, self.cfg.output.file_format))
 
         self.schemas[table][1].create_data(
             file_path=target_path,
             with_data=self.with_data,
-            chained=self.linked_fields,
+            chained={},
             alias_chain=self.rls,
             appends=self.appends,
             prefix=self.cfg.path_prefix,
@@ -202,22 +208,28 @@ class Fakeme:
         created.append(table)
 
     def create_tables_priority_graph(self):
+
         priority_dict = defaultdict(set)
         # 3
         [priority_dict[3].add(k) for k in self.appends]
 
         chains_tables = set([k for k in self.rls])
-
+        already_in_dicts = []
+        already_in_dicts += priority_dict[3]
         if self.rls:
-            priority_dict[0] = set([table_name for table_name in self.schemas if table_name not in chains_tables])
+            priority_dict[0] = set([table_name for table_name
+                                    in self.schemas if table_name
+                                    not in chains_tables and table_name not in already_in_dicts])
         else:
             priority_dict[0] = set(self.schemas.keys())
-
         if self.with_data:
             for data_file in self.with_data:
                 priority_dict[0].add(data_file)
+
+        already_in_dicts += priority_dict[0]
+
         link_dict = {}
-        tables_list = [x for x in self.schemas]
+        tables_list = [x for x in self.schemas if x not in already_in_dicts]
         for table in chains_tables:
             self_table = self.rls[table]
             for field in self_table:
@@ -226,6 +238,23 @@ class Fakeme:
                     if not link_dict.get(field_dict['table']):
                         link_dict[field_dict['table']] = set([])
                     link_dict[field_dict['table']].add(table)
+        # hack
+        clean_up_recursion = True
+        new_cycle = True
+        while clean_up_recursion is False and new_cycle is False:
+            remove_keys = set()
+            clean_up_recursion = False
+            new_cycle = False
+            for key, values_set in link_dict.items():
+                for value in list(values_set):
+                    if value in link_dict and value not in remove_keys:
+                        [link_dict[key].add(value_) for value_ in link_dict[value] if value_ != value]
+                        remove_keys.add(value)
+                        new_cycle = True
+                        clean_up_recursion = True
+
+            for key in remove_keys:
+                del link_dict[key]
         while link_dict:
             for n in range(0, 6):
                 table_moved = []
@@ -233,6 +262,9 @@ class Fakeme:
                     if table in priority_dict[n]:
                         [priority_dict[n+1].add(tb_name) for tb_name in link_dict[table]]
                         table_moved.append(table)
+                    else:
+                        priority_dict[n].add(table)
+
                 if table_moved:
                     for table in table_moved:
                         del link_dict[table]

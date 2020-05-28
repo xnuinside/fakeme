@@ -1,5 +1,6 @@
 import os.path
 import json
+from collections import defaultdict
 from copy import copy
 from pandas import DataFrame
 from fakeme.rules import default_rules
@@ -10,9 +11,11 @@ class FieldRulesExtractor(object):
 
     file_name = "rules.json"
 
-    def __init__(self, fields):
-
+    def __init__(self, fields, paths_list=None):
+        if paths_list:
+            paths_list = []
         self.fields = self.extract_fields(fields)
+        self.paths_list = paths_list
 
     @staticmethod
     def extract_fields(fields):
@@ -26,16 +29,36 @@ class FieldRulesExtractor(object):
 
     def rules_extracts(self):
         field_rules = []
-        for field in self.fields:
-            for key in default_rules:
-                if key in field.lower():
-                    field_rule = copy(default_rules[key])
-                    break
+        fields_with_rules = []
+
+        for rule in FieldRules.user_rules:
+            # todo: all rules extract need to refactor
+            if '*' in rule['field']:
+                key = rule['field'].split('*')[1].lower()
+                for field in self.fields:
+                    if key in field.lower():
+                        field_rule = copy(rule)
+                        field_rule['field'] = field
+                        fields_with_rules.append(field)
+                        field_rules.append(field_rule)
+
             else:
-                field_rule = copy(default_rules['default'])
-            field_rule['field'] = field
-            field_rules.append(field_rule)
-        [field_rules.append(x) for x in FieldRules.user_rules]
+                for field in self.fields:
+                    if rule['field'].lower() == field.lower():
+                        field_rule = rule
+                        fields_with_rules.append(field)
+                        field_rules.append(field_rule)
+
+        for field in self.fields:
+            if field not in fields_with_rules:
+                for key in default_rules:
+                    if key in field.lower():
+                        field_rule = copy(default_rules[key])
+                        break
+                else:
+                    field_rule = copy(default_rules['default'])
+                field_rule['field'] = field
+                field_rules.append(field_rule)
         return field_rules
 
     def generate_rules(self, remove_existed=True):
@@ -48,24 +71,29 @@ class FieldRulesExtractor(object):
             log.info("{} with rules for fields was created".format(self.file_name))
         return True
 
-    def get_chains(self, schemas, chains=None):
-        """ TODO: add validation for constr "list ON list.grec_cust_id_lsr=hh.grec_cust_id"
-            need to add support to chains
-        """
-        chained = {}
-        for table in schemas:
-            last_tables = [table_fields for table_fields in schemas
-                           if table_fields[0] != schemas[table][0]]
-            for second_table in last_tables:
-                found_fields = [field['name'] for field in second_table[0] if
-                                field in schemas[table][0]]
-                if len(found_fields) > 0:
-                    for field in found_fields:
-                        if chained.get(field):
-                            [chained[field].add(
-                                name) for name in [table[0], second_table[0]]]
-                        else:
-                            chained[field] = {table[0], second_table[0]}
+    @staticmethod
+    def get_chains(schemas, chains=None):
+        if not chains:
+            chains = {}
+        chained = defaultdict(dict)
+        table_field_added = {}
+        for num, table in enumerate(schemas.items()):
+            # get schema list except current
+            table_name, table_schema = table
+            table_fields = [field.name for field in table_schema[0]]
+            for second_table_name, second_table_schema in list(schemas.items())[:num]:
+                fields_was_found = [field.name for field in second_table_schema[0] if field.name in table_fields]
+                if len(fields_was_found) > 0:
+                    for field in fields_was_found:
+                        if field not in table_field_added or (
+                                field in table_field_added and table_field_added.get(field) != second_table_name):
+                            # to avoid recursive link table1 - table2 with same fields
+                            chained[table_name][field] = {
+                                'table': second_table_name,
+                                'alias': field
+                            }
+                            table_field_added[field] = table_name
+        chains.update(chained)
         return chained
 
 

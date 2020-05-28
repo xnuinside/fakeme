@@ -1,5 +1,5 @@
 """ module that contain config object with default settings """
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 from pydantic import BaseModel, validator
 
 
@@ -10,6 +10,7 @@ cfg = None
 class OutputFormat(BaseModel):
     file_format: str = "json"
     config: dict = {}
+    file_name_style: Union[None, str] = 'lower'
 
 
 class ColumnConfig(BaseModel):

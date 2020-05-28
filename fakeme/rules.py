@@ -37,8 +37,10 @@ default_rules = {
                  'nickname': {'generator': 'text.word()'},
                  'phone': {'generator': 'person.telephone()'},
                  'price': {'generator': 'round(random(), 2)'},
-                 'ts': {'generator': 'current_time'},
+                 'current_time': {'generator': 'current_time()'},
+                 'ts': {'generator': 'current_time()'},
                  'flag': {'generator': 'choice([\'Y\', \'N\'])'},
+                 'datetime': {'generator': 'datetime.datetime.now()'},  # todo: change to data random generator in range
                  'date': {'generator': 'date.date(2019, 2021)'},
                  'city': {'generator': 'address.city()'},
                  'country_code': {'generator': 'choice(countries.codes)'},

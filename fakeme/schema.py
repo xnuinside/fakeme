@@ -3,6 +3,7 @@ import os
 from typing import Text, Optional, Dict, List, Union
 from fakeme.utils import class_to_table_name
 from fakeme import config
+from fakeme.parsers.ddl import DDLParser
 from pydantic import BaseModel, validator
 
 
@@ -22,21 +23,23 @@ types_map = {
 
 class Column(BaseModel):
     name: str
-    type: str = str
+    type: str = 'STRING'
     len: Optional[int] = None
-    mode: Optional[str] = None
+    mode: Optional[str] = 'NULLABLE'
     max_number: Optional[int] = None
     min_number: Optional[int] = None
     alias: Optional[str] = None
 
-    @staticmethod
-    @validator('mode')
-    def set_mode_lower(value):
+    @validator('name')
+    def set_name_lower(cls, value):
         return value.lower()
 
-    @staticmethod
+    @validator('mode')
+    def set_mode_lower(cls, value):
+        return value.lower()
+
     @validator('type')
-    def set_type_upper(value):
+    def set_type_upper(cls, value):
         return value.upper()
 
     # todo: add type validation
@@ -62,11 +65,12 @@ class SchemaExtractor(object):
                  dataset: Text = None,
                  table_id: Text = "",
                  dump_schema: bool = True):
-        self.schema = self.get_schema(schema)
-        self.dataset = dataset or self.extract_folder()
+
         self.table_id = table_id
+        self.dataset = dataset or self.extract_folder(schema)
         self.dump_schema = dump_schema
         self.rls_founded = {}
+        self.schema = self.get_schema(schema)
 
     @staticmethod
     def _validate_path(path: Text):
@@ -81,12 +85,24 @@ class SchemaExtractor(object):
             raise ValueError("File with schema does not exist {}".format(path))
         return target_path
 
+    def get_schema_from_ddl(self, schema_path):
+        """ parse ddl and create JSON BigQuery schema """
+        ddl_parser = DDLParser(schema_path, table_id=self.table_id)
+        if self.dump_schema:
+            dump_path = "schemas/{}".format(self.dataset)
+            schema = ddl_parser.run(dump=self.dump_schema, dump_path=dump_path)
+        else:
+            schema = ddl_parser.run()
+        return schema
+
     def get_schema_from_file(self, schema_path: Text):
         if isinstance(schema_path, str):
             schema_path = self._validate_path(schema_path)
             if schema_path.endswith('.json'):
                 with open(schema_path, 'r') as schema_file:
                     schema = [Column(**column) for column in json.load(schema_file)]
+            elif schema_path.endswith('.ddl'):
+                schema = [Column(**column) for column in self.get_schema_from_ddl(schema_path)]
             else:
                 raise NotImplementedError('Supports only `.json` format')
         return schema
@@ -98,9 +114,10 @@ class SchemaExtractor(object):
             schema = self.get_schema_from_python_obj(schema)
         return schema
 
-    def extract_folder(self):
-        if '/' in self.schema:
-            splited = self.schema.split('/')
+    @staticmethod
+    def extract_folder(schema):
+        if '/' in schema:
+            splited = schema.split('/')
             folder, _ = splited[(len(splited) - 2):]
             if folder == 'schemas':
                 folder = ''
@@ -139,8 +156,19 @@ class SchemaExtractor(object):
             schema = schema_fields
         elif isinstance(schema, list):
             schema = [Column(**field) for field in schema]
-            return schema
+        if self.dump_schema:
+            dump_path = "schemas/{}".format(self.dataset)
+            export_schema = [column.dict(include={'name', 'mode', 'type'}) for column in schema]
+            self.dump_schema_to_file(export_schema, dump_path=dump_path)
         return schema
+
+    def dump_schema_to_file(self, schema, dump_path):
+        """ method to dump json schema """
+        if not os.path.isdir(dump_path):
+            os.makedirs(dump_path, exist_ok=True)
+        with open("{}/{}_schema.json".format(dump_path, self.table_id),
+                  'w+') as schema_file:
+            json.dump(schema, schema_file, indent=1)
 
     @staticmethod
     def map_type(_type):

@@ -56,7 +56,12 @@ class DataGenerator:
         if self.chains and self.table_id in self.chains:
             table_chain = self.chains[self.table_id]
             key = list(table_chain.keys())[0]
-            file_name = "{}.{}".format(table_chain[key]['table'], self.file_format) if '.' not in table_chain[
+            if self.cfg.output.file_name_style:
+                # todo: move to method, or store file_name highlevel
+                file_name = eval(f"\'{table_chain[key]['table']}\'.{self.cfg.output.file_name_style}()")
+            else:
+                file_name = table_chain[key]['table']
+            file_name = "{}.{}".format(file_name, self.file_format) if '.' not in table_chain[
                 key]['table'] else table_chain[key]['table']
             src_file = os.path.join(self.prefix, file_name)
             if not os.path.isfile(src_file) and self.prefix not in src_file:
@@ -115,7 +120,10 @@ class DataGenerator:
 
     def _read_df_from_file(self, depend_on_file):
         """ return correct pandas export method depend on expected file format """
-        result = eval(f"read_{self.file_format}(\'{depend_on_file}\')")
+        try:
+            result = eval(f"read_{self.file_format}(\'{depend_on_file}\')")
+        except ValueError:
+            result = eval(f"read_{self.file_format}(\'{depend_on_file}\',  lines=True)")
         return result
 
     def _read_values_from_txt(self, path):
@@ -202,6 +210,7 @@ class DataGenerator:
                 df_column = self._read_values_from_txt(f'{tmp_prefix}{field_name}')
             elif src_column in self.chained_df.columns:
                 matches_k, revers = self.get_values_from_chained_column(field_name, matches_k)
+                matches_k = matches_k or self.cfg.matches
                 df_column = self.get_dataframe_column(src_column, matches_k, revers)
         return df_column
 
@@ -280,6 +289,7 @@ class DataGenerator:
                 count_of_nulls = int(column_len * percent_of_nulls)
                 for i in range(count_of_nulls):
                     column[randint(0, column_len-1)] = None
+
         return column
 
     def filter_on_unique(self, column):
