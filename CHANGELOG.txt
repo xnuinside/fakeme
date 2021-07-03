@@ -1,10 +1,10 @@
-**v0.1.0**
+**v0.1.0 (in process)**
 1. Added simple-ddl-parser as dependency to extract information from DDL, code refactoring
 2. Added code changes to support Python 3.8 and upper (relative to changes in python multiprocessing module)
 3. Added tests runner on GitHub
 4. Autoaliasing fixed
 5. Added a bunch of unit tests
-6. Now you can pass tables definitions not only ass list, but also as Table class:
+6. Now you can pass tables definitions not only as list, but also as Table class:
 ```python
 from fakeme import Table
 
