@@ -1,1 +1,4 @@
-from fakeme.core import Fakeme  # noqa F401
+from fakeme.core import Fakeme
+from fakeme.utils import Table
+
+__all__ = ["Fakeme", "Table"]

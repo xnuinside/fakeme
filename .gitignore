@@ -19,3 +19,5 @@ __pycache__/
 .idea/
 rules.json
 /**/rules.json
+examples/**/*.json
+schemas/

@@ -1,0 +1,6 @@
+**v0.1.0 (in process)**
+
+1. Added code changes to support Python 3.8 and upper (relative to changes in python multiprocessing module)
+2. Added tests runner on GitHub
+3. Autoaliasing was fixed
+4. Added some unit tests

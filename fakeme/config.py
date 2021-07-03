@@ -1,7 +1,7 @@
 """ module that contain config object with default settings """
 from typing import Dict, Optional, Union
-from pydantic import BaseModel, validator
 
+from pydantic import BaseModel, validator
 
 # current run config instance
 cfg = None
@@ -10,7 +10,7 @@ cfg = None
 class OutputFormat(BaseModel):
     file_format: str = "json"
     config: dict = {}
-    file_name_style: Union[None, str] = 'lower'
+    file_name_style: Union[None, str] = "lower"
 
 
 class ColumnConfig(BaseModel):
@@ -28,7 +28,8 @@ class TableConfig(BaseModel):
 
 
 class Config(BaseModel):
-    """ config model """
+    """config model"""
+
     row_numbers: int = 100
     matches: float = 1
     timezone: str = "UTC"
@@ -37,11 +38,11 @@ class Config(BaseModel):
     max_list_values: int = 4
     min_list_values: int = 0
     percent_of_nulls: float = 0.05
-    output: OutputFormat = OutputFormat(**{'file_format': "json", 'config': {}})
+    output: OutputFormat = OutputFormat(**{"file_format": "json", "config": {}})
     tables: Optional[Dict[str, TableConfig]] = {}
 
     @staticmethod
-    @validator('row_numbers', 'matches')
+    @validator("row_numbers", "matches")
     def check_value_above_zero(value):
         if value < 0:
             raise ValueError(f"value must be positive (>0). You set {value}")
