@@ -122,11 +122,10 @@ Docs: https://fakeme.readthedocs.io/en/latest/
 Changelog
 ---------
 
-**v0.1.0**
+**v0.1.0 (in process)**
 
 
-#. Added simple-ddl-parser as dependency to extract information from DDL, code refactoring
-#. Now you can pass a .ddl file with multiple tables and data will be generated for this tables, including matching by foreign key, unique by primary keys & unique columns, if column can be nullable also will be Nulls in Data.
 #. Added code changes to support Python 3.8 and upper (relative to changes in python multiprocessing module)
-#. Autoaliasing fixed
-#. Added a lot of unit tests
+#. Added tests runner on GitHub
+#. Autoaliasing was fixed
+#. Added some unit tests

@@ -117,7 +117,7 @@ class DataGenerator:
             return []
 
     def resolve_dependencies(self):
-        """ find dependencies on different ways and prepare self.chained_df """
+        """find dependencies on different ways and prepare self.chained_df"""
         depend_on_file = None
         if self.appends and self.table_id in self.appends:
             depend_on_file = [
@@ -300,8 +300,6 @@ class DataGenerator:
             )  # todo: refactor this
         # get field rule
         generating_rule = self.get_column_generating_rule(column_cfg.name)
-
-        # get settings
 
         if self.table_id in self.chains:
             df_column = self.get_column_from_chained(column_cfg.name, matches_k)

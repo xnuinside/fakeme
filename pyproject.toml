@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fakeme"
-version = "0.1.0-alpha0"
+version = "0.1.0"
 description = "Relative Data Generator: generate relative tables data, data generator for multi tables that depend on each other"
 authors = ["xnuinside <xnuinside@gmail.com>"]
 homepage = "https://github.com/xnuinside/fakeme"

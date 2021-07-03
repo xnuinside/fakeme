@@ -9,16 +9,15 @@ from fakeme import config
 from fakeme.config import Config
 from fakeme.fields import FieldRules, FieldRulesExtractor
 from fakeme.tables import MultiTableRunner
-from fakeme.utils import FakemeException, log
+from fakeme.utils import FakemeException, Table, log
 from fakeme.walker import Walker
 
 created = []
 
 
-class Fakeme:
+class Settings:
     def __init__(
         self,
-        tables: Union[List, Tuple[str, Union[str, dict, list]]],
         with_data: List = None,
         settings: Dict = None,
         dump_schema: bool = True,
@@ -27,6 +26,39 @@ class Fakeme:
         cli_path: Text = None,
         field_rules: Optional[List] = None,
         paths_with_scripts: Optional[List] = None,
+        auto_alias: bool = True,
+    ):
+        """
+        Base Settings class, that contains configuration for Fakeme runner
+
+        """
+        if not field_rules:
+            field_rules = []
+        FieldRules.user_rules = field_rules
+        if not settings:
+            settings = {}
+        settings.update({"auto_alias": auto_alias})
+        config.cfg = Config(**settings)
+        self.paths_with_scripts = paths_with_scripts if paths_with_scripts else []
+        self.cfg = config.cfg
+        # os.path.dirname(inspect.stack()[2][1]) - path of the file where Fakeme was called
+        self.cfg.path_prefix = cli_path or os.path.dirname(inspect.stack()[2][1])
+        self.rls = rls if rls else None or {}
+        self.dump_schema = dump_schema
+        # todo: remove this things with paths
+        if not cli_path and os.getcwd() not in self.cfg.path_prefix:
+            self.cfg.path_prefix = os.path.join(os.getcwd(), self.cfg.path_prefix)
+        self.appends = appends or []
+        self.cli_path = cli_path
+        self.with_data = self.validate_data_source(with_data)
+
+
+class Fakeme(Settings):
+    def __init__(
+        self,
+        tables: Union[List, Tuple[str, Union[str, dict, list, Table]]],
+        *args,
+        **kwargs,
     ):
         """
         Main Class to start data generation
@@ -69,24 +101,8 @@ class Fakeme:
         :param rls:
         :type rls:
         """
-        if not field_rules:
-            field_rules = []
-        FieldRules.user_rules = field_rules
+        super().__init__(*args, **kwargs)
         self.tables = self.normalise_tables(tables)
-        if not settings:
-            settings = {}
-        config.cfg = Config(**settings)
-        self.paths_with_scripts = paths_with_scripts if paths_with_scripts else []
-        self.cfg = config.cfg
-        self.cfg.path_prefix = cli_path or os.path.dirname(inspect.stack()[1][1])
-        self.rls = rls if rls else None or {}
-        self.dump_schema = dump_schema
-        # todo: remove this things with paths
-        if not cli_path and os.getcwd() not in self.cfg.path_prefix:
-            self.cfg.path_prefix = os.path.join(os.getcwd(), self.cfg.path_prefix)
-        self.appends = appends or []
-        self.cli_path = cli_path
-        self.with_data = self.validate_data_source(with_data)
 
     @staticmethod
     def normalise_tables(tables):
@@ -123,9 +139,6 @@ class Fakeme:
         return set(validated_list)
 
     def run(self):
-        import multiprocessing
-
-        multiprocessing.freeze_support()
         log.info("Fakeme starts at", datetime.now())
         # get all fields and schemas for tables
         self.schemas, fields = MultiTableRunner(
@@ -142,15 +155,13 @@ class Fakeme:
         field_extractor = FieldRulesExtractor(fields, walk_list)
         # generate "value_rules.json" with rules for fields
         field_extractor.generate_rules()
-        # to do: remove and just use rls dict
-        self.rls = field_extractor.get_chains(self.schemas, self.rls)
         priority_dict = self.create_tables_priority_graph()
-        for level in priority_dict:
-            for table in priority_dict[level]:
+        for key, value in priority_dict.items():
+            for table in value:
                 if (
                     table not in created
                     and table not in self.with_data
-                    and table not in priority_dict.get(level + 1, [])
+                    and table not in priority_dict.get(key + 1, [])
                 ):
                     self.create_table(table)
         log.info("Fakeme finished successful \n", datetime.now())
@@ -183,23 +194,21 @@ class Fakeme:
                         }
                     )
 
+    def _remove_plural_from_table_name(self, table_name) -> List:
+        if table_name.endswith("ies"):
+            table_name = table_name.replace("ies", "y")
+        elif table_name.endswith("s"):
+            table_name = table_name[:-1]
+        return table_name
+
     def table_prefix_in_column_name(self, column_name: Text) -> Union[Text, None]:
-        """check do we have table name prefix in column name, to get possible auto aliasing"""
+        """check do we have table name prefix in column name,
+        to get possible auto aliasing"""
         table_names = list(self.schemas.keys())
-
-        column_name = column_name.split("_")[0]
-        if column_name.endswith("y"):
-            table_name = column_name.replace("y", "ies")
-        elif column_name.endswith("s"):
-            table_name = column_name + "es"
-        else:
-            table_name = column_name + "s"
-
-        if table_name in table_names:
-            log.info(f"Found alias with {table_name}")
-            return table_name
-
-        return
+        for table_name in table_names:
+            if self._remove_plural_from_table_name(table_name) in column_name:
+                log.info(f"Found alias with {table_name}")
+                return table_name
 
     def create_table(self, table):
         """run table creation"""
@@ -228,7 +237,6 @@ class Fakeme:
         priority_dict = defaultdict(set)
         # 3
         [priority_dict[3].add(k) for k in self.appends]
-
         chains_tables = set([k for k in self.rls])
         already_in_dicts = []
         already_in_dicts += priority_dict[3]
@@ -243,40 +251,22 @@ class Fakeme:
             )
         else:
             priority_dict[0] = set(self.schemas.keys())
+
         if self.with_data:
             for data_file in self.with_data:
                 priority_dict[0].add(data_file)
 
         already_in_dicts += priority_dict[0]
-
-        link_dict = self.__process_chains_tables(chains_tables, already_in_dicts)
+        link_dict = self._process_chains_tables(chains_tables, already_in_dicts)
         # hack
-        clean_up_recursion = True
-        new_cycle = True
-        while clean_up_recursion is False and new_cycle is False:
-            remove_keys = set()
-            clean_up_recursion = False
-            new_cycle = False
-            for key, values_set in link_dict.items():
-                for value in list(values_set):
-                    if value in link_dict and value not in remove_keys:
-                        [
-                            link_dict[key].add(value_)
-                            for value_ in link_dict[value]
-                            if value_ != value
-                        ]
-                        remove_keys.add(value)
-                        new_cycle = True
-                        clean_up_recursion = True
-
-            for key in remove_keys:
-                del link_dict[key]
 
         while link_dict:
-            priority_dict, link_dict = self.__recombine_priority_by_links()
+            priority_dict, link_dict = self._recombine_priority_by_links(
+                priority_dict, link_dict
+            )
         return priority_dict
 
-    def __process_chains_tables(
+    def _process_chains_tables(
         self, chains_tables: Set, already_in_dicts: List
     ) -> Dict:
         link_dict = {}
@@ -294,18 +284,24 @@ class Fakeme:
                     link_dict[field_dict["table"]].add(table)
         return link_dict
 
-    def __recombine_priority_by_links(
-        priority_dict: Dict, link_dict: Dict
+    def _recombine_priority_by_links(
+        self, priority_dict: Dict, link_dict: Dict
     ) -> Tuple[Dict]:
-        for n in range(0, 6):
+        for n in range(0, 4):
             table_moved = []
             for table in link_dict:
                 if table in priority_dict[n]:
                     [priority_dict[n + 1].add(tb_name) for tb_name in link_dict[table]]
                     table_moved.append(table)
                 else:
-                    priority_dict[n].add(table)
-
+                    for key in self.rls.get(table, {}):
+                        if key in priority_dict[n]:
+                            break
+                    else:
+                        table_moved.append(table)
+                        priority_dict[n].add(table)
+                        for table in link_dict[table]:
+                            priority_dict[n + 1].add(table)
             if table_moved:
                 for table in table_moved:
                     del link_dict[table]

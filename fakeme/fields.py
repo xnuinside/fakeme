@@ -1,6 +1,5 @@
 import json
 import os.path
-from collections import defaultdict
 from copy import copy
 from typing import List, Tuple
 
@@ -75,37 +74,6 @@ class FieldRulesExtractor(object):
                 json.dump(values_rules_dict, outfile, indent=2)
             log.info("{} with rules for fields was created".format(self.file_name))
         return True
-
-    @staticmethod
-    def get_chains(schemas, chains=None):
-        if not chains:
-            chains = {}
-        chained = defaultdict(dict)
-        table_field_added = {}
-        for num, table in enumerate(schemas.items()):
-            # get schema list except current
-            table_name, table_schema = table
-            table_fields = [field.name for field in table_schema[0]]
-            for second_table_name, second_table_schema in list(schemas.items())[:num]:
-                fields_was_found = [
-                    field.name
-                    for field in second_table_schema[0]
-                    if field.name in table_fields
-                ]
-                if len(fields_was_found) > 0:
-                    for field in fields_was_found:
-                        if field not in table_field_added or (
-                            field in table_field_added
-                            and table_field_added.get(field) != second_table_name
-                        ):
-                            # to avoid recursive link table1 - table2 with same fields
-                            chained[table_name][field] = {
-                                "table": second_table_name,
-                                "alias": field,
-                            }
-                            table_field_added[field] = table_name
-        chains.update(chained)
-        return chained
 
 
 class FieldRules(object):
