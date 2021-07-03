@@ -1,3 +1,5 @@
+import os
+
 import pytest
 
 from fakeme.core import Config, Fakeme
@@ -14,7 +16,7 @@ def test_fakeme_one_required_arg():
     # check no errors
     result = Fakeme(tables)
     assert result.cfg == Config(
-        path_prefix="/Users/iuliia_volkova2/work/fakeme/tests/unittests",
+        path_prefix=os.path.dirname(os.path.abspath(__file__)),
         auto_alias=True,
     )
 
@@ -34,12 +36,6 @@ def fakeme():
 
 
 def test_fakeme_remove_plural_from_table_name(fakeme):
-
-    assert fakeme.cfg == Config(
-        path_prefix="/Users/iuliia_volkova2/work/fakeme/tests/unittests",
-        auto_alias=True,
-    )
-
     fakeme.run()
 
     assert fakeme._remove_plural_from_table_name("users") == "user"
