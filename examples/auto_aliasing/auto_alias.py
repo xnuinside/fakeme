@@ -8,36 +8,48 @@ from fakeme import Fakeme
 
 # define 3 tables
 
-users = [{'name': 'id'},
-         {'name': 'name'},
-         {'name': 'last_name'},
-         {'name': 'group_id'}]  # let's imagine, that we have different users groups,
+schema_users = [
+    {"name": "id"},
+    {"name": "name"},
+    {"name": "last_name"},
+    {"name": "group_id"},
+]  # let's imagine, that we have different users groups,
 # Fakeme will check tables names and if one of them will be mapped to 1rst part
 # of column name and second part after '_' to column name in this table - with
 # data will be chained together and used like all ids from groups must be in users
 
-groups = [{'name': 'id'},
-          {'name': 'title'},
-          {'name': 'rights', 'type': 'list', 'alias': 'right_id'},  # mean field rights contains list of right_ids
-          {'name': 'description'}]
+schema_groups = [
+    {"name": "id"},
+    {"name": "title"},
+    {
+        "name": "rights",
+        "type": "list",
+        "alias": "right_id",
+    },  # mean field rights contains list of right_ids
+    {"name": "description"},
+]
 
-rights = [{'name': 'id'},
-          {'name': 'title'},
-          {'name': 'description'}]
+schema_rights = [{"name": "id"}, {"name": "title"}, {"name": "description"}]
 
-Fakeme(tables=[('users', users),
-               ('groups', groups),
-               ('rights', rights)],
-       settings={'auto_alias': True,
-                 'tables': {
-                     'rights': {
-                         'row_numbers': 50,
-                     },
-                     'groups': {
-                         'row_numbers': 10,
-                     }
-                 }}  # set auto alias to True
-       ).run()
 
 # after run you will see 3 tables that contains values of each users contains ids from groups table in field group_id
 # and in groups  each group contains list of ids from rights table in rights field
+
+Fakeme(
+    tables=[
+        ("users", schema_users),
+        ("groups", schema_groups),
+        ("rights", schema_rights),
+    ],
+    settings={
+        "auto_alias": True,
+        "tables": {
+            "rights": {
+                "row_numbers": 50,
+            },
+            "groups": {
+                "row_numbers": 10,
+            },
+        },
+    },  # set auto alias to True
+).run()

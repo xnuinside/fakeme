@@ -1,0 +1,22 @@
+[
+ {
+  "name": "id",
+  "type": "STRING",
+  "mode": "NULLABLE"
+ },
+ {
+  "name": "name",
+  "type": "STRING",
+  "mode": "NULLABLE"
+ },
+ {
+  "name": "last_name",
+  "type": "STRING",
+  "mode": "NULLABLE"
+ },
+ {
+  "name": "group_id",
+  "type": "STRING",
+  "mode": "NULLABLE"
+ }
+]

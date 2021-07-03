@@ -1,37 +1,33 @@
 """ main module that contains RunGenerator class that used to init data generation """
-import os
 import inspect
-
+import os
 from collections import defaultdict
-from typing import List, Dict, Text, Union, Tuple, Optional
-from fakeme.tables import MultiTableRunner
-from fakeme.fields import FieldRulesExtractor, FieldRules
-from fakeme.config import Config
-from fakeme.utils import log
-from fakeme import config
-from fakeme.walker import Walker
-
-
 from datetime import datetime
+from typing import Dict, List, Optional, Set, Text, Tuple, Union
+
+from fakeme import config
+from fakeme.config import Config
+from fakeme.fields import FieldRules, FieldRulesExtractor
+from fakeme.tables import MultiTableRunner
+from fakeme.utils import FakemeException, log
+from fakeme.walker import Walker
 
 created = []
 
 
-class FakemeException(Exception):
-    pass
-
-
 class Fakeme:
-    def __init__(self,
-                 tables: Union[List, Tuple[str, Union[str, dict, list]]],
-                 with_data: List = None,
-                 settings: Dict = None,
-                 dump_schema: bool = True,
-                 rls: Dict = None,
-                 appends: List = None,
-                 cli_path: Text = None,
-                 field_rules: Optional[List] = None,
-                 paths_with_scripts: Optional[List] = None):
+    def __init__(
+        self,
+        tables: Union[List, Tuple[str, Union[str, dict, list]]],
+        with_data: List = None,
+        settings: Dict = None,
+        dump_schema: bool = True,
+        rls: Dict = None,
+        appends: List = None,
+        cli_path: Text = None,
+        field_rules: Optional[List] = None,
+        paths_with_scripts: Optional[List] = None,
+    ):
         """
         Main Class to start data generation
 
@@ -94,16 +90,21 @@ class Fakeme:
 
     @staticmethod
     def normalise_tables(tables):
-        if (isinstance(tables, Tuple) or isinstance(tables, List)) and isinstance(tables[0], str):
+        if (isinstance(tables, Tuple) or isinstance(tables, List)) and isinstance(
+            tables[0], str
+        ):
             # mean we have only one table definition
-            tables = tuple(tables,)
+            tables = tuple(
+                tables,
+            )
             return [tables]
         elif isinstance(tables, List):
             for table in tables:
                 if not isinstance(table[0], str):
                     raise FakemeException(
                         f"Tables definitions must be presented like a tuple ('table_name', schema). "
-                        f"You provided: {table}")
+                        f"You provided: {table}"
+                    )
             return tables
 
     def validate_data_source(self, paths_list):
@@ -115,16 +116,21 @@ class Fakeme:
                 if self.cfg.path_prefix not in path:
                     path = os.path.join(self.cfg.path_prefix, path)
                     if not os.path.isfile(path):
-                        raise Exception(f'Could not find the path {path} from "with_data" parameter')
+                        raise Exception(
+                            f'Could not find the path {path} from "with_data" parameter'
+                        )
             validated_list.append(path)
         return set(validated_list)
 
     def run(self):
+        import multiprocessing
+
+        multiprocessing.freeze_support()
         log.info("Fakeme starts at", datetime.now())
         # get all fields and schemas for tables
         self.schemas, fields = MultiTableRunner(
-            self.tables, rls=self.rls).\
-            get_fields_and_schemas(dump_schema=self.dump_schema)
+            self.tables, rls=self.rls
+        ).get_fields_and_schemas(dump_schema=self.dump_schema)
 
         if self.cfg.auto_alias:
             self.resolve_auto_alises()
@@ -141,8 +147,11 @@ class Fakeme:
         priority_dict = self.create_tables_priority_graph()
         for level in priority_dict:
             for table in priority_dict[level]:
-                if table not in created and table not in self.with_data \
-                        and table not in priority_dict.get(level+1, []):
+                if (
+                    table not in created
+                    and table not in self.with_data
+                    and table not in priority_dict.get(level + 1, [])
+                ):
                     self.create_table(table)
         log.info("Fakeme finished successful \n", datetime.now())
 
@@ -155,32 +164,36 @@ class Fakeme:
                 if relative_table:
                     matches = self.cfg.matches
                     if self.cfg.tables.get(table):
-                        column_settings = self.cfg.tables.get(table).columns.get(column.name, {})
+                        column_settings = self.cfg.tables.get(table).columns.get(
+                            column.name, {}
+                        )
                         if column_settings:
                             matches = column_settings.matches
                         else:
                             matches = self.cfg.tables.get(table).matches
                     if table not in self.rls:
                         self.rls[table] = {}
-                    self.rls[table].update({
-                        column.name: {
-                            'alias': alias_column_name.split('_')[1],
-                            'table': relative_table,
-                            'matches': matches
+                    self.rls[table].update(
+                        {
+                            column.name: {
+                                "alias": alias_column_name.split("_")[1],
+                                "table": relative_table,
+                                "matches": matches,
+                            }
                         }
-                    })
+                    )
 
     def table_prefix_in_column_name(self, column_name: Text) -> Union[Text, None]:
-        """ check do we have table name prefix in column name, to get possible auto aliasing """
+        """check do we have table name prefix in column name, to get possible auto aliasing"""
         table_names = list(self.schemas.keys())
 
-        column_name = column_name.split('_')[0]
-        if column_name.endswith('y'):
-            table_name = column_name.replace('y', 'ies')
-        elif column_name.endswith('s'):
-            table_name = column_name + 'es'
+        column_name = column_name.split("_")[0]
+        if column_name.endswith("y"):
+            table_name = column_name.replace("y", "ies")
+        elif column_name.endswith("s"):
+            table_name = column_name + "es"
         else:
-            table_name = column_name + 's'
+            table_name = column_name + "s"
 
         if table_name in table_names:
             log.info(f"Found alias with {table_name}")
@@ -189,12 +202,14 @@ class Fakeme:
         return
 
     def create_table(self, table):
-        """ run table creation """
+        """run table creation"""
         if self.cfg.output.file_name_style:
-            file_name = eval(f"\'{table}\'.{self.cfg.output.file_name_style}()")
+            file_name = eval(f"'{table}'.{self.cfg.output.file_name_style}()")
         else:
             file_name = table
-        target_path = os.path.join(self.cfg.path_prefix, "{}.{}".format(file_name, self.cfg.output.file_format))
+        target_path = os.path.join(
+            self.cfg.path_prefix, "{}.{}".format(file_name, self.cfg.output.file_format)
+        )
 
         self.schemas[table][1].create_data(
             file_path=target_path,
@@ -203,7 +218,8 @@ class Fakeme:
             alias_chain=self.rls,
             appends=self.appends,
             prefix=self.cfg.path_prefix,
-            cli_path=self.cli_path)
+            cli_path=self.cli_path,
+        )
 
         created.append(table)
 
@@ -217,9 +233,14 @@ class Fakeme:
         already_in_dicts = []
         already_in_dicts += priority_dict[3]
         if self.rls:
-            priority_dict[0] = set([table_name for table_name
-                                    in self.schemas if table_name
-                                    not in chains_tables and table_name not in already_in_dicts])
+            priority_dict[0] = set(
+                [
+                    table_name
+                    for table_name in self.schemas
+                    if table_name not in chains_tables
+                    and table_name not in already_in_dicts
+                ]
+            )
         else:
             priority_dict[0] = set(self.schemas.keys())
         if self.with_data:
@@ -228,16 +249,7 @@ class Fakeme:
 
         already_in_dicts += priority_dict[0]
 
-        link_dict = {}
-        tables_list = [x for x in self.schemas if x not in already_in_dicts]
-        for table in chains_tables:
-            self_table = self.rls[table]
-            for field in self_table:
-                field_dict = self_table[field]
-                if field_dict['table'] in tables_list or field_dict['table'] in self.with_data:
-                    if not link_dict.get(field_dict['table']):
-                        link_dict[field_dict['table']] = set([])
-                    link_dict[field_dict['table']].add(table)
+        link_dict = self.__process_chains_tables(chains_tables, already_in_dicts)
         # hack
         clean_up_recursion = True
         new_cycle = True
@@ -248,24 +260,53 @@ class Fakeme:
             for key, values_set in link_dict.items():
                 for value in list(values_set):
                     if value in link_dict and value not in remove_keys:
-                        [link_dict[key].add(value_) for value_ in link_dict[value] if value_ != value]
+                        [
+                            link_dict[key].add(value_)
+                            for value_ in link_dict[value]
+                            if value_ != value
+                        ]
                         remove_keys.add(value)
                         new_cycle = True
                         clean_up_recursion = True
 
             for key in remove_keys:
                 del link_dict[key]
-        while link_dict:
-            for n in range(0, 6):
-                table_moved = []
-                for table in link_dict:
-                    if table in priority_dict[n]:
-                        [priority_dict[n+1].add(tb_name) for tb_name in link_dict[table]]
-                        table_moved.append(table)
-                    else:
-                        priority_dict[n].add(table)
 
-                if table_moved:
-                    for table in table_moved:
-                        del link_dict[table]
+        while link_dict:
+            priority_dict, link_dict = self.__recombine_priority_by_links()
         return priority_dict
+
+    def __process_chains_tables(
+        self, chains_tables: Set, already_in_dicts: List
+    ) -> Dict:
+        link_dict = {}
+        tables_list = [x for x in self.schemas if x not in already_in_dicts]
+        for table in chains_tables:
+            self_table = self.rls[table]
+            for field in self_table:
+                field_dict = self_table[field]
+                if (
+                    field_dict["table"] in tables_list
+                    or field_dict["table"] in self.with_data
+                ):
+                    if not link_dict.get(field_dict["table"]):
+                        link_dict[field_dict["table"]] = set([])
+                    link_dict[field_dict["table"]].add(table)
+        return link_dict
+
+    def __recombine_priority_by_links(
+        priority_dict: Dict, link_dict: Dict
+    ) -> Tuple[Dict]:
+        for n in range(0, 6):
+            table_moved = []
+            for table in link_dict:
+                if table in priority_dict[n]:
+                    [priority_dict[n + 1].add(tb_name) for tb_name in link_dict[table]]
+                    table_moved.append(table)
+                else:
+                    priority_dict[n].add(table)
+
+            if table_moved:
+                for table in table_moved:
+                    del link_dict[table]
+        return priority_dict, link_dict
