@@ -7,7 +7,7 @@ from fakeme import config
 from fakeme.generator import DataGenerator
 from fakeme.output import get_writer
 from fakeme.schema import SchemaExtractor
-from fakeme.utils import log
+from fakeme.utils import Table, log
 
 
 class TableRunner:
@@ -146,6 +146,16 @@ class MultiTableRunner(object):
                     )
                 else:
                     dataset_id = table_definition.__module__
-                    table_id = table_definition.__name__.lower()
-                    schema = table_definition.__annotations__
+                    if getattr(table_definition, "__name__", None):
+                        table_id = table_definition.__name__.lower()
+                        schema = table_definition.__annotations__
+                    elif isinstance(table_definition, Table):
+                        schema = table_definition.table_schema
+                        table_id = table_definition.name
+                        dataset_id = table_definition.dataset
+                    else:
+                        raise Exception(
+                            "Table must be a class with or object of class fakeme.Table "
+                        )
+
             yield dataset_id, table_id, schema

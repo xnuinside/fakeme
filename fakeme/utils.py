@@ -6,6 +6,8 @@ from pydantic import BaseModel, Field, validator
 
 log = getLogger("_FakeMe_")
 
+log.setLevel(os.environ.get("LOG_LEVEL", "DEBUG"))
+
 
 def class_to_table_name(cls: Union[Text, Any]):
     """any mean any class, cls can come as str or as Python class"""

@@ -1,4 +1,24 @@
-**v0.1.0 (in process)**
+**v0.2.0**
+1. Now you can define tables as Table class object if it will be more easily for you.
+
+```python
+    from fakeme import Table
+
+    Table(name='table_name_example', schema='path/to/schema.json')
+
+    # or 
+    user_schema = [{'name': 'id'},
+            {'name': 'title'},
+            {'name': 'rights', 'type': 'list', 'alias': 'right_id'},
+            {'name': 'description'}]
+    Table(name='table_name_example', schema=user_schema)
+```
+samples it tests: tests/unittests/test_core.py
+
+2. Relationships between tables was corrected 
+
+
+**v0.1.0**
 
 1. Added code changes to support Python 3.8 and upper (relative to changes in python multiprocessing module)
 2. Added tests runner on GitHub

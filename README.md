@@ -3,11 +3,7 @@
 
 Data Generator for Chained and Relative Data
 
-|badge1| |badge2| |badge3|
-
-.. |badge1| image:: https://img.shields.io/pypi/pyversions/fakeme 
-.. |badge2| image:: https://img.shields.io/pypi/v/fakeme
-.. |badge3| image:: https://travis-ci.com/xnuinside/fakeme.svg?branch=master
+![badge1](https://img.shields.io/pypi/v/fakeme) ![badge2](https://img.shields.io/pypi/l/fakeme) ![badge3](https://img.shields.io/pypi/pyversions/fakeme) ![workflow](https://github.com/xnuinside/fakeme/actions/workflows/main.yml/badge.svg)
 
 Documentation in process: https://fakeme.readthedocs.io/en/latest/ 
 
@@ -109,7 +105,27 @@ Docs: https://fakeme.readthedocs.io/en/latest/
 
 
 ## Changelog
-**v0.1.0 (in process)**
+**v0.2.0**
+1. Now you can define tables as Table class object if it will be more easily for you.
+
+```python
+    from fakeme import Table
+
+    Table(name='table_name_example', schema='path/to/schema.json')
+
+    # or 
+    user_schema = [{'name': 'id'},
+            {'name': 'title'},
+            {'name': 'rights', 'type': 'list', 'alias': 'right_id'},
+            {'name': 'description'}]
+    Table(name='table_name_example', schema=user_schema)
+```
+samples it tests: tests/unittests/test_core.py
+
+2. Relationships between tables was corrected 
+
+
+**v0.1.0**
 
 1. Added code changes to support Python 3.8 and upper (relative to changes in python multiprocessing module)
 2. Added tests runner on GitHub
