@@ -1,4 +1,4 @@
-**v0.2.0**
+**v0.2.1**
 1. Now you can define tables as Table class object if it will be more easily for you.
 
 ```python

@@ -57,6 +57,7 @@ class Settings:
         self.appends = appends or []
         self.cli_path = cli_path
         self.with_data = self.validate_data_source(with_data)
+        self.tables_in_relations = []
 
 
 class Fakeme(Settings, Relationship):

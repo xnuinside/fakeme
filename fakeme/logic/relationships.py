@@ -26,9 +26,7 @@ class Relationship:
         already_in_dicts.extend(self.priority_dict[100])
 
         if self.rls:
-            print(self.rls)
             self.process_first_priority()
-            print(self.priority_dict[0])
         else:
             self.priority_dict[0] = set(self.schemas.keys())
 
