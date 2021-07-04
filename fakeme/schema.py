@@ -113,6 +113,8 @@ class SchemaExtractor(object):
     def get_schema(self, schema: Union[Dict, List, Text]):
         if isinstance(schema, str):
             schema = self.get_schema_from_file(schema)
+        elif isinstance(schema, dict) and schema.get("table_schema"):
+            schema = schema["table_schema"]
         else:
             schema = self.get_schema_from_python_obj(schema)
         return schema
@@ -151,6 +153,8 @@ class SchemaExtractor(object):
                         _type = self.map_type(_type)
                     field_details = {"name": key, "type": _type}
                 else:
+                    print(schema)
+                    print(key)
                     if not schema[key].get("name"):
                         schema[key]["name"] = key
                     field_details = schema[key]
