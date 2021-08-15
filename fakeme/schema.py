@@ -102,12 +102,19 @@ class SchemaExtractor(object):
             if schema_path.endswith(".json"):
                 with open(schema_path, "r") as schema_file:
                     schema = [Column(**column) for column in json.load(schema_file)]
-            elif schema_path.endswith(".ddl"):
-                schema = [
-                    Column(**column) for column in self.get_schema_from_ddl(schema_path)
-                ]
             else:
-                raise NotImplementedError("Supports only `.json` format")
+                extensions = [".ddl", ".hql", ".sql"]
+                for ext in extensions:
+                    if schema_path.endswith(ext):
+                        schema = [
+                            Column(**column)
+                            for column in self.get_schema_from_ddl(schema_path)
+                        ]
+                    break
+                else:
+                    raise NotImplementedError(
+                        f"Fakeme can read schemas only in `.json` & {', '.join(extensions)} formats"
+                    )
         return schema
 
     def get_schema(self, schema: Union[Dict, List, Text]):
