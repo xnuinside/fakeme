@@ -10,7 +10,6 @@ class Relationship:
         for table_name in self.schemas:
             if table_name not in self.tables_in_relations:
                 self.priority_dict[0].add(table_name)
-            print(self.priority_dict[0], "0")
 
     def create_tables_priority_graph(self):
 
@@ -46,9 +45,23 @@ class Relationship:
                 self.priority_dict, linked_pairs
             )
             n -= 1
+        self.add_skipped_tables()
         self.normalize_priority()
-        print(self.priority_dict)
         return self.priority_dict
+
+    def add_skipped_tables(self) -> None:
+        tables_in_priority = []
+        for _, value in self.priority_dict.items():
+            tables_in_priority.extend(value)
+        for table, aliases in self.rls.items():
+            num = 0
+            index = 0
+            if table not in tables_in_priority:
+                for alias in aliases:
+                    if alias in self.priority_dict[num]:
+                        if index < num + 1:
+                            index = num + 1
+                self.priority_dict[index].add(table)
 
     def normalize_priority(self):
         if self.priority_dict[100]:
@@ -62,7 +75,6 @@ class Relationship:
         for table in chains_tables:
             self_table = self.rls[table]
             for field in self_table:
-                print(field)
                 field_dict = self_table[field]
                 if (
                     field_dict["table"] in tables_list
@@ -91,6 +103,8 @@ class Relationship:
 
             for pair in pair_moved:
                 linked_pairs.remove(pair)
+                for item in pair:
+                    priority_dict[n].discard(item)
         return priority_dict, linked_pairs
 
     def check_column_alias(self, column, table) -> None:

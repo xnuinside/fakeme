@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "fakeme"
-version = "0.2.1"
+version = "0.2.2"
 description = "Relative Data Generator: generate relative tables data, data generator for multi tables that depend on each other"
-authors = ["xnuinside <xnuinside@gmail.com>"]
+authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
 homepage = "https://github.com/xnuinside/fakeme"
 repository = "https://github.com/xnuinside/fakeme"
 license = "MIT"
@@ -21,7 +21,7 @@ ply = "^3.11"
 pandas = "1.1.5"
 mimesis = "^4.0"
 pydantic = "^1.8.2"
-simple-ddl-parser = "^0.17.0"
+simple-ddl-parser = "^0.19.1"
 
 [tool.poetry.scripts]
 fakeme = 'fakeme.cli:cli'

@@ -1,3 +1,9 @@
+**v0.2.2**
+### Fixes: 
+1. generate_data_related_to_existed_files example now works well (generation data based on already existing files).
+2. Added integration tests to run examples
+3. Examples are cleaned up, unworking samples moved to 'todo'
+
 **v0.2.1**
 1. Now you can define tables as Table class object if it will be more easily for you.
 

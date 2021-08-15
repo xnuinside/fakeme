@@ -54,6 +54,15 @@ You want join it on user_id = id.
 
 It does not matter to have columns with same name you can define dependencies between tables with alias names. 
 
+TODO in next releases:
+----------------------
+
+
+#. Add integration with simple-ddl-parser to generated data from different SQL dialects
+#. Add integration with py-models-parser to generated data from different Python models
+#. Fix cases in todo folder
+#. Improve test coverage 
+
 What you can to do
 ^^^^^^^^^^^^^^^^^^
 
@@ -131,7 +140,17 @@ Docs: https://fakeme.readthedocs.io/en/latest/
 Changelog
 ---------
 
-**v0.2.0**
+**v0.2.2**
+
+Fixes:
+^^^^^^
+
+
+#. generate_data_related_to_existed_files example now works well (generation data based on already existing files).
+#. Added integration tests to run examples
+#. Examples are cleaned up, unworking samples moved to 'todo'
+
+**v0.2.1**
 
 
 #. Now you can define tables as Table class object if it will be more easily for you.

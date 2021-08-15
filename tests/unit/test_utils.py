@@ -5,9 +5,7 @@ from fakeme.utils import Table
 
 
 def test_table_no_error():
-    assert Table(
-        name="table_name", schema="tests/unittests/schemas/test_table_schema.json"
-    )
+    assert Table(name="table_name", schema="tests/unit/schemas/test_table_schema.json")
 
 
 def test_table_path_validation_error():

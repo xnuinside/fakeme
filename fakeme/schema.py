@@ -83,11 +83,21 @@ class SchemaExtractor(object):
         else:
             target_path = path
         if not os.path.isfile(target_path):
-            raise ValueError("File with schema does not exist {}".format(path))
+            raise ValueError("File with schema does not exist {}".format(target_path))
         return target_path
 
+    def get_schema_from_py_models(self, schema_path):
+        """parse python models and create JSON schema"""
+        ddl_parser = DDLParser(schema_path, table_id=self.table_id)
+        if self.dump_schema:
+            dump_path = "schemas/{}".format(self.dataset)
+            schema = ddl_parser.run(dump=self.dump_schema, dump_path=dump_path)
+        else:
+            schema = ddl_parser.run()
+        return schema
+
     def get_schema_from_ddl(self, schema_path):
-        """parse ddl and create JSON BigQuery schema"""
+        """parse ddl and create JSON schema"""
         ddl_parser = DDLParser(schema_path, table_id=self.table_id)
         if self.dump_schema:
             dump_path = "schemas/{}".format(self.dataset)
@@ -102,12 +112,24 @@ class SchemaExtractor(object):
             if schema_path.endswith(".json"):
                 with open(schema_path, "r") as schema_file:
                     schema = [Column(**column) for column in json.load(schema_file)]
-            elif schema_path.endswith(".ddl"):
+            elif schema_path.endswith(".py"):
                 schema = [
-                    Column(**column) for column in self.get_schema_from_ddl(schema_path)
+                    column(**column)
+                    for column in self.get_schema_from_py_models(schema_path)
                 ]
             else:
-                raise NotImplementedError("Supports only `.json` format")
+                extensions = [".ddl", ".hql", ".sql"]
+                for ext in extensions:
+                    if schema_path.endswith(ext):
+                        schema = [
+                            Column(**column)
+                            for column in self.get_schema_from_ddl(schema_path)
+                        ]
+                    break
+                else:
+                    raise NotImplementedError(
+                        f"Fakeme can read schemas only in '.json', '.py' & {', '.join(extensions)} formats"
+                    )
         return schema
 
     def get_schema(self, schema: Union[Dict, List, Text]):
@@ -153,8 +175,6 @@ class SchemaExtractor(object):
                         _type = self.map_type(_type)
                     field_details = {"name": key, "type": _type}
                 else:
-                    print(schema)
-                    print(key)
                     if not schema[key].get("name"):
                         schema[key]["name"] = key
                     field_details = schema[key]

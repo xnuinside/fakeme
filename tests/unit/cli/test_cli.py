@@ -1,3 +1,4 @@
+"""
 import os
 import sys
 import unittest
@@ -18,6 +19,6 @@ class TestCliFunctions(unittest.TestCase):
         sys.argv = ["fakeme", cli_config_path]
         self.assertIsNone(run_cli())
 
-
 if __name__ == "__main__":
     unittest.main()
+"""

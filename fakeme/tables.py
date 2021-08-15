@@ -38,7 +38,6 @@ class TableRunner:
         remove_old: bool = True,
     ):
         """generate data and save to the file"""
-
         cfg = config.cfg
 
         table_data = DataGenerator(

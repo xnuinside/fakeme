@@ -1,6 +1,5 @@
 ### Fakeme 
 
-
 Data Generator for Chained and Relative Data
 
 ![badge1](https://img.shields.io/pypi/v/fakeme) ![badge2](https://img.shields.io/pypi/l/fakeme) ![badge3](https://img.shields.io/pypi/pyversions/fakeme) ![workflow](https://github.com/xnuinside/fakeme/actions/workflows/main.yml/badge.svg)
@@ -35,6 +34,14 @@ You want join it on user_id = id.
 **Fakeme** will generate for you 2 tables with same values in those 2 columns. 
 
 It does not matter to have columns with same name you can define dependencies between tables with alias names. 
+
+
+## TODO in next releases:
+
+1. Add integration with simple-ddl-parser to generated data from different SQL dialects
+2. Add integration with py-models-parser to generated data from different Python models
+3. Fix cases in todo folder
+4. Improve test coverage 
 
 
 ### What you can to do
@@ -105,7 +112,13 @@ Docs: https://fakeme.readthedocs.io/en/latest/
 
 
 ## Changelog
-**v0.2.0**
+**v0.2.2**
+### Fixes: 
+1. generate_data_related_to_existed_files example now works well (generation data based on already existing files).
+2. Added integration tests to run examples
+3. Examples are cleaned up, unworking samples moved to 'todo'
+
+**v0.2.1**
 1. Now you can define tables as Table class object if it will be more easily for you.
 
 ```python
