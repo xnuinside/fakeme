@@ -5,6 +5,8 @@ from typing import List
 
 import pytest
 
+from tests.markers import LOCAL_ONLY
+
 base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 examples_folder = os.path.join(base_path, "examples")
 
@@ -41,6 +43,7 @@ def files_list(folder: str, names: List[str]) -> List[str]:
     return files
 
 
+@LOCAL_ONLY
 def test_auto_alising():
     names = ["users.json", "groups.json", "rights.json"]
     files = files_list(clean_up_folder_before_test("auto_aliasing"), names)
@@ -51,6 +54,7 @@ def test_auto_alising():
     check_files_in_folder(files)
 
 
+@LOCAL_ONLY
 def test_dict_schema_example():
     names = ["posts.json", "schemas/posts_schema.json"]
     files = files_list(clean_up_folder_before_test("dict_schema_example"), names)
@@ -61,6 +65,7 @@ def test_dict_schema_example():
     check_files_in_folder(files)
 
 
+@LOCAL_ONLY
 def test_generate_data_related_to_existed_files():
     names = [
         "cities.json",
@@ -81,6 +86,7 @@ def test_generate_data_related_to_existed_files():
     check_files_in_folder(files)
 
 
+@LOCAL_ONLY
 def test_minimal_example():
     names = ["cats.json", "dogs.json"]
     files = files_list(clean_up_folder_before_test("minimal_example"), names)
@@ -107,6 +113,7 @@ def test_multiple_tables_in_csv_format():
     check_files_in_folder(files)
 
 
+@LOCAL_ONLY
 def test_nullable_value():
     names = ["events.json"]
     files = files_list(clean_up_folder_before_test("nullable_value"), names)

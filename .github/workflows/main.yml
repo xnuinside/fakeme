@@ -44,6 +44,7 @@ jobs:
         POETRY_VIRTUALENVS_CREATE: false
     - name: Test with pytest
       run: |
+        export ENV="ci"
         pytest tests/
 
   tests_3_7:
@@ -63,6 +64,7 @@ jobs:
         POETRY_VIRTUALENVS_CREATE: false
     - name: Test with pytest
       run: |
+        export ENV="ci"
         pytest tests/
 
   tests_3_8:
@@ -82,6 +84,7 @@ jobs:
         POETRY_VIRTUALENVS_CREATE: false
     - name: Test with pytest
       run: |
+        export ENV="ci"
         pytest tests/
 
   tests_3_9:
@@ -101,4 +104,5 @@ jobs:
         POETRY_VIRTUALENVS_CREATE: false
     - name: Test with pytest
       run: |
+        export ENV="ci"
         pytest tests/

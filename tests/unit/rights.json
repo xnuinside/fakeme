@@ -1,602 +1,602 @@
 [
  {
-  "id": "5d92d1d6b07b",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. In 1989 the building was heavily damaged by fire, but it has since been restored. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. In 1989 the building was heavily damaged by fire, but it has since been restored. Its main implementation is the Glasgow Haskell Compiler.",
-  "title": "She spent her earlie",
-  "permissions": "['bfe385350848', 'bfe385350848', 'd7de0b2c2b8e', '6c0489a365b8']"
+  "id": "ef68b2bfb534",
+  "title": "Do you have any idea",
+  "description": "Do you have any idea why this is not working? Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Ports are created with the built-in function open_port. Where are my pants?",
+  "permissions": "['7b9d1c340fc0', '684477654281']"
  },
  {
-  "id": "beeae926edd2",
-  "description": "Do you come here often? The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Make me a sandwich.",
-  "title": "Do you come here oft",
-  "permissions": "[]"
+  "id": "40746406d570",
+  "title": "Tuples are container",
+  "description": "Tuples are containers for a fixed number of Erlang data types. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Make me a sandwich. Any element of a tuple can be accessed in constant time. She spent her earliest years reading classic literature, and writing poetry.",
+  "permissions": "['cef094556be0', '8ca8c69b6390']"
  },
  {
-  "id": "e3ac0de1991b",
-  "description": "Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Where are my pants? Where are my pants? Its main implementation is the Glasgow Haskell Compiler.",
-  "title": "Atoms can contain an",
-  "permissions": "['bfe385350848', '7d857fde2f64', '4ae095058554']"
- },
- {
-  "id": "1415ec13bdea",
-  "description": "Erlang is known for its designs that are well suited for systems. Make me a sandwich. I don't even care. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Ports are used to communicate with the external world.",
-  "title": "Erlang is known for ",
-  "permissions": "['57a5fe8648af', '098d28d3a3b5', 'f5b96660bcd6', '516f0a7bb8e7']"
- },
- {
-  "id": "624f78f4a66d",
-  "description": "Ports are used to communicate with the external world. Erlang is known for its designs that are well suited for systems. Atoms are used within a program to denote distinguished values. I don't even care. Do you have any idea why this is not working?",
-  "title": "Ports are used to co",
-  "permissions": "['ab043ef52c23', 'f02d0ac4f50c']"
- },
- {
-  "id": "7e108758b3c8",
-  "description": "Type classes first appeared in the Haskell programming language. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. I don't even care. Ports are used to communicate with the external world. Haskell features a type system with type inference and lazy evaluation.",
-  "title": "Type classes first a",
-  "permissions": "['2b79c17ffad1', 'b508823b3353', '63c9b643d685']"
- },
- {
-  "id": "5e229432fe1e",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. Do you come here often? Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. It is also a garbage-collected runtime system. It is also a garbage-collected runtime system.",
-  "title": "She spent her earlie",
-  "permissions": "['cdd59f0fe3c4', '8bb322fbf397', 'c5e8e2a8329b']"
- },
- {
-  "id": "7128b1609fe0",
-  "description": "Type classes first appeared in the Haskell programming language. Ports are created with the built-in function open_port. Ports are used to communicate with the external world. Ports are created with the built-in function open_port. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
-  "title": "Type classes first a",
-  "permissions": "['776b1e2cd925', 'a0835cddec2a']"
- },
- {
-  "id": "996fa82a6778",
-  "description": "I don't even care. Erlang is a general-purpose, concurrent, functional programming language. Tuples are containers for a fixed number of Erlang data types. Any element of a tuple can be accessed in constant time. Ports are used to communicate with the external world.",
-  "title": "I don't even care. E",
-  "permissions": "[]"
- },
- {
-  "id": "35717632cfec",
-  "description": "The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. I don't even care. It is also a garbage-collected runtime system. She spent her earliest years reading classic literature, and writing poetry. He looked inquisitively at his keyboard and wrote another sentence.",
-  "title": "The Galactic Empire ",
-  "permissions": "['3440e4874b51', 'b82692c25aa6', 'a0835cddec2a']"
- },
- {
-  "id": "eae06c5be5f4",
-  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. The arguments can be primitive data types or compound data types. Make me a sandwich. Ports are used to communicate with the external world. Make me a sandwich.",
+  "id": "432c485e1b10",
   "title": "The syntax {D1,D2,..",
-  "permissions": "['97b2d5bfe336', 'bde3f021c7ec']"
+  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. In 1989 the building was heavily damaged by fire, but it has since been restored. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Make me a sandwich.",
+  "permissions": "['ff77c890dded']"
  },
  {
-  "id": "984876b37852",
-  "description": "Erlang is known for its designs that are well suited for systems. He looked inquisitively at his keyboard and wrote another sentence. Type classes first appeared in the Haskell programming language. I don't even care. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
+  "id": "9dc2c05e31a4",
   "title": "Erlang is known for ",
-  "permissions": "['0a434f4f1cb7', 'b2e5ce0dc036', '2763741fdbc7']"
+  "description": "Erlang is known for its designs that are well suited for systems. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. In 1989 the building was heavily damaged by fire, but it has since been restored. Type classes first appeared in the Haskell programming language. He looked inquisitively at his keyboard and wrote another sentence.",
+  "permissions": "['586882099519', 'e026ed867c64']"
  },
  {
-  "id": "b99d070d87dc",
-  "description": "Erlang is a general-purpose, concurrent, functional programming language. In 1989 the building was heavily damaged by fire, but it has since been restored. She spent her earliest years reading classic literature, and writing poetry. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Erlang is a general-purpose, concurrent, functional programming language.",
+  "id": "30845cd18a8f",
+  "title": "The syntax {D1,D2,..",
+  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. I don't even care. He looked inquisitively at his keyboard and wrote another sentence. It is also a garbage-collected runtime system. Do you have any idea why this is not working?",
+  "permissions": "['44f4f3c94d36']"
+ },
+ {
+  "id": "07b77b009097",
+  "title": "Erlang is known for ",
+  "description": "Erlang is known for its designs that are well suited for systems. Make me a sandwich. Atoms are used within a program to denote distinguished values. Erlang is a general-purpose, concurrent, functional programming language. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
+  "permissions": "['58d126d387eb', 'f071a011fe07', 'b5bead2606cd', '189448ae7972']"
+ },
+ {
+  "id": "b14ca8fa38d1",
   "title": "Erlang is a general-",
+  "description": "Erlang is a general-purpose, concurrent, functional programming language. Where are my pants? The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Atoms are used within a program to denote distinguished values. The arguments can be primitive data types or compound data types.",
   "permissions": "[]"
  },
  {
-  "id": "7a55b0ea488e",
-  "description": "Make me a sandwich. Ports are used to communicate with the external world. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. The arguments can be primitive data types or compound data types. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.",
-  "title": "Make me a sandwich. ",
-  "permissions": "['9af5aba9e23b', 'e9e2e64247a4', 'f25a4ec4092e', 'b46dad97b4b9']"
- },
- {
-  "id": "30b82c543d66",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. I don't even care. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. In 1989 the building was heavily damaged by fire, but it has since been restored. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\"",
-  "title": "She spent her earlie",
-  "permissions": "['509d4a933245', 'c91b4bcd69ea', '0bae88634082', '65964fffb677']"
- },
- {
-  "id": "c5cc8052c096",
-  "description": "Atoms are used within a program to denote distinguished values. Ports are created with the built-in function open_port. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Where are my pants? Haskell features a type system with type inference and lazy evaluation.",
-  "title": "Atoms are used withi",
-  "permissions": "['16e26eef1b42']"
- },
- {
-  "id": "938b41a9f925",
-  "description": "The arguments can be primitive data types or compound data types. Make me a sandwich. Erlang is a general-purpose, concurrent, functional programming language. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Erlang is known for its designs that are well suited for systems.",
-  "title": "The arguments can be",
-  "permissions": "['d7de0b2c2b8e', 'b82692c25aa6', '705c3e5334cb', '27db9771e106']"
- },
- {
-  "id": "fa673b6b53e1",
-  "description": "Atoms are used within a program to denote distinguished values. Do you have any idea why this is not working? She spent her earliest years reading classic literature, and writing poetry. Make me a sandwich. She spent her earliest years reading classic literature, and writing poetry.",
-  "title": "Atoms are used withi",
-  "permissions": "[]"
- },
- {
-  "id": "9e6fdbc322a3",
-  "description": "The arguments can be primitive data types or compound data types. Erlang is known for its designs that are well suited for systems. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. It is also a garbage-collected runtime system. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s.",
-  "title": "The arguments can be",
-  "permissions": "['631051708e44']"
- },
- {
-  "id": "cdbc73f1dcff",
-  "description": "Ports are used to communicate with the external world. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" She spent her earliest years reading classic literature, and writing poetry. Do you come here often? Erlang is known for its designs that are well suited for systems.",
-  "title": "Ports are used to co",
-  "permissions": "['63c9b643d685', '7d857fde2f64']"
- },
- {
-  "id": "8c618a4a145f",
-  "description": "It is also a garbage-collected runtime system. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Haskell features a type system with type inference and lazy evaluation. It is also a garbage-collected runtime system. Atoms are used within a program to denote distinguished values.",
-  "title": "It is also a garbage",
-  "permissions": "[]"
- },
- {
-  "id": "200c1fdd6e15",
-  "description": "Erlang is known for its designs that are well suited for systems. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Erlang is known for its designs that are well suited for systems. Ports are created with the built-in function open_port.",
+  "id": "cd56a13f336b",
   "title": "Erlang is known for ",
-  "permissions": "['b2601adc5f07', '80c9de79efa4', '99f5bf880f0d', 'b82692c25aa6']"
+  "description": "Erlang is known for its designs that are well suited for systems. Ports are used to communicate with the external world. Any element of a tuple can be accessed in constant time. In 1989 the building was heavily damaged by fire, but it has since been restored. Ports are used to communicate with the external world.",
+  "permissions": "['979aad6c14f4', '67bc23b9913c']"
  },
  {
-  "id": "beeeed03cedc",
-  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Type classes first appeared in the Haskell programming language. Do you have any idea why this is not working? The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. The arguments can be primitive data types or compound data types.",
-  "title": "They are written as ",
-  "permissions": "['b6036901653b', 'a469400afa62']"
+  "id": "f47e4ff0a4e9",
+  "title": "Erlang is known for ",
+  "description": "Erlang is known for its designs that are well suited for systems. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Ports are used to communicate with the external world. Any element of a tuple can be accessed in constant time.",
+  "permissions": "['888fc25fb89c', '778798c59987', '1c96f92a0651', '98a75e330262']"
  },
  {
-  "id": "73bed2021fbe",
-  "description": "Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" The arguments can be primitive data types or compound data types. Tuples are containers for a fixed number of Erlang data types. Any element of a tuple can be accessed in constant time. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s.",
-  "title": "Messages can be sent",
-  "permissions": "['e2def385ee46']"
- },
- {
-  "id": "1af81347f13f",
-  "description": "Make me a sandwich. It is also a garbage-collected runtime system. He looked inquisitively at his keyboard and wrote another sentence. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" I don't even care.",
+  "id": "3e8160a908f8",
   "title": "Make me a sandwich. ",
+  "description": "Make me a sandwich. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Erlang is a general-purpose, concurrent, functional programming language. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
   "permissions": "[]"
  },
  {
-  "id": "856a8789b30b",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Where are my pants? Do you come here often? Ports are created with the built-in function open_port.",
-  "title": "She spent her earlie",
-  "permissions": "['e608e807ad95', '44d0a07329c7']"
- },
- {
-  "id": "10593f77851d",
-  "description": "Make me a sandwich. Make me a sandwich. Ports are used to communicate with the external world. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing.",
-  "title": "Make me a sandwich. ",
-  "permissions": "['c91b4bcd69ea', '21dd2282447e', '4442398cfbf5']"
- },
- {
-  "id": "2829c8b1cdc8",
-  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. In 1989 the building was heavily damaged by fire, but it has since been restored. It is also a garbage-collected runtime system. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s.",
-  "title": "The syntax {D1,D2,..",
-  "permissions": "['a469400afa62', 'b82692c25aa6']"
- },
- {
-  "id": "244fea97ca2b",
-  "description": "The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Ports are created with the built-in function open_port. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" I don't even care. It is also a garbage-collected runtime system.",
-  "title": "The Galactic Empire ",
-  "permissions": "['726e6597c6eb', '2b9b759d4c2e']"
- },
- {
-  "id": "c708a23ba510",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. She spent her earliest years reading classic literature, and writing poetry. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Do you have any idea why this is not working? The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
-  "title": "She spent her earlie",
-  "permissions": "['9c642916573a', '9c642916573a', '2763741fdbc7']"
- },
- {
-  "id": "0ad93cd34f04",
-  "description": "I don't even care. Haskell features a type system with type inference and lazy evaluation. Ports are created with the built-in function open_port. Ports are used to communicate with the external world. In 1989 the building was heavily damaged by fire, but it has since been restored.",
-  "title": "I don't even care. H",
-  "permissions": "['3440e4874b51', '5e34f240b4b8']"
- },
- {
-  "id": "a8cf5d149a92",
-  "description": "Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. He looked inquisitively at his keyboard and wrote another sentence. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
-  "title": "Atoms can contain an",
-  "permissions": "['87a1ee8f4464', '509d4a933245', 'b2e5ce0dc036']"
- },
- {
-  "id": "3cb4b4dc9bf6",
-  "description": "In 1989 the building was heavily damaged by fire, but it has since been restored. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Erlang is known for its designs that are well suited for systems. Where are my pants? Ports are used to communicate with the external world.",
-  "title": "In 1989 the building",
-  "permissions": "['4442398cfbf5']"
- },
- {
-  "id": "c4504e9c97bb",
-  "description": "Erlang is known for its designs that are well suited for systems. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Make me a sandwich. She spent her earliest years reading classic literature, and writing poetry. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.",
-  "title": "Erlang is known for ",
-  "permissions": "['2b5f31016a25']"
- },
- {
-  "id": "ba42a88d0bab",
-  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. It is also a garbage-collected runtime system. I don't even care. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. He looked inquisitively at his keyboard and wrote another sentence.",
-  "title": "The syntax {D1,D2,..",
-  "permissions": "['16e26eef1b42', 'f5b96660bcd6']"
- },
- {
-  "id": "af65904ea1ea",
-  "description": "The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. The arguments can be primitive data types or compound data types. Ports are created with the built-in function open_port. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Type classes first appeared in the Haskell programming language.",
-  "title": "The sequential subse",
-  "permissions": "['509d4a933245', 'bfe385350848']"
- },
- {
-  "id": "e840303a5446",
-  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Make me a sandwich. Erlang is a general-purpose, concurrent, functional programming language. Atoms are used within a program to denote distinguished values. Haskell features a type system with type inference and lazy evaluation.",
-  "title": "They are written as ",
-  "permissions": "['16e26eef1b42']"
- },
- {
-  "id": "2306f805fa8f",
-  "description": "Do you have any idea why this is not working? The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. She spent her earliest years reading classic literature, and writing poetry. Tuples are containers for a fixed number of Erlang data types. Any element of a tuple can be accessed in constant time.",
-  "title": "Do you have any idea",
-  "permissions": "['378b10f29f1e']"
- },
- {
-  "id": "32751ac9bf92",
-  "description": "In 1989 the building was heavily damaged by fire, but it has since been restored. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Haskell features a type system with type inference and lazy evaluation. Ports are used to communicate with the external world. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s.",
-  "title": "In 1989 the building",
-  "permissions": "['79b112b7162d', 'f5d54cd195f0', '682904e410e8']"
- },
- {
-  "id": "dc5f4d7ff051",
-  "description": "Ports are used to communicate with the external world. It is also a garbage-collected runtime system. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Its main implementation is the Glasgow Haskell Compiler. Tuples are containers for a fixed number of Erlang data types.",
-  "title": "Ports are used to co",
-  "permissions": "['513caf8f8771', 'fba80c33bd33', '9af5aba9e23b']"
- },
- {
-  "id": "2d29b488a31b",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. Make me a sandwich. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Haskell features a type system with type inference and lazy evaluation.",
-  "title": "She spent her earlie",
-  "permissions": "['00fbebe84000', 'b6036901653b', '64dcf247ecda', '03a765eea349']"
- },
- {
-  "id": "1cc44d44eb69",
-  "description": "Where are my pants? He looked inquisitively at his keyboard and wrote another sentence. Ports are created with the built-in function open_port. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Erlang is known for its designs that are well suited for systems.",
+  "id": "ec08dd2bac46",
   "title": "Where are my pants? ",
-  "permissions": "[]"
+  "description": "Where are my pants? The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Its main implementation is the Glasgow Haskell Compiler. It is also a garbage-collected runtime system. Any element of a tuple can be accessed in constant time.",
+  "permissions": "['9e4455b4f87f', '1c96f92a0651', '586882099519', 'b1aafba1a0fa']"
  },
  {
-  "id": "e39f2ec37aa1",
-  "description": "Type classes first appeared in the Haskell programming language. Tuples are containers for a fixed number of Erlang data types. Atoms are used within a program to denote distinguished values. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Ports are created with the built-in function open_port.",
-  "title": "Type classes first a",
-  "permissions": "['513caf8f8771', '7d857fde2f64']"
- },
- {
-  "id": "bf93d87346d1",
-  "description": "In 1989 the building was heavily damaged by fire, but it has since been restored. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Tuples are containers for a fixed number of Erlang data types. Ports are used to communicate with the external world. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
+  "id": "629a7e026c20",
   "title": "In 1989 the building",
-  "permissions": "['27db9771e106', 'a0835cddec2a']"
+  "description": "In 1989 the building was heavily damaged by fire, but it has since been restored. It is also a garbage-collected runtime system. Its main implementation is the Glasgow Haskell Compiler. She spent her earliest years reading classic literature, and writing poetry. Its main implementation is the Glasgow Haskell Compiler.",
+  "permissions": "['0840dfae65b1', '096024277840', '5674b9a8c51c']"
  },
  {
-  "id": "092f635352dc",
-  "description": "Haskell features a type system with type inference and lazy evaluation. He looked inquisitively at his keyboard and wrote another sentence. Its main implementation is the Glasgow Haskell Compiler. Erlang is a general-purpose, concurrent, functional programming language. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s.",
-  "title": "Haskell features a t",
-  "permissions": "['21dd2282447e', 'b2601adc5f07', 'ea5d7873dc72', '5e34f240b4b8']"
- },
- {
-  "id": "2304127dc5e2",
-  "description": "Tuples are containers for a fixed number of Erlang data types. Ports are created with the built-in function open_port. Any element of a tuple can be accessed in constant time. I don't even care. Atoms are used within a program to denote distinguished values.",
-  "title": "Tuples are container",
-  "permissions": "['fc53e1e116c3', '2b5f31016a25', 'd4509a4419b3']"
- },
- {
-  "id": "bc809f493182",
-  "description": "Its main implementation is the Glasgow Haskell Compiler. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. I don't even care. Haskell features a type system with type inference and lazy evaluation. Atoms are used within a program to denote distinguished values.",
-  "title": "Its main implementat",
-  "permissions": "['a0835cddec2a']"
- },
- {
-  "id": "619809d21f84",
-  "description": "The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Atoms are used within a program to denote distinguished values. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. In 1989 the building was heavily damaged by fire, but it has since been restored. In 1989 the building was heavily damaged by fire, but it has since been restored.",
-  "title": "The Galactic Empire ",
-  "permissions": "['7d578b7518f3']"
- },
- {
-  "id": "d5c4d42877da",
-  "description": "The arguments can be primitive data types or compound data types. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. He looked inquisitively at his keyboard and wrote another sentence. Tuples are containers for a fixed number of Erlang data types. Ports are created with the built-in function open_port.",
-  "title": "The arguments can be",
-  "permissions": "['a715b5b4b921', '6c0489a365b8', '4ae095058554']"
- },
- {
-  "id": "b8aaa2c90b11",
-  "description": "Ports are created with the built-in function open_port. She spent her earliest years reading classic literature, and writing poetry. Its main implementation is the Glasgow Haskell Compiler. He looked inquisitively at his keyboard and wrote another sentence. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
-  "title": "Ports are created wi",
-  "permissions": "[]"
- },
- {
-  "id": "e5ae4c6e0ca1",
-  "description": "Type classes first appeared in the Haskell programming language. Type classes first appeared in the Haskell programming language. Make me a sandwich. Atoms are used within a program to denote distinguished values. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing.",
-  "title": "Type classes first a",
-  "permissions": "['850a9aa18c06']"
- },
- {
-  "id": "1b0fab2242d6",
-  "description": "Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Haskell features a type system with type inference and lazy evaluation. Make me a sandwich. In 1989 the building was heavily damaged by fire, but it has since been restored. Tuples are containers for a fixed number of Erlang data types.",
-  "title": "Haskell is a standar",
-  "permissions": "['705c3e5334cb', '00fbebe84000']"
- },
- {
-  "id": "5063ec797076",
-  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Erlang is a general-purpose, concurrent, functional programming language. He looked inquisitively at his keyboard and wrote another sentence. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
-  "title": "They are written as ",
-  "permissions": "['cdd59f0fe3c4', '79b112b7162d', '65964fffb677', '4442398cfbf5']"
- },
- {
-  "id": "b68b71d69d91",
-  "description": "Do you come here often? Type classes first appeared in the Haskell programming language. It is also a garbage-collected runtime system. Erlang is a general-purpose, concurrent, functional programming language. Erlang is known for its designs that are well suited for systems.",
-  "title": "Do you come here oft",
-  "permissions": "['a0835cddec2a', '2763741fdbc7', 'a53d6f97a387', '9af5aba9e23b']"
- },
- {
-  "id": "f0127b78f269",
-  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Where are my pants? Tuples are containers for a fixed number of Erlang data types. Do you have any idea why this is not working? Tuples are containers for a fixed number of Erlang data types.",
-  "title": "They are written as ",
-  "permissions": "['c453b3e580da', '9fdb73e37460']"
- },
- {
-  "id": "479dc53a06a3",
-  "description": "Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. He looked inquisitively at his keyboard and wrote another sentence. Type classes first appeared in the Haskell programming language. Any element of a tuple can be accessed in constant time.",
-  "title": "Initially composing ",
-  "permissions": "['bd2be4db5691']"
- },
- {
-  "id": "e9fa7fd4e452",
-  "description": "Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Haskell features a type system with type inference and lazy evaluation. Tuples are containers for a fixed number of Erlang data types. Ports are created with the built-in function open_port. Its main implementation is the Glasgow Haskell Compiler.",
-  "title": "Initially composing ",
-  "permissions": "['bd2be4db5691']"
- },
- {
-  "id": "2aef0177aa5a",
-  "description": "He looked inquisitively at his keyboard and wrote another sentence. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Ports are used to communicate with the external world. She spent her earliest years reading classic literature, and writing poetry. Do you come here often?",
-  "title": "He looked inquisitiv",
-  "permissions": "['396999cb9a9f', 'e2def385ee46', '7b7e6d7e7ef5', 'b6036901653b']"
- },
- {
-  "id": "49d3305536c9",
-  "description": "Ports are created with the built-in function open_port. She spent her earliest years reading classic literature, and writing poetry. Ports are created with the built-in function open_port. Do you have any idea why this is not working? They are written as strings of consecutive alphanumeric characters, the first character being lowercase.",
-  "title": "Ports are created wi",
-  "permissions": "[]"
- },
- {
-  "id": "7978b50d206d",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. Make me a sandwich. Where are my pants? Atoms are used within a program to denote distinguished values. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
-  "title": "She spent her earlie",
-  "permissions": "['b2601adc5f07', '65964fffb677', '9c642916573a', '516f0a7bb8e7']"
- },
- {
-  "id": "dab631cabad9",
-  "description": "Do you come here often? Erlang is known for its designs that are well suited for systems. Erlang is known for its designs that are well suited for systems. He looked inquisitively at his keyboard and wrote another sentence. Do you have any idea why this is not working?",
-  "title": "Do you come here oft",
-  "permissions": "['776b1e2cd925', '65964fffb677', '97b2d5bfe336']"
- },
- {
-  "id": "5d1b3b4a63a6",
-  "description": "Do you have any idea why this is not working? The arguments can be primitive data types or compound data types. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Erlang is a general-purpose, concurrent, functional programming language.",
-  "title": "Do you have any idea",
-  "permissions": "['2763741fdbc7', '7d857fde2f64', 'f5d54cd195f0']"
- },
- {
-  "id": "6aeba7fff425",
-  "description": "He looked inquisitively at his keyboard and wrote another sentence. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Make me a sandwich. Erlang is a general-purpose, concurrent, functional programming language.",
-  "title": "He looked inquisitiv",
-  "permissions": "[]"
- },
- {
-  "id": "ef3ba3452e68",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. I don't even care. He looked inquisitively at his keyboard and wrote another sentence. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Tuples are containers for a fixed number of Erlang data types.",
-  "title": "She spent her earlie",
-  "permissions": "['a0835cddec2a', '79b112b7162d', 'bfe385350848', '44d0a07329c7']"
- },
- {
-  "id": "c0679c581094",
-  "description": "He looked inquisitively at his keyboard and wrote another sentence. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Atoms are used within a program to denote distinguished values. Do you have any idea why this is not working?",
-  "title": "He looked inquisitiv",
-  "permissions": "['a715b5b4b921']"
- },
- {
-  "id": "f861c0370725",
-  "description": "Ports are used to communicate with the external world. Haskell features a type system with type inference and lazy evaluation. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Haskell features a type system with type inference and lazy evaluation. Tuples are containers for a fixed number of Erlang data types.",
-  "title": "Ports are used to co",
-  "permissions": "['f875b3197b18']"
- },
- {
-  "id": "b07d8d0e7749",
-  "description": "Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Where are my pants? Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Erlang is a general-purpose, concurrent, functional programming language.",
-  "title": "Haskell is a standar",
-  "permissions": "['074c255a0dfa', '7882a3db4bf6', 'ab043ef52c23']"
- },
- {
-  "id": "23d83273c8d8",
-  "description": "Type classes first appeared in the Haskell programming language. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. It is also a garbage-collected runtime system. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Make me a sandwich.",
-  "title": "Type classes first a",
-  "permissions": "['b2601adc5f07', 'd7ca4260bfd3']"
- },
- {
-  "id": "04f4833b5271",
-  "description": "It is also a garbage-collected runtime system. Ports are used to communicate with the external world. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Any element of a tuple can be accessed in constant time. Tuples are containers for a fixed number of Erlang data types.",
-  "title": "It is also a garbage",
-  "permissions": "['63c9b643d685', 'e4063475af54', 'b95cc7911ee4']"
- },
- {
-  "id": "d82a7f390a72",
-  "description": "Do you come here often? Make me a sandwich. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. He looked inquisitively at his keyboard and wrote another sentence. Do you have any idea why this is not working?",
-  "title": "Do you come here oft",
-  "permissions": "['63c9b643d685', '53f47d26401e', '0e2d120ad720', '7d578b7518f3']"
- },
- {
-  "id": "debfc29ebc5f",
-  "description": "He looked inquisitively at his keyboard and wrote another sentence. Do you have any idea why this is not working? Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Do you have any idea why this is not working? Erlang is known for its designs that are well suited for systems.",
-  "title": "He looked inquisitiv",
-  "permissions": "['bde3f021c7ec']"
- },
- {
-  "id": "d042b57195de",
-  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. The arguments can be primitive data types or compound data types. She spent her earliest years reading classic literature, and writing poetry. Erlang is a general-purpose, concurrent, functional programming language. I don't even care.",
-  "title": "They are written as ",
-  "permissions": "['ea5d7873dc72']"
- },
- {
-  "id": "412338b48baa",
-  "description": "I don't even care. Ports are used to communicate with the external world. Make me a sandwich. Do you have any idea why this is not working? Any element of a tuple can be accessed in constant time.",
-  "title": "I don't even care. P",
-  "permissions": "[]"
- },
- {
-  "id": "9d972552c069",
-  "description": "She spent her earliest years reading classic literature, and writing poetry. Erlang is a general-purpose, concurrent, functional programming language. Do you come here often? In 1989 the building was heavily damaged by fire, but it has since been restored. Tuples are containers for a fixed number of Erlang data types.",
-  "title": "She spent her earlie",
-  "permissions": "['6865ae640e7e', 'b95cc7911ee4', '0e2d120ad720', '726e6597c6eb']"
- },
- {
-  "id": "146d2ee136ac",
-  "description": "I don't even care. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Where are my pants? They are written as strings of consecutive alphanumeric characters, the first character being lowercase. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
-  "title": "I don't even care. T",
-  "permissions": "['b82692c25aa6', '631051708e44', 'b6036901653b']"
- },
- {
-  "id": "0e8b434e907c",
-  "description": "In 1989 the building was heavily damaged by fire, but it has since been restored. It is also a garbage-collected runtime system. Erlang is known for its designs that are well suited for systems. She spent her earliest years reading classic literature, and writing poetry. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
-  "title": "In 1989 the building",
-  "permissions": "['44d0a07329c7', '7882a3db4bf6', 'd4509a4419b3', '0e7d8774b527']"
- },
- {
-  "id": "fb5e6a836d66",
-  "description": "Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. I don't even care. I don't even care. Any element of a tuple can be accessed in constant time. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
-  "title": "Atoms can contain an",
-  "permissions": "['378b10f29f1e', '79b112b7162d', 'f5b96660bcd6']"
- },
- {
-  "id": "2b5383ea2e28",
-  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Ports are used to communicate with the external world. Tuples are containers for a fixed number of Erlang data types. Do you have any idea why this is not working? It is also a garbage-collected runtime system.",
-  "title": "They are written as ",
-  "permissions": "['5f901f602030']"
- },
- {
-  "id": "da61ae3de516",
-  "description": "I don't even care. Do you have any idea why this is not working? It is also a garbage-collected runtime system. She spent her earliest years reading classic literature, and writing poetry. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
-  "title": "I don't even care. D",
-  "permissions": "['378b10f29f1e', '2763741fdbc7']"
- },
- {
-  "id": "1f4f41c8b828",
-  "description": "Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Any element of a tuple can be accessed in constant time. Make me a sandwich. Ports are created with the built-in function open_port. Ports are created with the built-in function open_port.",
-  "title": "Atoms can contain an",
-  "permissions": "['27db9771e106', '6c0489a365b8', 'ea5d7873dc72']"
- },
- {
-  "id": "a52629c9d6e9",
-  "description": "Atoms are used within a program to denote distinguished values. Atoms are used within a program to denote distinguished values. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. He looked inquisitively at his keyboard and wrote another sentence. Make me a sandwich.",
-  "title": "Atoms are used withi",
-  "permissions": "['b6036901653b']"
- },
- {
-  "id": "0d5dd12de78f",
-  "description": "Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. In 1989 the building was heavily damaged by fire, but it has since been restored. Ports are used to communicate with the external world.",
-  "title": "Initially composing ",
-  "permissions": "['631051708e44', '4ae095058554', 'b82692c25aa6']"
- },
- {
-  "id": "9088a4bf1897",
-  "description": "Type classes first appeared in the Haskell programming language. Haskell features a type system with type inference and lazy evaluation. Where are my pants? They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\"",
-  "title": "Type classes first a",
-  "permissions": "['850a9aa18c06', 'bfe385350848']"
- },
- {
-  "id": "db655ec2f6e7",
-  "description": "Erlang is known for its designs that are well suited for systems. Tuples are containers for a fixed number of Erlang data types. The arguments can be primitive data types or compound data types. Do you come here often? She spent her earliest years reading classic literature, and writing poetry.",
+  "id": "7f69a00cd238",
   "title": "Erlang is known for ",
-  "permissions": "['0e7d8774b527', 'b6036901653b', '97b2d5bfe336', '65964fffb677']"
- },
- {
-  "id": "88f9d666bb5b",
-  "description": "The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Erlang is known for its designs that are well suited for systems. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Atoms are used within a program to denote distinguished values.",
-  "title": "The sequential subse",
-  "permissions": "['9af5aba9e23b', '516f0a7bb8e7']"
- },
- {
-  "id": "a117d461d30a",
-  "description": "Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. She spent her earliest years reading classic literature, and writing poetry. Ports are created with the built-in function open_port. Where are my pants? She spent her earliest years reading classic literature, and writing poetry.",
-  "title": "Initially composing ",
+  "description": "Erlang is known for its designs that are well suited for systems. Erlang is known for its designs that are well suited for systems. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Erlang is a general-purpose, concurrent, functional programming language. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
   "permissions": "[]"
  },
  {
-  "id": "69b5e6b90b9e",
-  "description": "Do you come here often? Any element of a tuple can be accessed in constant time. Do you have any idea why this is not working? Do you have any idea why this is not working? Type classes first appeared in the Haskell programming language.",
-  "title": "Do you come here oft",
-  "permissions": "['5f901f602030', 'bde3f021c7ec']"
+  "id": "6ffa574d66cf",
+  "title": "Atoms can contain an",
+  "description": "Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Atoms are used within a program to denote distinguished values. She spent her earliest years reading classic literature, and writing poetry. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Where are my pants?",
+  "permissions": "['448a08674c5b']"
  },
  {
-  "id": "70389dadfbcd",
-  "description": "The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Ports are used to communicate with the external world. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. The arguments can be primitive data types or compound data types. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
-  "title": "The sequential subse",
-  "permissions": "['57a5fe8648af']"
+  "id": "4f41287f4642",
+  "title": "They are written as ",
+  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Tuples are containers for a fixed number of Erlang data types. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. In 1989 the building was heavily damaged by fire, but it has since been restored. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.",
+  "permissions": "['c70c05bd7eeb', 'e553d437e574', '7550eb59cf73', 'cef094556be0']"
  },
  {
-  "id": "4da09efcf622",
-  "description": "I don't even care. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Where are my pants? They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Haskell features a type system with type inference and lazy evaluation.",
-  "title": "I don't even care. M",
-  "permissions": "['49d63c027384', 'e9e2e64247a4']"
+  "id": "f9e38dccaf01",
+  "title": "Haskell is a standar",
+  "description": "Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. It is also a garbage-collected runtime system. I don't even care. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
+  "permissions": "[]"
  },
  {
-  "id": "e62475e5e01b",
-  "description": "Atoms are used within a program to denote distinguished values. It is also a garbage-collected runtime system. Do you have any idea why this is not working? Any element of a tuple can be accessed in constant time. She spent her earliest years reading classic literature, and writing poetry.",
-  "title": "Atoms are used withi",
-  "permissions": "['5f901f602030', 'a0835cddec2a', '2b9b759d4c2e']"
+  "id": "650eb70e6592",
+  "title": "Haskell features a t",
+  "description": "Haskell features a type system with type inference and lazy evaluation. He looked inquisitively at his keyboard and wrote another sentence. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Any element of a tuple can be accessed in constant time. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing.",
+  "permissions": "['dafcff5ec18d', '67bc23b9913c']"
  },
  {
-  "id": "69fc6f4f3eb1",
-  "description": "The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Its main implementation is the Glasgow Haskell Compiler. He looked inquisitively at his keyboard and wrote another sentence. In 1989 the building was heavily damaged by fire, but it has since been restored.",
+  "id": "40c8cec1c0e8",
   "title": "The Galactic Empire ",
-  "permissions": "['f25a4ec4092e', 'd7de0b2c2b8e']"
+  "description": "The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. It is also a garbage-collected runtime system. Do you have any idea why this is not working? In 1989 the building was heavily damaged by fire, but it has since been restored.",
+  "permissions": "['765beb4b7e10', '765beb4b7e10', '2b00474f3b19', 'c147bb818422']"
  },
  {
-  "id": "abd1cdecf5d8",
-  "description": "Ports are used to communicate with the external world. Type classes first appeared in the Haskell programming language. Make me a sandwich. Where are my pants? Ports are created with the built-in function open_port.",
-  "title": "Ports are used to co",
-  "permissions": "['850a9aa18c06', 'ab043ef52c23', '2b5f31016a25']"
- },
- {
-  "id": "c1c6b52916f0",
-  "description": "Do you come here often? The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Erlang is known for its designs that are well suited for systems. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing.",
+  "id": "bf21ee1b140a",
   "title": "Do you come here oft",
-  "permissions": "['f875b3197b18', 'b46dad97b4b9', 'bfe385350848', '21dd2282447e']"
+  "description": "Do you come here often? Tuples are containers for a fixed number of Erlang data types. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Atoms are used within a program to denote distinguished values. I don't even care.",
+  "permissions": "['e8d534f9a156', '684477654281', '07f0d6bc9a06']"
  },
  {
-  "id": "8587e51618e7",
-  "description": "Ports are created with the built-in function open_port. Where are my pants? In 1989 the building was heavily damaged by fire, but it has since been restored. Ports are used to communicate with the external world. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
-  "title": "Ports are created wi",
-  "permissions": "['a0835cddec2a', '776b1e2cd925', 'fba80c33bd33']"
+  "id": "be1fcc538868",
+  "title": "The Galactic Empire ",
+  "description": "The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Where are my pants? The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Type classes first appeared in the Haskell programming language.",
+  "permissions": "['dc07227372f8', 'b5bead2606cd', 'c70c05bd7eeb']"
  },
  {
-  "id": "88e94498cdc0",
-  "description": "The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Do you have any idea why this is not working? Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Haskell features a type system with type inference and lazy evaluation.",
-  "title": "The sequential subse",
-  "permissions": "['bc6c84c8b040', '7d857fde2f64', '0bae88634082', 'b95cc7911ee4']"
+  "id": "95ae4082fc3b",
+  "title": "I don't even care. A",
+  "description": "I don't even care. Atoms are used within a program to denote distinguished values. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Do you come here often? I don't even care.",
+  "permissions": "['e553d437e574', 'e61ae307b442']"
  },
  {
-  "id": "5494a4ad2a60",
-  "description": "The arguments can be primitive data types or compound data types. Atoms are used within a program to denote distinguished values. I don't even care. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.",
-  "title": "The arguments can be",
-  "permissions": "['e2def385ee46']"
- },
- {
-  "id": "51d41ddebfb3",
-  "description": "Tuples are containers for a fixed number of Erlang data types. Type classes first appeared in the Haskell programming language. Any element of a tuple can be accessed in constant time. I don't even care. The arguments can be primitive data types or compound data types.",
-  "title": "Tuples are container",
-  "permissions": "['cdd59f0fe3c4']"
- },
- {
-  "id": "186134c8fa86",
-  "description": "Any element of a tuple can be accessed in constant time. He looked inquisitively at his keyboard and wrote another sentence. Ports are created with the built-in function open_port. She spent her earliest years reading classic literature, and writing poetry. She spent her earliest years reading classic literature, and writing poetry.",
-  "title": "Any element of a tup",
+  "id": "e5d2a2830422",
+  "title": "Atoms are used withi",
+  "description": "Atoms are used within a program to denote distinguished values. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Where are my pants? Its main implementation is the Glasgow Haskell Compiler. Any element of a tuple can be accessed in constant time.",
   "permissions": "[]"
  },
  {
-  "id": "60efff0a9034",
-  "description": "Any element of a tuple can be accessed in constant time. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Ports are created with the built-in function open_port. Haskell features a type system with type inference and lazy evaluation. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s.",
-  "title": "Any element of a tup",
-  "permissions": "['4442398cfbf5']"
+  "id": "d71d2ba946e0",
+  "title": "The sequential subse",
+  "description": "The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Ports are created with the built-in function open_port. Erlang is a general-purpose, concurrent, functional programming language. Ports are used to communicate with the external world. She spent her earliest years reading classic literature, and writing poetry.",
+  "permissions": "['59f54cfa8e58', '448a08674c5b', 'c147bb818422']"
  },
  {
-  "id": "062c69dcf62b",
-  "description": "The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Ports are created with the built-in function open_port. She spent her earliest years reading classic literature, and writing poetry. Atoms are used within a program to denote distinguished values. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing.",
+  "id": "3f00a69fb329",
+  "title": "It is also a garbage",
+  "description": "It is also a garbage-collected runtime system. He looked inquisitively at his keyboard and wrote another sentence. Do you have any idea why this is not working? Do you come here often? They are written as strings of consecutive alphanumeric characters, the first character being lowercase.",
+  "permissions": "['e553d437e574', '58d126d387eb', 'e026ed867c64', '189448ae7972']"
+ },
+ {
+  "id": "3af5b751b761",
+  "title": "The syntax {D1,D2,..",
+  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. I don't even care. The arguments can be primitive data types or compound data types. He looked inquisitively at his keyboard and wrote another sentence. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing.",
+  "permissions": "['d56cad52f059', '8ca8c69b6390']"
+ },
+ {
+  "id": "59062ee1c878",
+  "title": "I don't even care. H",
+  "description": "I don't even care. Haskell features a type system with type inference and lazy evaluation. Tuples are containers for a fixed number of Erlang data types. Where are my pants? He looked inquisitively at his keyboard and wrote another sentence.",
+  "permissions": "[]"
+ },
+ {
+  "id": "eda615c4bb5b",
+  "title": "Ports are used to co",
+  "description": "Ports are used to communicate with the external world. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Do you come here often? Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Make me a sandwich.",
+  "permissions": "[]"
+ },
+ {
+  "id": "28532accf16e",
+  "title": "The syntax {D1,D2,..",
+  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Erlang is known for its designs that are well suited for systems. She spent her earliest years reading classic literature, and writing poetry. Type classes first appeared in the Haskell programming language. The arguments can be primitive data types or compound data types.",
+  "permissions": "[]"
+ },
+ {
+  "id": "ef8887222128",
+  "title": "Messages can be sent",
+  "description": "Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Do you have any idea why this is not working? Ports are created with the built-in function open_port. They are written as strings of consecutive alphanumeric characters, the first character being lowercase.",
+  "permissions": "[]"
+ },
+ {
+  "id": "c9b3db2d6c3b",
+  "title": "Ports are used to co",
+  "description": "Ports are used to communicate with the external world. Do you have any idea why this is not working? It is also a garbage-collected runtime system. Ports are created with the built-in function open_port. Ports are created with the built-in function open_port.",
+  "permissions": "['1b11528bb65e', '44f4f3c94d36', '44f4f3c94d36', '33b3a230e8f6']"
+ },
+ {
+  "id": "1cdc775e23f1",
+  "title": "The syntax {D1,D2,..",
+  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Do you have any idea why this is not working? Where are my pants? The arguments can be primitive data types or compound data types.",
+  "permissions": "['9b600f537e06', 'dda9448badea']"
+ },
+ {
+  "id": "c2a0a8f17a11",
+  "title": "It is also a garbage",
+  "description": "It is also a garbage-collected runtime system. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. He looked inquisitively at his keyboard and wrote another sentence. Do you come here often? Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.",
+  "permissions": "['d29c2bbb8adc']"
+ },
+ {
+  "id": "a5fbc83236d7",
+  "title": "Type classes first a",
+  "description": "Type classes first appeared in the Haskell programming language. In 1989 the building was heavily damaged by fire, but it has since been restored. Make me a sandwich. He looked inquisitively at his keyboard and wrote another sentence. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.",
+  "permissions": "['448a08674c5b']"
+ },
+ {
+  "id": "c1f7d54300f2",
+  "title": "The Galactic Empire ",
+  "description": "The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. It is also a garbage-collected runtime system. He looked inquisitively at his keyboard and wrote another sentence. Erlang is known for its designs that are well suited for systems. He looked inquisitively at his keyboard and wrote another sentence.",
+  "permissions": "['e414b211215b', '979aad6c14f4']"
+ },
+ {
+  "id": "ed08e61e0e78",
+  "title": "Haskell features a t",
+  "description": "Haskell features a type system with type inference and lazy evaluation. Type classes first appeared in the Haskell programming language. Ports are created with the built-in function open_port. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s.",
+  "permissions": "['cb2b62bcef8f']"
+ },
+ {
+  "id": "2ff05435a770",
+  "title": "Do you come here oft",
+  "description": "Do you come here often? Tuples are containers for a fixed number of Erlang data types. Do you come here often? Any element of a tuple can be accessed in constant time. Haskell features a type system with type inference and lazy evaluation.",
+  "permissions": "['3c785d72d847', '5674b9a8c51c', '4d7255861c4a']"
+ },
+ {
+  "id": "3e7c4ffdb27e",
+  "title": "Atoms are used withi",
+  "description": "Atoms are used within a program to denote distinguished values. Ports are created with the built-in function open_port. It is also a garbage-collected runtime system. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. It is also a garbage-collected runtime system.",
+  "permissions": "['c70c05bd7eeb']"
+ },
+ {
+  "id": "03a6ceea073a",
+  "title": "Tuples are container",
+  "description": "Tuples are containers for a fixed number of Erlang data types. The arguments can be primitive data types or compound data types. Erlang is a general-purpose, concurrent, functional programming language. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Atoms are used within a program to denote distinguished values.",
+  "permissions": "['51d13f4510d7', 'a790020f783b', 'cff383127832', 'e74a29d475fa']"
+ },
+ {
+  "id": "803994435c19",
+  "title": "She spent her earlie",
+  "description": "She spent her earliest years reading classic literature, and writing poetry. Haskell features a type system with type inference and lazy evaluation. She spent her earliest years reading classic literature, and writing poetry. Where are my pants? Tuples are containers for a fixed number of Erlang data types.",
+  "permissions": "['c70c05bd7eeb']"
+ },
+ {
+  "id": "7a76048b4667",
+  "title": "Erlang is a general-",
+  "description": "Erlang is a general-purpose, concurrent, functional programming language. It is also a garbage-collected runtime system. Its main implementation is the Glasgow Haskell Compiler. It is also a garbage-collected runtime system. The arguments can be primitive data types or compound data types.",
+  "permissions": "[]"
+ },
+ {
+  "id": "3c3e7c22be68",
+  "title": "They are written as ",
+  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Haskell features a type system with type inference and lazy evaluation. In 1989 the building was heavily damaged by fire, but it has since been restored. Haskell features a type system with type inference and lazy evaluation.",
+  "permissions": "['75178e7ddc6d', '1c96f92a0651']"
+ },
+ {
+  "id": "21cafb70dd56",
+  "title": "Type classes first a",
+  "description": "Type classes first appeared in the Haskell programming language. Type classes first appeared in the Haskell programming language. The arguments can be primitive data types or compound data types. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Atoms are used within a program to denote distinguished values.",
+  "permissions": "['e8d534f9a156', '3c785d72d847', '9e4455b4f87f', 'd56cad52f059']"
+ },
+ {
+  "id": "be4f6f000a66",
+  "title": "Tuples are container",
+  "description": "Tuples are containers for a fixed number of Erlang data types. The arguments can be primitive data types or compound data types. Any element of a tuple can be accessed in constant time. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Tuples are containers for a fixed number of Erlang data types.",
+  "permissions": "['3c785d72d847']"
+ },
+ {
+  "id": "a45fd7578ec1",
+  "title": "Do you come here oft",
+  "description": "Do you come here often? Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" The arguments can be primitive data types or compound data types. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. She spent her earliest years reading classic literature, and writing poetry.",
+  "permissions": "['e61ae307b442', '59f54cfa8e58', '5f4267bc07fb']"
+ },
+ {
+  "id": "9fb61a28660d",
+  "title": "Haskell features a t",
+  "description": "Haskell features a type system with type inference and lazy evaluation. Do you have any idea why this is not working? Do you have any idea why this is not working? Its main implementation is the Glasgow Haskell Compiler. I don't even care.",
+  "permissions": "['18ff3376d46e', '604e3aa7723c', 'e8d534f9a156', 'd1123251815b']"
+ },
+ {
+  "id": "7a184f2f9483",
   "title": "The sequential subse",
-  "permissions": "['776b1e2cd925']"
+  "description": "The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Make me a sandwich. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. In 1989 the building was heavily damaged by fire, but it has since been restored. Do you have any idea why this is not working?",
+  "permissions": "[]"
+ },
+ {
+  "id": "836cb9588da8",
+  "title": "Tuples are container",
+  "description": "Tuples are containers for a fixed number of Erlang data types. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Atoms are used within a program to denote distinguished values. He looked inquisitively at his keyboard and wrote another sentence. I don't even care.",
+  "permissions": "['2e7aa0250287', 'c70c05bd7eeb']"
+ },
+ {
+  "id": "08b165d69e2b",
+  "title": "They are written as ",
+  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Make me a sandwich. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Ports are created with the built-in function open_port.",
+  "permissions": "['1b11528bb65e', '6fc7fb7e475c', 'd56cad52f059', 'cff383127832']"
+ },
+ {
+  "id": "3a83e0387eeb",
+  "title": "Do you have any idea",
+  "description": "Do you have any idea why this is not working? Ports are used to communicate with the external world. Where are my pants? Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. They are written as strings of consecutive alphanumeric characters, the first character being lowercase.",
+  "permissions": "['a4c7129cb992', 'c147bb818422', '1b11528bb65e']"
+ },
+ {
+  "id": "7b77e644be27",
+  "title": "Tuples are container",
+  "description": "Tuples are containers for a fixed number of Erlang data types. Ports are created with the built-in function open_port. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Any element of a tuple can be accessed in constant time. Ports are used to communicate with the external world.",
+  "permissions": "['cef094556be0', '51d13f4510d7', '1a062dad552d']"
+ },
+ {
+  "id": "d75e81a7c2ae",
+  "title": "She spent her earlie",
+  "description": "She spent her earliest years reading classic literature, and writing poetry. Make me a sandwich. Do you come here often? Do you have any idea why this is not working? Type classes first appeared in the Haskell programming language.",
+  "permissions": "['765beb4b7e10', '54bb57a78d69', '906f72ab6851']"
+ },
+ {
+  "id": "348c778483c4",
+  "title": "She spent her earlie",
+  "description": "She spent her earliest years reading classic literature, and writing poetry. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Ports are used to communicate with the external world. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
+  "permissions": "['7b9d1c340fc0', 'e7a720ef7eb1', '4c983c9b1d14']"
+ },
+ {
+  "id": "8caf393da15c",
+  "title": "Its main implementat",
+  "description": "Its main implementation is the Glasgow Haskell Compiler. Type classes first appeared in the Haskell programming language. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
+  "permissions": "['3c785d72d847']"
+ },
+ {
+  "id": "23dac12250d7",
+  "title": "They are written as ",
+  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Haskell features a type system with type inference and lazy evaluation. Haskell features a type system with type inference and lazy evaluation. Where are my pants? Atoms are used within a program to denote distinguished values.",
+  "permissions": "[]"
+ },
+ {
+  "id": "71ed838d00f4",
+  "title": "Any element of a tup",
+  "description": "Any element of a tuple can be accessed in constant time. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Do you have any idea why this is not working? Any element of a tuple can be accessed in constant time. Where are my pants?",
+  "permissions": "['d953d5cd5194', '3dd4f00c866f']"
+ },
+ {
+  "id": "721daa9c95cb",
+  "title": "Ports are created wi",
+  "description": "Ports are created with the built-in function open_port. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Do you come here often? Where are my pants? Erlang is a general-purpose, concurrent, functional programming language.",
+  "permissions": "[]"
+ },
+ {
+  "id": "e13ed4b43ec8",
+  "title": "Atoms can contain an",
+  "description": "Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Type classes first appeared in the Haskell programming language. In 1989 the building was heavily damaged by fire, but it has since been restored. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing.",
+  "permissions": "['ef9c7524fe47', '294ca17bd110', 'ebe71df1b8c8', '0591694bc8e8']"
+ },
+ {
+  "id": "67969e1cf0cb",
+  "title": "He looked inquisitiv",
+  "description": "He looked inquisitively at his keyboard and wrote another sentence. Ports are used to communicate with the external world. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Erlang is known for its designs that are well suited for systems. She spent her earliest years reading classic literature, and writing poetry.",
+  "permissions": "['75178e7ddc6d', '3dd4f00c866f', '59f54cfa8e58']"
+ },
+ {
+  "id": "abf110a99724",
+  "title": "Any element of a tup",
+  "description": "Any element of a tuple can be accessed in constant time. Ports are created with the built-in function open_port. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Atoms are used within a program to denote distinguished values.",
+  "permissions": "['e414b211215b', 'accd3f1f4b23', 'dffd45633af3', '604e3aa7723c']"
+ },
+ {
+  "id": "a77c49ec802e",
+  "title": "Initially composing ",
+  "description": "Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Tuples are containers for a fixed number of Erlang data types. Haskell features a type system with type inference and lazy evaluation. Haskell features a type system with type inference and lazy evaluation. They are written as strings of consecutive alphanumeric characters, the first character being lowercase.",
+  "permissions": "['9be7561f2e01']"
+ },
+ {
+  "id": "e3c6902bcf8c",
+  "title": "I don't even care. T",
+  "description": "I don't even care. The arguments can be primitive data types or compound data types. It is also a garbage-collected runtime system. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Type classes first appeared in the Haskell programming language.",
+  "permissions": "['dffd45633af3']"
+ },
+ {
+  "id": "5e7bc0dfee75",
+  "title": "Its main implementat",
+  "description": "Its main implementation is the Glasgow Haskell Compiler. Tuples are containers for a fixed number of Erlang data types. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Do you have any idea why this is not working? He looked inquisitively at his keyboard and wrote another sentence.",
+  "permissions": "['dafcff5ec18d', 'dafcff5ec18d', '1814bf5086a7', '684477654281']"
+ },
+ {
+  "id": "02940e96b05c",
+  "title": "I don't even care. T",
+  "description": "I don't even care. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing.",
+  "permissions": "['98a75e330262', '448a08674c5b']"
+ },
+ {
+  "id": "8bf5237cf44c",
+  "title": "Atoms are used withi",
+  "description": "Atoms are used within a program to denote distinguished values. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. I don't even care.",
+  "permissions": "['9a7319aac1b5']"
+ },
+ {
+  "id": "4ad2567ddf84",
+  "title": "Messages can be sent",
+  "description": "Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Do you come here often? Type classes first appeared in the Haskell programming language. He looked inquisitively at his keyboard and wrote another sentence. The arguments can be primitive data types or compound data types.",
+  "permissions": "['096024277840', '59f54cfa8e58']"
+ },
+ {
+  "id": "30df638eceed",
+  "title": "Tuples are container",
+  "description": "Tuples are containers for a fixed number of Erlang data types. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Ports are used to communicate with the external world. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
+  "permissions": "['f071a011fe07', '979aad6c14f4']"
+ },
+ {
+  "id": "a5e4f21ab788",
+  "title": "Ports are used to co",
+  "description": "Ports are used to communicate with the external world. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Where are my pants? Tuples are containers for a fixed number of Erlang data types.",
+  "permissions": "['75178e7ddc6d']"
+ },
+ {
+  "id": "fb8c6bb57cf1",
+  "title": "Where are my pants? ",
+  "description": "Where are my pants? He looked inquisitively at his keyboard and wrote another sentence. She spent her earliest years reading classic literature, and writing poetry. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Make me a sandwich.",
+  "permissions": "[]"
+ },
+ {
+  "id": "197280a40c87",
+  "title": "Haskell is a standar",
+  "description": "Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. He looked inquisitively at his keyboard and wrote another sentence. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing.",
+  "permissions": "['3fe39d2890b4', 'cb2b62bcef8f']"
+ },
+ {
+  "id": "142f33bf987f",
+  "title": "Type classes first a",
+  "description": "Type classes first appeared in the Haskell programming language. Ports are used to communicate with the external world. Erlang is a general-purpose, concurrent, functional programming language. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Tuples are containers for a fixed number of Erlang data types.",
+  "permissions": "[]"
+ },
+ {
+  "id": "74d4f47cc750",
+  "title": "The sequential subse",
+  "description": "The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Haskell features a type system with type inference and lazy evaluation. Erlang is a general-purpose, concurrent, functional programming language. Do you have any idea why this is not working? Where are my pants?",
+  "permissions": "['a6ff46aa05a2', 'cff383127832']"
+ },
+ {
+  "id": "a4fcd3da6abd",
+  "title": "Do you have any idea",
+  "description": "Do you have any idea why this is not working? Make me a sandwich. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s. Where are my pants? The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn.",
+  "permissions": "[]"
+ },
+ {
+  "id": "2588ed548ade",
+  "title": "Do you have any idea",
+  "description": "Do you have any idea why this is not working? Ports are used to communicate with the external world. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Any element of a tuple can be accessed in constant time. I don't even care.",
+  "permissions": "['b5bead2606cd', '4d7255861c4a']"
+ },
+ {
+  "id": "661b1cd66b87",
+  "title": "Atoms are used withi",
+  "description": "Atoms are used within a program to denote distinguished values. The arguments can be primitive data types or compound data types. Do you come here often? Do you have any idea why this is not working? Erlang is known for its designs that are well suited for systems.",
+  "permissions": "['d953d5cd5194', '58d126d387eb', '604e3aa7723c', '3dd4f00c866f']"
+ },
+ {
+  "id": "3df1b7277906",
+  "title": "They are written as ",
+  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. It is also a garbage-collected runtime system. Atoms are used within a program to denote distinguished values. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. Erlang is known for its designs that are well suited for systems.",
+  "permissions": "['c70c05bd7eeb']"
+ },
+ {
+  "id": "5c7b97dad2eb",
+  "title": "It is also a garbage",
+  "description": "It is also a garbage-collected runtime system. Haskell features a type system with type inference and lazy evaluation. Type classes first appeared in the Haskell programming language. He looked inquisitively at his keyboard and wrote another sentence. Initially composing light-hearted and irreverent works, he also wrote serious, sombre and religious pieces beginning in the 1930s.",
+  "permissions": "['778798c59987', 'dffd45633af3']"
+ },
+ {
+  "id": "358b5b07d44d",
+  "title": "Atoms are used withi",
+  "description": "Atoms are used within a program to denote distinguished values. In 1989 the building was heavily damaged by fire, but it has since been restored. Type classes first appeared in the Haskell programming language. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.",
+  "permissions": "['0840dfae65b1']"
+ },
+ {
+  "id": "0f714b45728a",
+  "title": "Erlang is a general-",
+  "description": "Erlang is a general-purpose, concurrent, functional programming language. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
+  "permissions": "['4d7255861c4a']"
+ },
+ {
+  "id": "f74053d00b30",
+  "title": "Any element of a tup",
+  "description": "Any element of a tuple can be accessed in constant time. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Make me a sandwich. Ports are used to communicate with the external world. Erlang is known for its designs that are well suited for systems.",
+  "permissions": "[]"
+ },
+ {
+  "id": "65eb000cd4ce",
+  "title": "Do you come here oft",
+  "description": "Do you come here often? The arguments can be primitive data types or compound data types. Type classes first appeared in the Haskell programming language. Haskell features a type system with type inference and lazy evaluation. Make me a sandwich.",
+  "permissions": "['3b9008b1383e', '59f54cfa8e58', '1814bf5086a7']"
+ },
+ {
+  "id": "3e6c49450f42",
+  "title": "I don't even care. D",
+  "description": "I don't even care. Do you have any idea why this is not working? Its main implementation is the Glasgow Haskell Compiler. In 1989 the building was heavily damaged by fire, but it has since been restored. He looked inquisitively at his keyboard and wrote another sentence.",
+  "permissions": "[]"
+ },
+ {
+  "id": "22d5a81b684a",
+  "title": "Messages can be sent",
+  "description": "Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Ports are created with the built-in function open_port. Ports are created with the built-in function open_port. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Do you come here often?",
+  "permissions": "['2b00474f3b19']"
+ },
+ {
+  "id": "a631c1bd66dd",
+  "title": "Haskell features a t",
+  "description": "Haskell features a type system with type inference and lazy evaluation. She spent her earliest years reading classic literature, and writing poetry. Its main implementation is the Glasgow Haskell Compiler. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Ports are used to communicate with the external world.",
+  "permissions": "['3fe39d2890b4', '1c96f92a0651', '586882099519', '1b11528bb65e']"
+ },
+ {
+  "id": "33f7a7a5e2c1",
+  "title": "It is also a garbage",
+  "description": "It is also a garbage-collected runtime system. I don't even care. Type classes first appeared in the Haskell programming language. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. Erlang is known for its designs that are well suited for systems.",
+  "permissions": "['7550eb59cf73']"
+ },
+ {
+  "id": "b60685007311",
+  "title": "Do you have any idea",
+  "description": "Do you have any idea why this is not working? The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Its main implementation is the Glasgow Haskell Compiler. The arguments can be primitive data types or compound data types. Any element of a tuple can be accessed in constant time.",
+  "permissions": "['0811277277a9', '294ca17bd110']"
+ },
+ {
+  "id": "9daf8c26ca9e",
+  "title": "They are written as ",
+  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Where are my pants? Type classes first appeared in the Haskell programming language. He looked inquisitively at his keyboard and wrote another sentence. I don't even care.",
+  "permissions": "['1814bf5086a7', 'dffd45633af3', 'f07658b4b15b', 'b01586832aaf']"
+ },
+ {
+  "id": "1afc332184fd",
+  "title": "Ports are created wi",
+  "description": "Ports are created with the built-in function open_port. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. In 1989 the building was heavily damaged by fire, but it has since been restored. In 1989 the building was heavily damaged by fire, but it has since been restored.",
+  "permissions": "['096024277840', '98a75e330262', 'ebe71df1b8c8']"
+ },
+ {
+  "id": "d10337e6c3c2",
+  "title": "Ports are created wi",
+  "description": "Ports are created with the built-in function open_port. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Do you come here often? Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Erlang is known for its designs that are well suited for systems.",
+  "permissions": "['33b3a230e8f6']"
+ },
+ {
+  "id": "46be84e6647d",
+  "title": "Erlang is known for ",
+  "description": "Erlang is known for its designs that are well suited for systems. Do you come here often? Make me a sandwich. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing. Haskell features a type system with type inference and lazy evaluation.",
+  "permissions": "[]"
+ },
+ {
+  "id": "c31cd79069f2",
+  "title": "Erlang is known for ",
+  "description": "Erlang is known for its designs that are well suited for systems. Erlang is known for its designs that are well suited for systems. Make me a sandwich. She spent her earliest years reading classic literature, and writing poetry. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom.",
+  "permissions": "[]"
+ },
+ {
+  "id": "e8780de1e24a",
+  "title": "Ports are created wi",
+  "description": "Ports are created with the built-in function open_port. Haskell features a type system with type inference and lazy evaluation. She spent her earliest years reading classic literature, and writing poetry. I don't even care. Any element of a tuple can be accessed in constant time.",
+  "permissions": "[]"
+ },
+ {
+  "id": "ebd7e2a21d9a",
+  "title": "Type classes first a",
+  "description": "Type classes first appeared in the Haskell programming language. She spent her earliest years reading classic literature, and writing poetry. They are written as strings of consecutive alphanumeric characters, the first character being lowercase. The arguments can be primitive data types or compound data types. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\"",
+  "permissions": "['294ca17bd110', '684477654281', '0591694bc8e8', '1814bf5086a7']"
+ },
+ {
+  "id": "bac89c060d4a",
+  "title": "Atoms are used withi",
+  "description": "Atoms are used within a program to denote distinguished values. Make me a sandwich. It is also a garbage-collected runtime system. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets. The Galactic Empire is nearing completion of the Death Star, a space station with the power to destroy entire planets.",
+  "permissions": "['7b9d1c340fc0']"
+ },
+ {
+  "id": "60f9aa219b34",
+  "title": "It is also a garbage",
+  "description": "It is also a garbage-collected runtime system. I don't even care. Atoms are used within a program to denote distinguished values. In 1989 the building was heavily damaged by fire, but it has since been restored. Haskell is a standardized, general-purpose purely functional programming language, with non-strict semantics and strong static typing.",
+  "permissions": "['765beb4b7e10', '4b8595fd39ed']"
+ },
+ {
+  "id": "eb1811ce7911",
+  "title": "Erlang is known for ",
+  "description": "Erlang is known for its designs that are well suited for systems. Erlang is known for its designs that are well suited for systems. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Its main implementation is the Glasgow Haskell Compiler. Make me a sandwich.",
+  "permissions": "['e74a29d475fa', '9b67d0e03b68']"
+ },
+ {
+  "id": "c4c382ca89d6",
+  "title": "The syntax {D1,D2,..",
+  "description": "The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. I don't even care. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" Do you have any idea why this is not working? Any element of a tuple can be accessed in constant time.",
+  "permissions": "['9a7319aac1b5', 'b1aafba1a0fa', 'd56cad52f059', 'ff77c890dded']"
+ },
+ {
+  "id": "c428991f0de0",
+  "title": "Tuples are container",
+  "description": "Tuples are containers for a fixed number of Erlang data types. The sequential subset of Erlang supports eager evaluation, single assignment, and dynamic typing. The arguments can be primitive data types or compound data types. It is also a garbage-collected runtime system. In 1989 the building was heavily damaged by fire, but it has since been restored.",
+  "permissions": "['f07658b4b15b', 'e553d437e574']"
+ },
+ {
+  "id": "74adaabb93fc",
+  "title": "They are written as ",
+  "description": "They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Ports are used to communicate with the external world. Messages can be sent to and received from ports, but these messages must obey the so-called \"port protocol.\" They are written as strings of consecutive alphanumeric characters, the first character being lowercase. Ports are created with the built-in function open_port.",
+  "permissions": "['6fc7fb7e475c', '4546af9e922d', 'd56cad52f059']"
+ },
+ {
+  "id": "74a7625a7e9f",
+  "title": "Type classes first a",
+  "description": "Type classes first appeared in the Haskell programming language. Atoms can contain any character if they are enclosed within single quotes and an escape convention exists which allows any character to be used within an atom. Haskell features a type system with type inference and lazy evaluation. The syntax {D1,D2,...,Dn} denotes a tuple whose arguments are D1, D2, ... Dn. Make me a sandwich.",
+  "permissions": "['294ca17bd110']"
+ },
+ {
+  "id": "0397b9ae6a55",
+  "title": "Do you come here oft",
+  "description": "Do you come here often? Do you come here often? Do you come here often? Tuples are containers for a fixed number of Erlang data types. Ports are created with the built-in function open_port.",
+  "permissions": "[]"
  }
 ]
