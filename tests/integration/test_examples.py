@@ -4,8 +4,7 @@ import sys
 from typing import List
 
 import pytest
-
-from tests.markers import LOCAL_ONLY
+from markers import LOCAL_ONLY
 
 base_path = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 examples_folder = os.path.join(base_path, "examples")
