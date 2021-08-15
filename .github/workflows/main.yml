@@ -43,8 +43,10 @@ jobs:
       env:
         POETRY_VIRTUALENVS_CREATE: false
     - name: Test with pytest
+      env:
+        ENV: ci
       run: |
-        export ENV="ci" && pytest tests/
+        pytest tests/
 
   tests_3_7:
     runs-on: ubuntu-latest
@@ -62,8 +64,10 @@ jobs:
       env:
         POETRY_VIRTUALENVS_CREATE: false
     - name: Test with pytest
+      env:
+        ENV: ci
       run: |
-        export ENV="ci" && pytest tests/
+        pytest tests/
 
   tests_3_8:
     runs-on: ubuntu-latest
@@ -81,8 +85,10 @@ jobs:
       env:
         POETRY_VIRTUALENVS_CREATE: false
     - name: Test with pytest
+      env:
+        ENV: ci
       run: |
-        export ENV="ci" && pytest tests/
+        pytest tests/
 
   tests_3_9:
     runs-on: ubuntu-latest
@@ -100,5 +106,7 @@ jobs:
       env:
         POETRY_VIRTUALENVS_CREATE: false
     - name: Test with pytest
+      env:
+        ENV: ci
       run: |
-        export ENV="ci" && pytest tests/
+        pytest tests/

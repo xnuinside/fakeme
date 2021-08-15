@@ -128,7 +128,7 @@ class SchemaExtractor(object):
                     break
                 else:
                     raise NotImplementedError(
-                        f"Fakeme can read schemas only in `.json` & {', '.join(extensions)} formats"
+                        f"Fakeme can read schemas only in '.json', '.py' & {', '.join(extensions)} formats"
                     )
         return schema
 
