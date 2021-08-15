@@ -123,7 +123,11 @@ class Fakeme(Settings, Relationship):
             tables = [tables]
         elif isinstance(tables, List):
             for table in tables:
-                if not isinstance(table, Table) and not isinstance(table[0], str):
+                if (
+                    table
+                    and not isinstance(table, Table)
+                    and not isinstance(table[0], str)
+                ):
                     raise FakemeException(
                         f"Tables definitions must be presented like a tuple ('table_name', schema). "
                         f"You provided: {table}"

@@ -83,7 +83,7 @@ class SchemaExtractor(object):
         else:
             target_path = path
         if not os.path.isfile(target_path):
-            raise ValueError("File with schema does not exist {}".format(path))
+            raise ValueError("File with schema does not exist {}".format(target_path))
         return target_path
 
     def get_schema_from_py_models(self, schema_path):
