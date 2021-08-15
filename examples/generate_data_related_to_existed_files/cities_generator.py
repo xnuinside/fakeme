@@ -19,25 +19,26 @@ from fakeme import Fakeme
 #   {"column_name" : value, "column_name2": value2 ..}..]
 # Please check example in countries.json
 
-cities_schema = [{"name": "name"},
-                 {"name": "country_id"},
-                 {"name": "id"}]
+cities_schema = [{"name": "name"}, {"name": "country_id"}, {"name": "id"}]
 # I have a list of countries and I need to define cities dataset for them
 # all fields are strings - so I don't define type, because String will be used as default type for the column
 
-tables_list = [('cities', cities_schema)]
-# I define how they relative
+tables_list = [("cities", cities_schema)]
+
+# define relationship between existed data and needed table
 Fakeme(
     tables=tables_list,
-    with_data=['countries.json'],
-    rls={'cities': {  # this mean: for table 'cities'
-        'country_id': {  # and column 'country_id' in table 'cities'
-            'table': 'countries.json',   # please take data from data  in countries.json
-            'alias': 'id'
+    with_data=["countries.json"],
+    rls={
+        "cities": {  # this mean: for table 'cities'
+            "country_id": {  # and column 'country_id' in table 'cities'
+                "table": "countries.json",  # please take data from data  in countries.json
+                "alias": "id",
+            }
         }
-    }},
-    settings={'row_numbers': 1300}  # we want to have several cities for each country,
-                                    # so we need to have more rows, by default 100
+    },
+    settings={"row_numbers": 1300}  # we want to have several cities for each country,
+    # so we need to have more rows, by default 100
 ).run()
 # and just run
 

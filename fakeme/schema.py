@@ -153,8 +153,6 @@ class SchemaExtractor(object):
                         _type = self.map_type(_type)
                     field_details = {"name": key, "type": _type}
                 else:
-                    print(schema)
-                    print(key)
                     if not schema[key].get("name"):
                         schema[key]["name"] = key
                     field_details = schema[key]

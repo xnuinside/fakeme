@@ -146,7 +146,6 @@ class Fakeme(Settings, Relationship):
         return set(validated_list)
 
     def run(self):
-
         log.info(f"Fakeme starts at {datetime.now()}")
         # get all fields and schemas for tables
         self.schemas, fields = MultiTableRunner(
@@ -164,7 +163,6 @@ class Fakeme(Settings, Relationship):
         field_extractor.generate_rules()
 
         self.priority_dict = self.create_tables_priority_graph()
-
         for key, value in self.priority_dict.items():
             for table in value:
                 if (
@@ -201,7 +199,6 @@ class Fakeme(Settings, Relationship):
         target_path = os.path.join(
             self.cfg.path_prefix, "{}.{}".format(file_name, self.cfg.output.file_format)
         )
-
         self.schemas[table][1].create_data(
             file_path=target_path,
             with_data=self.with_data,

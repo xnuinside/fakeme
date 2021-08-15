@@ -8,8 +8,9 @@ __pycache__/
 /docs/_templates
 
 /fakeme/__pycache__/
-/tests/unittests/cli/__pycache__/
-/tests/unittests/__pycache__/
+/tests/unit/cli/__pycache__/
+/tests/unit/__pycache__/
+/tests/integration/__pycache__/
 
 /fakeme/*.pyc
 
